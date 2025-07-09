@@ -1,0 +1,143 @@
+
+
+.navbar-cont{
+    display: flex;
+    flex-direction: column;
+    background-color: #0a0a0f;
+    padding-top: 20px;;
+    gap: 20px;
+    width: 100%;
+}
+
+.searchbar-cont{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 10px 0px;
+    padding-left: 30px;
+}
+
+#logo{
+  color: white;
+  font-size: 30px;
+  margin: 0px;
+  margin-right: 40px;
+}
+
+.search {
+  display: flex;
+  align-items: stretch; 
+  width: 100%;
+  max-width: 500px;
+}
+
+.search input {
+  background-color: rgb(65, 65, 65);
+  color: rgb(165, 165, 165);
+  font-size: 14px;
+  border: none;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  padding: 13px 8px;
+  font-size: 15px;
+  width: 100%;
+}
+
+.search input:focus {
+  outline: none;
+}
+
+.search button {
+  background-color: #8C5CE8;
+  color: white;
+  border: none;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  padding: 0 15px; 
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.search button:hover{
+    background-color: #6C3FBF;
+}
+
+.navbar-links{
+    display: flex;
+    align-items: center;
+    background-color: #8C5CE8;
+    color: white;
+    padding: 0px 25px;
+    padding-left: 30px;
+}
+
+.navbar-link{
+    font-size: 16px;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+#all-cates{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+}
+
+.navbar-link:hover{
+    background-color: #6C3FBF;
+}
+
+
+.dropdown {
+  position: absolute;
+  top: calc(100%); 
+  left: 0;
+  background-color: #1e1e2f;
+  padding: 10px;
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 10;
+  min-width: 150px;
+  border-radius: 6px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+.dropdown a {
+  color: #ccc;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.dropdown a:hover {
+  background-color: #2e2e3f;
+}
+
+.nav-item{
+    position: relative;
+}
+
+.nav-item:hover .dropdown {
+  display: flex;
+}
+
+@media(max-width: 786px){
+
+    .searchbar-cont{
+        padding-left: 0px;
+
+    }
+
+    .search{
+        margin: 0px auto;
+    }
+
+    #logo{
+        display: none;
+    }
+}

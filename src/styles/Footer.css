@@ -1,0 +1,72 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+  width: 95%;
+  padding: 25px 20px;
+  background-color: #0a0a0f;
+  color: white;
+  gap: 40px;
+}
+
+.about-us h3,
+#quick-links-header {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.about-us p {
+  font-size: 14px;
+  line-height: 1.6;
+  max-width: 800px;
+  color: #ccc;
+}
+
+.quick-links-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.quick-links {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  font-size: 14px;
+  margin-top: 10px;
+  max-width: 330px;
+}
+
+.footer a {
+  text-decoration: none;
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: rgb(189, 189, 189);
+}
+
+.socials {
+  font-size: 14px;
+  color: #aaa;
+  margin-top: 10px;
+}
+
+.copyright {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  gap: 10px;
+  padding: 15px 0;
+  font-size: 12px;
+  background-color: #0a0a0f;
+  color: #999;
+  text-align: center;
+}
+
+#footer-hr{
+    border: 1px solid purple;
+    width: 100vw;
+}

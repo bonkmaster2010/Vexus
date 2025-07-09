@@ -1,0 +1,89 @@
+/* Overlay dims the background and centers the panel */
+.overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6); /* background dim effect */
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+/* Panel itself */
+.filtering-panel {
+  display: flex;
+  flex-direction: column;
+  background-color: #1b1324;
+  border: 1px solid #A084DC;
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 600px;
+  width: 90%;
+  gap: 24px;
+  box-shadow: 0 0 20px rgba(160, 132, 220, 0.2);
+  position: relative;
+}
+
+/* Close Button (X) */
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: #A084DC;
+  cursor: pointer;
+}
+
+/* Heading */
+.filter-heading {
+  color: #EDE4FF;
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+/* Price inputs */
+.price-selectors,
+.filter-selectors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* Style input boxes */
+.price-selectors input {
+  flex: 1;
+  min-width: 120px;
+  padding: 10px;
+  background-color: #2a1c3a;
+  border: 1px solid #A084DC;
+  color: white;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.price-selectors input:focus{
+    outline: none;
+    border: 2px solid #8b63e2;
+}
+
+/* Apply button */
+.apply-btn {
+  padding: 10px 16px;
+  background-color: #A084DC;
+  color: #1b1324;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.apply-btn:hover {
+  background-color: #c1a7f3;
+}
