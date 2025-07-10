@@ -49,9 +49,9 @@ h1, p {
   justify-content: center;
   align-items: center;
   padding: 0px 10px;
+  padding-bottom: 8px;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
   width: 90%;
   aspect-ratio: 21 / 4.5 ;   
   height: auto; 
@@ -82,7 +82,7 @@ h1, p {
 
 .image-dot-cont {
   position: absolute;
-  bottom: 15px;
+  bottom: 0px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;

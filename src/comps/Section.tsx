@@ -6,11 +6,11 @@ import '../styles/Section.css';
 function Section({title, arr}: any){
 
    function scrollLeft() {
-  document.querySelector('.section-products')?.scrollBy({ left: -300, behavior: 'smooth' });
+  document.querySelector('.section-products')?.scrollBy({ left: -600, behavior: 'smooth' });
 }
 
 function scrollRight() {
-  document.querySelector('.section-products')?.scrollBy({ left: 300, behavior: 'smooth' });
+  document.querySelector('.section-products')?.scrollBy({ left: 520, behavior: 'smooth' });
 }
 
 
@@ -36,12 +36,7 @@ function scrollRight() {
           <PcCard src={test} title="test" price="$15,000" style='section-card'/>
           <PcCard src={test} title="test" price="$15,000" style='section-card'/>
           <PcCard src={test} title="test" price="$15,000" style='section-card'/>
-          <PcCard src={test} title="test" price="$15,000" style='section-card'/>
-          <PcCard src={test} title="test" price="$15,000" style='section-card'/>
-          <PcCard src={test} title="test" price="$15,000" style='section-card'/>
-          <PcCard src={test} title="test" price="$15,000" style='section-card'/>
-          <PcCard src={test} title="test" price="$15,000" style='section-card'/>
-          <PcCard src={test} title="test" price="$15,000" style='section-card'/>
+
         </div>
       </div>
     )

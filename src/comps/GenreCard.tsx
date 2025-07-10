@@ -1,12 +1,15 @@
 
 
 
-export default function GenreCard({genre, bg}: any){
+
+function GenreCard({src, title}: any){
 
     return(
-    <div className="niche-card">
-           <p>{genre}</p>
+    <div className="genre-card" style={{background: `url(${src})`}}>
+       <h3>{title}</h3>
     </div>
     )
 
 }
+
+export default GenreCard;
