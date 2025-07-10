@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import ad1 from '../images/PcAd1.png';
+import ad1 from '../images/upscalemedia-transformed.png';
 
 function Ad(){
    const [imageIndex, setImageIndex] = useState<number>(0);
-   const srcs = [ad1]
+   const srcs = [ad1, ad1]
 
    function left(){
       if(imageIndex <= 0){return}
@@ -26,13 +26,13 @@ function Ad(){
 
       <div className='image-dot-cont'>
          {srcs.map((n: any, i: number) => (
-            <span className='image-dot' key={`${n} - ${i}`}></span>
+            <span className={`image-dot ${imageIndex == i ? "active" : ""}`} key={`${n} - ${i}`}></span>
          ))}
       </div>
 
       <div className='image-btn-cont'>
-         <button>{'❮'}</button>
-         <button>{'❯'}</button>
+         <button onClick={left}>{'❮'}</button>
+         <button onClick={right}>{'❯'}</button>
       </div>
    
     </div>

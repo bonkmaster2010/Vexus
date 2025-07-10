@@ -1,0 +1,57 @@
+.section-cont {
+    width: 90%;
+    margin-left: 25px;
+    overflow: hidden;
+    position: relative;
+    padding: 40px 0px;
+    box-sizing: border-box; 
+}
+
+.section-products {
+    display: flex;
+    width: 100%;
+    gap: 12px;
+    overflow: hidden;
+    padding: 20px 10px;
+    scroll-behavior: smooth;
+}
+
+.section-btns {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  z-index: 5;
+  pointer-events: none; 
+}
+
+.section-btns button {
+  background: #1b1324;
+  border: 1px solid #A084DC;
+  color: white;
+  font-size: 22px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(160, 132, 220, 0.3);
+  transition: all 0.3s;
+  margin: 0;
+  pointer-events: auto; 
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.section-btns button:hover {
+  box-shadow: 0 0 20px rgba(160, 132, 220, 0.6);
+  transform: scale(1.1);
+}
+
+@media(max-width: 770px){
+    .section-btns{
+        display: none;
+    }
+}

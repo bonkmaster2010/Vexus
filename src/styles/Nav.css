@@ -6,7 +6,7 @@
     background-color: #0a0a0f;
     padding-top: 20px;;
     gap: 20px;
-    width: 100%;
+    width: 100vw;
 }
 
 .searchbar-cont{
@@ -27,8 +27,7 @@
 .search {
   display: flex;
   align-items: stretch; 
-  width: 100%;
-  max-width: 500px;
+  width: 60%;
 }
 
 .search input {
@@ -68,7 +67,7 @@
     background-color: #8C5CE8;
     color: white;
     padding: 0px 25px;
-    padding-left: 30px;
+    padding-left: 60px;
 }
 
 .navbar-link{
@@ -140,4 +139,10 @@
     #logo{
         display: none;
     }
+}
+
+@media(max-width: 560px){
+  .navbar-cont{
+    display: none;
+  }
 }

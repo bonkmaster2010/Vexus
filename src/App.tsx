@@ -2,6 +2,7 @@ import Ad from './comps/Ad';
 import Footer from './comps/Footer';
 import { useNavigate } from 'react-router';
 import './styles/App.css';
+import Section from './comps/Section';
 
 function App() {
   const navi = useNavigate();
@@ -10,9 +11,7 @@ function App() {
     <div className='main-page-cont'>
       <Ad/>
 
-      <button className='browse-products' onClick={() => navi("/products")}>Browse Products</button>
-
-
+      <Section title="DAILY OFFERS  "/>
      <Footer/>
     </div>
     </>

@@ -3,8 +3,8 @@ import '../styles/Footer.css';
 function Footer() {
   return (
     <>
-      <hr id='footer-hr'/>
       <footer className="footer">
+      <hr id='footer-hr'/>
         <div className="about-us">
           <h3>About Us</h3>
           <p>

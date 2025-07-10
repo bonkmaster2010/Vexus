@@ -3,10 +3,10 @@
   flex-direction: column;
   margin-top: auto;
   width: 95%;
-  padding: 25px 20px;
+  padding: 0px 20px;
   background-color: #0a0a0f;
   color: white;
-  gap: 40px;
+  gap: 5px;
 }
 
 .about-us h3,
