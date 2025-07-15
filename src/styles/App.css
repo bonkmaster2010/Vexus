@@ -2,9 +2,10 @@ body {
     display: flex;
     flex-direction: column;
     font-family: 'Inter', 'Segoe UI', sans-serif;
-    background-color: #0a0a0f; 
+    background-color: #0e0e0e; 
     margin: 0px;
     padding: 0px;
+    overflow-x: hidden;
 }
 
 h1, p {
@@ -18,30 +19,11 @@ h1, p {
     min-height: 100vh;
     margin: 0px auto;
     max-width: 95%;
-    gap: 30px;
     color: #EAE6F8; 
     padding-bottom: 50px;
 }
 
 
-.browse-products {
-  padding: 10px 22px;
-  background-color: #6C3FBF;
-  color: #ffffff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-weight: bold;
-  letter-spacing: 0.5px;
-  box-shadow: 0 4px 12px rgba(108, 63, 191, 0.4);
-}
-
-.browse-products:hover {
-  background-color: #8C5CE8;
-  box-shadow: 0 0 18px #8C5CE8;
-  transform: translateY(-2px);
-}
 
 .ad{
   position: relative;
@@ -52,11 +34,12 @@ h1, p {
   padding-bottom: 8px;
   background-repeat: no-repeat;
   background-size: cover;
-  width: 90%;
+  width: 95%;
   aspect-ratio: 21 / 4.5 ;   
   height: auto; 
   margin-top: 40px;
   border: none;
+  margin-bottom: 30px;
 }
 
 .image-btn-cont{
@@ -105,9 +88,22 @@ h1, p {
   border: 4px solid #6e3fd3;
 }
 
+
+
+
+
 @media(max-width: 880px){
   .ad{
     display: none;
     margin-top: 0;
   }
 }
+
+@media(max-width: 744px){
+  .main-page-cont{
+    width: 100%;
+    justify-content: start;
+    align-items: start;
+  }
+}
+

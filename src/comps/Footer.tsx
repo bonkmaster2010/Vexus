@@ -1,14 +1,17 @@
+import { Outlet } from 'react-router';
+import payment from '../images/payment-options.png';
 import '../styles/Footer.css';
 
 function Footer() {
   return (
     <>
-      <footer className="footer">
+     <Outlet/>
       <hr id='footer-hr'/>
+      <footer className="footer">
         <div className="about-us">
           <h3>About Us</h3>
           <p>
-            Welcome to Vexus — your ultimate destination for high-performance PC builds, parts, and accessories.
+            Welcome to Vexus — your ultimate destination for high-performance PC builds, parts, and accessories, Home Items, etc.
             Whether you're a gamer, creator, or professional, our curated marketplace helps you build with clarity and confidence.
           </p>
         </div>
@@ -29,9 +32,13 @@ function Footer() {
           </div>
         </div>
 
+        <div className='footer-bottom-row'>
+          <img src={payment}/>
         <div className="socials">
           <p>Follow us on social media (coming soon)</p>
         </div>
+        </div>
+      
       </footer>
       
       <hr id='footer-hr'/>

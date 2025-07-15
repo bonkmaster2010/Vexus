@@ -1,18 +1,43 @@
-import Ad from './comps/Ad';
-import Footer from './comps/Footer';
-import { useNavigate } from 'react-router';
+import Ad from './comps/SC/Ad';
+import Section from './comps/SC/Section';
+import GenreCards from './comps/GenreCards';
+import { gamingGenre, electronicsGenre, TC_IMAGES} from './utils/categories';
+import { testProducts } from './utils/Data';
 import './styles/App.css';
-import Section from './comps/Section';
+import CC from './comps/CategoryCard';
 
 function App() {
-  const navi = useNavigate();
   return (
     <>
     <div className='main-page-cont'>
       <Ad/>
 
-      <Section title="DAILY OFFERS  "/>
-     <Footer/>
+      <Section arr={testProducts} title="DAILY OFFERS"/>
+      <Section arr={testProducts} title="BEST SELLING LAPTOPS"/>
+      <Section arr={testProducts} title="POPULAR GAMING PCS"/>
+      <Section arr={testProducts} title="TOP MONITORS"/>
+      <Section arr={testProducts} title="BEST SELLING GRAPHIC CARDS"/>
+      <Section arr={testProducts} title="FEATURED HOME & KITCHEN APPLIANCES"/>
+      <Section arr={testProducts} title="FEATURED MOTHERBOARDS"/>
+
+      <GenreCards images={gamingGenre} title="GAMING"/>
+
+      <Section arr={testProducts} title="BEST DEALS ON FURNITURE"/>
+      <Section arr={testProducts} title="POPULAR NETWORKING DEVICES"/>
+
+      <GenreCards images={electronicsGenre} title="ELECTRONICS" />
+  
+      <Section arr={testProducts} title="POPULAR HEADPHONES"/>
+      <Section arr={testProducts} title="ITEMS YOU MAY LIKE"/>
+      
+        <div className="top-rated-cates-cont">
+        <div className="top-rated-cates">
+            {TC_IMAGES.map((obj: any, i: number) => (
+              <CC key={obj} title={obj.title} src={obj.src} route={obj.route}/>
+            ))}
+        </div>
+        </div>
+      
     </div>
     </>
   )

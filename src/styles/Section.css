@@ -1,19 +1,29 @@
 .section-cont {
-    width: 90%;
-    margin-left: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 95%;
     overflow: hidden;
     position: relative;
-    padding: 40px 0px;
-    box-sizing: border-box; 
+    padding: 0px 0px;
+    box-sizing: border-box;
+}
+
+.section-title{
+  font-size: 18px;
+  margin-bottom: 0px;
+  color: white;
 }
 
 .section-products {
     display: flex;
     width: 100%;
     gap: 12px;
-    overflow: hidden;
-    padding: 20px 10px;
-    scroll-behavior: smooth;
+    padding: 20px 0px;
+    overflow-x: scroll;          
+    scroll-behavior: smooth;   
+    scroll-snap-type: x mandatory; 
+    -webkit-overflow-scrolling: touch;
 }
 
 .section-btns {
@@ -50,8 +60,31 @@
   transform: scale(1.1);
 }
 
+
+@media(max-width: 1022px){
+  .section-cont, .section-products{
+    max-width: 900px;
+  }
+}
+
 @media(max-width: 770px){
     .section-btns{
         display: none;
     }
+
+    .section-cont, .section-products{
+      overflow: scroll;
+    }
+}
+
+@media(max-width: 880px){
+  .section-cont{
+    margin-top: 20px;
+  }
+}
+
+@media(max-width: 744px){
+  .section-cont{
+    width: 100%;
+  }
 }

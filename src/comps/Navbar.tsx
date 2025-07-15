@@ -1,8 +1,10 @@
 import { NavLink, Outlet } from "react-router";
 import '../styles/Nav.css';
+import { allCategoriesLinks } from "../utils/extraUtils";
 
 function Navbar(){
 
+  
 
     return (
         <>
@@ -32,35 +34,20 @@ function Navbar(){
       All Categories
     </NavLink>
     <div className="dropdown">
-      <NavLink to="/">PC Components</NavLink>
-      <NavLink to="/">Accessories</NavLink>
-      <NavLink to="/">Peripherals</NavLink>
+     {allCategoriesLinks.map((link: any, i: number) => (
+      <NavLink to={link.route}>{link.linkName}</NavLink>
+     ))}
     </div>
   </div>
 
     <div className="nav-item">
-            <NavLink className="navbar-link" to="/">Computers</NavLink>
+            <NavLink className="navbar-link" to="/categories/electronics">Electronics</NavLink>
             <div className="dropdown">
-            <NavLink to="/">Gaming PCs</NavLink>
-            <NavLink to="/">Workstations</NavLink>
+
             </div>
         </div>
 
-        <div className="nav-item">
-            <NavLink className="navbar-link" to="/">Laptops</NavLink>
-            <div className="dropdown">
-            <NavLink to="/">Gaming Laptops</NavLink>
-            <NavLink to="/">Ultrabooks</NavLink>
-            </div>
-        </div>
 
-        <div className="nav-item">
-            <NavLink className="navbar-link" to="/">Gaming</NavLink>
-            <div className="dropdown">
-            <NavLink to="/">Consoles</NavLink>
-            <NavLink to="/">Accessories</NavLink>
-            </div>
-        </div>
         </nav>
 
         </div>

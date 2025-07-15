@@ -1,65 +1,53 @@
-import '../styles/Filter.css';
-import Select from './Select';
 
 
-function Filter({setVal, val}: any){
- 
-    const ramOptions = [
-  "8 GB",
-  "16 GB",
-  "32 GB",
-  "64 GB"
-];
+function Filter({filterArr}: any) {
 
-const gpuOptions = [
-  "NVIDIA GeForce",
-  "AMD Radeon",
-  "Intel Integrated"
-];
+    const options = ["sort by popularity"];
 
-const cpuOptions = [
-  "Intel",
-  "AMD"
-];
 
-const priceOptions = [
-  "Under $1000",
-  "$1000 - $1500",
-  "$1500 - $2000",
-  "Above $2000"
-];
-    
-   
     return (
-        <>
+        <div className="pc-filtering-container">
+          
+          <select className='filtering-select'>
+          {options.map((option: string, i: number) => (
+            <option key={`${option} - ${i}`}>{option}</option>
+          ))}
+          </select>
 
-        <div onClick={() => setVal(false)} className="overlay">
-        <div onClick={(e) => e.stopPropagation()} className="filtering-panel">
+                {filterArr.map((type: any, i: number) => ( 
+                <div key={type} className="filter-group">
+                <h4 className="filter-group-title">{type.name}</h4>
+                <div className="filter-options">
+                       
+                        {type.data.map((title: string, i: number) => (
+                          <label key={title} className="filter-checkbox-cont">
+                            <input
+                                type="checkbox"
+                                name="manufacturer"
+                                value={title}
+                                id={`manufacturer-${i}`}
+                            />
+                            {title}
+                        </label>
+                       ))}
+                </div>
+                <hr/>
+            </div>
+             ))}
 
-            <button className="close-btn" onClick={() => setVal(false)}>✕</button>
+            <div className="filter-group">
+                <h4 className="filter-group-title">Price (USD)</h4>
+                
+               <div className="filtering-inputs">
+                <input />
+                TO
+                <input/>
+               </div>
 
-            <h2 className="filter-heading">Filter Products</h2>
-
-            <div className="price-selectors">
-            <input placeholder="Lowest Price" />
-            <input placeholder="Highest Price" />
             </div>
 
-            <div className="filter-selectors">
-            <Select name="Sort" arr={priceOptions} />
-            <Select name="RAM" arr={ramOptions} />
-            <Select name="CPU" arr={cpuOptions} />
-            <Select name="GPU" arr={gpuOptions} />
-            </div>
-
-            <button className="apply-btn">Apply Filters</button>
-
         </div>
-        </div>
-
-        
-        </>
-    )
+    );
 }
 
 export default Filter;

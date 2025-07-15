@@ -1,28 +1,20 @@
-import e1 from '../images/GCI/en_01.jpg';
-import e2 from '../images/GCI/en_02.jpg';
-import e3 from '../images/GCI/en_03.jpg';
-import e4 from '../images/GCI/en_04.jpg';
-import e5 from '../images/GCI/en_05.jpg';
-import e6 from '../images/GCI/en_16.jpg';
-import e7 from '../images/GCI/en_17.jpg';
-import e8 from '../images/GCI/en_18.jpg';
-import GenreCard from './GenreCard';
+import GenreCard from './SC/GenreCard';
+import '../styles/GenreCards.css';
 
-
-function GenreCards(){
+function GenreCards({title, images}: any){
 
     return(
-     <div className='genre-card-cont'>
-        <GenreCard src={e1}/>
-        <GenreCard src={e2}/>
-        <GenreCard src={e3}/>
-        <GenreCard src={e4}/>
-        <GenreCard src={e5}/>
-        <GenreCard src={e6}/>
-        <GenreCard src={e7}/>
-        <GenreCard src={e8}/>
+        <>
+      <div className='genre-cont'>
+        <h3 style={{marginTop: '5px', marginBottom: '8px'}}>{title}</h3>
+         <div className='genre-card-cont'>
+          {images.map((img: any) => (
+            <GenreCard src={img}/>
+          ))}
+       </div>
      </div>
-    )
+      </>    
+)
 
 }
 
