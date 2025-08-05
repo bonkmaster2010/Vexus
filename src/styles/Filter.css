@@ -1,89 +1,189 @@
-/* Overlay dims the background and centers the panel */
-.overlay {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.6); /* background dim effect */
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-}
-
-/* Panel itself */
-.filtering-panel {
+/* Filtering */
+.filtering-container {
   display: flex;
   flex-direction: column;
-  background-color: #1b1324;
-  border: 1px solid #A084DC;
-  border-radius: 12px;
-  padding: 24px;
-  max-width: 600px;
-  width: 90%;
-  gap: 24px;
-  box-shadow: 0 0 20px rgba(160, 132, 220, 0.2);
-  position: relative;
+  padding: 10px 0px;
+  padding-right: 0px;
+  padding-top: 0px;
+  width: fit-content;
+  max-width: 260px;
+  color: #EAE6F8;
+  box-sizing: border-box;
+  gap: 15px;
 }
 
-/* Close Button (X) */
-.close-btn {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background: none;
-  border: none;
-  font-size: 22px;
+.filter-title {
+  font-size: 1.4rem;
   color: #A084DC;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 8px;
+}
+
+.filter-group-title {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 6px;
+  margin-top: 5px;
+  color: #C9A4FF;
+}
+
+.filter-options {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filter-checkbox-cont {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.92rem;
+  color: #EAE6F8;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.filter-checkbox-cont:hover {
+  color: #C9A4FF;
+}
+
+input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #A084DC;
   cursor: pointer;
 }
 
-/* Heading */
-.filter-heading {
-  color: #EDE4FF;
-  font-size: 20px;
-  margin-bottom: 4px;
-}
 
-/* Price inputs */
-.price-selectors,
-.filter-selectors {
+.filtering-inputs{
   display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
+  align-items: center;
+  gap: 10px;
 }
 
-/* Style input boxes */
-.price-selectors input {
-  flex: 1;
-  min-width: 120px;
-  padding: 10px;
-  background-color: #2a1c3a;
-  border: 1px solid #A084DC;
+.filtering-inputs input{
+  width: 100%;
+  padding: 6px;
+  background-color: #1a1a1a;
   color: white;
+  border: 1px solid #5D3FD3;
+}
+
+.filtering-inputs input:focus{
+  outline: none;
+}
+
+.filtering-select {
+  padding: 8px 12px;
+  font-size: 1rem;
   border-radius: 6px;
+  border: 1.5px solid #A084DC;
+  background-color: #1b1324;
+  color: #EAE6F8;
+  cursor: pointer;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+  min-width: 150px;
+}
+
+.filtering-select:hover,
+.filtering-select:focus {
+  border-color: #C9A4FF;
+  background-color: #2a203b;
+  outline: none;
+}
+
+.overlay {
+  position: fixed;          
+  top: 0;                   
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,1);
+  display: none;            
+  flex-direction: column;
+  overflow: scroll;
+  z-index: 10000;  
+}
+
+
+.overlay .filtering-container, .overlay .cf-filtering-container{
+  max-width: 100%;
+  padding: 0px;
+}
+
+.overlay-content-wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 30px 25px;
+}
+
+.overlay-content-wrapper .filtering-container hr{
+  width: 100%;
+}
+
+#close-overlayed-filter-btn{
+  margin-left: auto;
+  margin-bottom: auto;
+  width: fit-content;
+  border: none;
+  background-color: #2c2c2c;
+  color: white;
+  font-weight: bold;
+  padding: 10px 12px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
+#sort-by-text{
+  color: white;
+  opacity: 0.9;
   font-size: 14px;
 }
 
-.price-selectors input:focus{
-    outline: none;
-    border: 2px solid #8b63e2;
-}
-
-/* Apply button */
-.apply-btn {
-  padding: 10px 16px;
-  background-color: #A084DC;
-  color: #1b1324;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  font-size: 15px;
+.overlayed-filter-btn{
+  display: none;
+  align-items: center;
+  max-width: 58px;
+  max-height: 32px;
+  min-width: 36px;
+  min-height: 32px;
+  padding: 8px 12px;
+  border: 1px solid #A084DC;
+  color: white;
+  background-color: #2a203b;
   cursor: pointer;
-  transition: 0.2s ease;
 }
 
-.apply-btn:hover {
-  background-color: #c1a7f3;
+.overlayed-filter-btn:hover{
+  border-color: #C9A4FF;
+  background-color: #2a203b;
+}
+
+@media(max-width: 766px){
+  .filtering-container{
+    display: none;
+  }
+
+  .overlayed-filter-btn{
+    display: flex;
+  }
+
+  .overlay{
+    display: flex;
+  }
+
+  .overlay .filtering-container, .overlay .cf-filtering-container{
+    display: flex;
+  }
 }

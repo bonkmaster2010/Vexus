@@ -1,21 +1,34 @@
-import Footer from './Footer';
-import Navbar from './Navbar';
 import { useParams } from "react-router";
-import { allProducts } from "../utils/Data";
-import { locations } from '../utils/Data';
+import { allProducts } from "../utils/extras/Data";
+import { locations } from '../utils/extras/Data';
 import { useState } from 'react';
+import { useMain } from "../states/MainStates";
 import '../styles/ProductDetails.css';
 
 function ProductDetails(){
     const { id } = useParams();
-    const product = allProducts.find((obj: any, i:number) => i === parseInt(id || ""))
+    const product = allProducts.find((_: any, i:number) => i === parseInt(id || ""))
     const [CWO, setCWO] = useState("1");
-    const [location, setLocation] = useState(locations[0])
+    const [location, setLocation] = useState(locations[0]);
     const [src, setSrc] = useState('');
-   
+    const [addToCartText, setAddToCartText] = useState("Add To Cart");
+    const [quantity, setQuantity] = useState(1);
+    const [warranty, setWarranty] = useState(0);
+    const addItemToCart = useMain(s => s.addItemToCart);
+    const quantityOptins = [1, 2, 3, 4, 5];
+    function ChangeAddToCartText(){
+        setAddToCartText("Added To Cart")
+        
+        setTimeout(() => {
+            setAddToCartText("Add To Cart")
+        },5000)
+    }
+    
+
     return (
-        <>
-        <div className='product-details-cont-main'>
+        product && (
+            <>
+            <div className='product-details-cont-main'>
             <div className="product-details-cont">
                 <div className="pd-image-cont">
                     <img className='product-image' src={src !== "" ? src : product?.src[0]} alt={product?.title || 'Product Image'} />
@@ -64,25 +77,43 @@ function ProductDetails(){
                         <div className='select-ur-warranty'>
                             <p id='select-warranty-header'>Select your warranty</p>
                             <p className='warranty-option'>
-                                <button onClick={() => setCWO("1")} className={CWO === "1" ? "option-active" : ""}></button> 
+                                <button onClick={() => {
+                                    setCWO("1");
+                                    setWarranty(1);
+                                    }} className={CWO === "1" ? "option-active" : ""}></button> 
                                 1 Year manufacturer warranty - <b>Free</b>
                             </p>
                             <p className='warranty-option'>
-                                <button onClick={() => setCWO("2")} className={CWO === "2" ? "option-active" : ""}></button>  
+                                <button onClick={() => {
+                                    setCWO("2");
+                                    setWarranty(2);
+                                    }} className={CWO === "2" ? "option-active" : ""}></button>  
                                 2 Year warranty + SAR 128.76
                             </p>
                             <p className='warranty-option'>
-                                <button onClick={() => setCWO("3")} className={CWO === "3" ? "option-active" : ""}></button>  
+                                <button onClick={() => {
+                                    setCWO("3");
+                                    setWarranty(3);
+                                    }} className={CWO === "3" ? "option-active" : ""}></button>  
                                 3 Year warranty + SAR 257.52
                             </p>
                         </div>
                         
                         <hr className='pdr'/>
 
+                         <div className="add-to-cart-wrapper">
                         <div className='add-to-cart'>
                             <p id='inStock'>In Stock</p>
-                            <button><span>Add To Cart</span></button>
-                            
+
+                           <div className="add-to-cart-btn-cont">
+                            <select className="quantity-select" onChange={(e) => setQuantity(Number(e.target.value))}>{quantityOptins.map((op: number) => <option key={op}>{op}</option>)}</select>
+                           
+                            <button onClick={() => {
+                                addItemToCart(product, quantity, warranty);
+                                ChangeAddToCartText();
+                                }}><span>{addToCartText}</span></button>
+                              </div>
+
                             <div className='product-info-card-cont'>
                                 <p className='product-info-card'>
                                     <span>💎 Condition: <b>New</b></span>
@@ -112,6 +143,7 @@ function ProductDetails(){
                             </div>
                         </div>
                     </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -133,10 +165,9 @@ function ProductDetails(){
                 </table>
             </div>
         </div>
-
-        <Footer/>
         </>
-    )
+        ) 
+    );
 }
 
 export default ProductDetails;

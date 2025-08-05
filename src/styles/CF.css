@@ -1,0 +1,90 @@
+.cf-filtering-container{
+    display: flex;
+    flex-direction: column;
+    padding: 25px 25px;
+    padding-right: 0px;
+    width: 100%;
+    max-width: 260px;
+    color: #EAE6F8;
+    box-sizing: border-box;
+    gap: 7px;
+}
+
+.cf-filtering-container-hr{
+    height: 1.5px;
+    width: 100%;
+    background-color: rgb(126, 83, 197);
+    border: none;
+    margin: 0px 0px;
+    margin-bottom: 10px;
+}
+
+.cf-cont-title{
+    font-size: 15px;
+    opacity: 0.9;
+}
+
+.cf-group-wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cf-group{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+}
+
+.cf-group-hr{
+  height: 1px;
+  width: 100%;
+  border: none;
+  background-color: rgb(126, 83, 197);
+  margin: 5px 0px;
+}
+
+.cf-main-link{
+   font-size: 13px;
+   opacity: 0.8;
+   color: white;
+   font-weight: bold;
+   text-decoration: none;
+}
+
+.cf-main-link:hover{
+    opacity: 1;
+}
+
+.cf-filters-group-wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;  
+}
+
+.cf-sublinks{
+    display: flex;
+    flex-direction: column;
+    padding-left: 9px;
+    padding-top: 10px;
+    gap: 8px;
+}
+
+.cf-sublink{
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.cf-sublink:hover{
+    color: #6e3fd3;
+    opacity: 1;
+}
+
+@media(max-width: 766px){
+    .cf-filtering-container{
+        display: none;
+    }
+}

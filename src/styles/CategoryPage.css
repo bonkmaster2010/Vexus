@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     width: 90vw;
-    padding: 25px 0;
+    padding: 25px 20px;
     gap: 10px;
     margin: 0 auto;
 }
@@ -45,7 +45,8 @@
     gap: 10px;
 }
 
-.category-cont .cate-card{
+.category-page-main-wrapper{
+    display: flex;
 }
 
 @media(max-width: 1279px){

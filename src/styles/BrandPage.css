@@ -1,0 +1,29 @@
+
+
+
+.b-title-cont{
+    display: flex;
+    align-items: center;
+    color: white;
+    gap: 15px;
+}
+
+.b-title-cont h3{
+    color: white;
+}
+
+.b-title-cont-img-cont{
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border: 1px solid #8C5CE8;
+}
+
+.b-title-cont-img-cont img{
+    width: 50px;
+    height: 50px;
+}
+
+.b-products-cont-wrapper{
+  padding-top: 20px;
+}

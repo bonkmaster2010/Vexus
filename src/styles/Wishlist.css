@@ -1,0 +1,119 @@
+.wishlist-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    gap: 20px;
+    width: 100%;
+    padding: 20px;
+}
+
+.wishlist-card {
+    background-color: #1b1b1b;
+    border: 1px solid #292929;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+
+
+.main-wishlist-card-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: white;
+}
+
+.wishlist-image-cont {
+    max-width: 140px;
+    max-height: 140px;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.main-wishlist-card-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.wishlist-card-desc {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.wishlist-extras {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 5px;
+}
+
+.wishlist-extras p {
+    font-size: 13px;
+    font-weight: 300;
+}
+
+.wishlist-extras span {
+    color: #A084DC;
+    font-weight: 500;
+}
+
+#wishlist-product-name {
+    font-size: 15px;
+    opacity: 0.9;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+#wishlist-product-name:hover {
+    color: #B87EDC;
+}
+
+#wishlist-sold-by {
+    font-size: 12px;
+    opacity: 0.6;
+}
+
+.wishlist-card-price {
+    font-size: 15px;
+    font-weight: 500;
+    color: #CCCCFF;
+}
+
+.wishlist-card-sale-price {
+    font-size: 12px;
+    opacity: 0.6;
+    text-decoration: line-through;
+    color: #999;
+}
+
+.mtcAndremove {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    border-top: 1px solid #2c2c2c;
+}
+
+.mtcAndremove span {
+    font-size: 13px;
+    color: #CCCCFF;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.mtcAndremove span:hover {
+    color: #A084DC;
+}

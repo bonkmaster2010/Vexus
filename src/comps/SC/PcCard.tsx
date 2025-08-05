@@ -1,20 +1,37 @@
 import { useNavigate } from 'react-router';
-import '../styles/PcCard.css';
+import { useMain } from '../../states/MainStates';
+import type { PCard } from '../../utils/interfaces/components/SC.if';
+import '../../styles/PcCard.css';
 
-export default function PcCard({title, price, src, style, route, salePrice}: any){
+function PCardComp({product, title, price, src, style, route, salePrice, CartType}: PCard){
    const navi = useNavigate();
+   const { addItemToCart, addItemToRv } = useMain()
   return (
     <>
-    <div onClick={() => navi(`/product/${route}`)} className={style}>
+    <div onClick={() => {
+      navi(`/product/${route}`);
+      {product && addItemToRv(product)}
+      }} className={style ? style : 'pc-card'}>
         <img src={src[0]} alt={`${title} image`}/>
         <hr/>
 
        <div className='pc-card-desc'>
         <h3>{title}</h3>
+        
+        <div className='pc-card-bottom-row'>
         <p className='pc-card-price'><span className='currency-name'>USD</span> {price}</p>
         {salePrice && <p className='pc-card-sale-price'>USD {salePrice}</p>}
+
+       {CartType === true && <button onClick={(e) =>{ 
+        e.stopPropagation();
+       {product && addItemToCart(product, 1, 1)};
+        }} className='add-to-cart-btn'>Add To Cart</button>}
+
+        </div>
        </div>
     </div>
     </>
   )
-}
+};
+
+export default PCardComp;

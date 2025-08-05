@@ -1,6 +1,7 @@
+import type { SelectIF } from "../../utils/interfaces/components/SC.if";
 
 
-function Select({arr, name}: any){
+function Select({arr, name}: SelectIF){
 
     return (
     <select className="filtering-select" name={name}>

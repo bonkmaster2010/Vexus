@@ -1,13 +1,35 @@
-import { Outlet } from 'react-router';
 import payment from '../images/payment-options.png';
+import { Outlet, useNavigate } from 'react-router';
+import { useMain } from '../states/MainStates';
 import '../styles/Footer.css';
 
 function Footer() {
+  const navi = useNavigate();
+  const { rv } = useMain();
+   
   return (
     <>
-     <Outlet/>
-      <hr id='footer-hr'/>
       <footer className="footer">
+         
+         {rv.length > 0 && <div className='main-rv-cont'>
+           
+          <div className='rv-top-row'>
+          <h3>RECENTLY VIEWED ITEMS</h3>
+          <p onClick={() =>{
+            navi('/all-rv-products')}}>View All</p>
+          </div>
+
+         <div className='rv-cont'>
+
+           {rv.map((product, i: number) => (
+            <div onClick={() => navi(`/product/${i}`)} className='rv-card'>
+              <img src={product.src[0]} alt={`${product.title} image`}/>
+            </div>
+           ))}
+         </div>
+         </div>}
+
+
         <div className="about-us">
           <h3>About Us</h3>
           <p>
@@ -41,7 +63,7 @@ function Footer() {
       
       </footer>
       
-      <hr id='footer-hr'/>
+      <hr id='footer-hr-bottom'/>
       
       <div className="copyright">
         <small>© 2011 - 2025 vexus.com, All Rights Reserved.</small>

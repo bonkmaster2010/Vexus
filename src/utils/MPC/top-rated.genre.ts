@@ -1,0 +1,2 @@
+import { TC1, TC2, TC3, TC4, TC5 } from "../image-arrays/MPC.imgs";
+export const TC_IMAGES = [{src: TC1, title: "Monitors", route: "monitors"}, {src: TC2, title: "Headphones", route: "headphones"}, {src: TC3, title: "Laptops", route: "laptops"}, {src: TC4, title: "Internal SSD", route: "internel-ssd"}, {src: TC5, title: "Computer Mouse", route: "computer-mouse"}];

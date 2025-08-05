@@ -1,39 +1,10 @@
-import PcCard from './PcCard';
-import '../styles/Section.css';
+import PCardComp from './PcCard';
+import { scrollLeft, scrollRight } from '../../utils/fns/extra.fns';
+import type { SectionIF } from '../../utils/interfaces/components/SC.if';
+import '../../styles/Section.css';
 
 
-function Section({title, arr, style}: any){
-
-function scrollLeft() {
-  const container = document.querySelector('.section-products');
-  if (!container) return;
-
-  const card = container.querySelector('.section-card');
-  if (!card) return;
-
-  const cardStyle = getComputedStyle(card);
-  const cardWidth = (card as HTMLElement).offsetWidth;
-  const gap = parseInt(cardStyle.marginRight) || 12;
-
-  const scrollAmount = cardWidth + gap;
-  container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-}
-
-function scrollRight() {
-  const container = document.querySelector('.section-products');
-  if (!container) return;
-
-  const card = container.querySelector('.section-card');
-  if (!card) return;
-
-  const cardStyle = getComputedStyle(card);
-  const cardWidth = (card as HTMLElement).offsetWidth;
-  const gap = parseInt(cardStyle.marginRight) || 12;
-
-  const scrollAmount = cardWidth + gap;
-  container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-}
-
+function Section({title, arr, style, CartType}: SectionIF){
 
     return (
       <div className={style ? style : 'section-cont'}>
@@ -46,7 +17,7 @@ function scrollRight() {
 
         <div className='section-products'>
             {arr.map((obj: any, i: number) => (
-              <PcCard route={i} style="section-card" src={obj.src} title={obj.title} price={obj.price}  salePrice={obj.salePrice ? obj.salePrice : ""}/>
+              <PCardComp key={obj.title} product={obj} CartType={CartType} route={`${i}`} style="section-card" src={obj.src} title={obj.title} price={obj.price}  salePrice={obj.salePrice ? obj.salePrice : ""}/>
             ))}
         </div>
       </div>

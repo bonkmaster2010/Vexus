@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import ad1 from '../images/upscalemedia-transformed.png';
+import ad1 from '../../images/upscalemedia-transformed.png';
 
 function Ad(){
    const [imageIndex, setImageIndex] = useState<number>(0);

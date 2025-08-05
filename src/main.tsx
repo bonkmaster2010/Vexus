@@ -1,41 +1,40 @@
 import App from './App.tsx'
-import Products from './comps/Products.tsx'
 import ProductDetails from './comps/ProductDetails.tsx'
-import Navbar from './comps/Navbar.tsx'
-import { StrictMode } from 'react'
+import NotFound from './comps/NotFound.tsx'
+import CategoryPage from './comps/CategoryPage.tsx'
+import Cart from './comps/Cart/Cart.tsx'
+import Wishlist from './comps/Wishlist/Wishlist.tsx'
+import ProductsPage from './comps/ProductsPage.tsx'
+import ScrollRestorationWrapper from './comps/routing/ScrollRestoreWrapper.tsx'
+import BrandPage from './comps/BrandPage.tsx'
+import Layout from './comps/Layout.tsx'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router'
-import NotFound from './comps/NotFound.tsx'
-import { allProducts } from './utils/Data.ts'
-import Filter from './comps/Filter.tsx'
-import { LAPTOP_FILTERS, MOBILE_FILTERS, MONITOR_FILTERS, PC_FILTERS, TABLET_FILTERS } from './utils/filtering/Electronics.ts'
-import CategoryPage from './comps/CategoryPage.tsx'
-import { electronics } from './utils/CategoryPageUtil.ts'
-import Footer from './comps/Footer.tsx'
+import { allProducts } from './utils/extras/Data.ts'
+import { fullElecData } from './utils/filtering/Electronics/ElectronicsCategoriesFilters.ts'
+import { allCatesFilters } from './utils/Links/all-cates.links.ts'
+import { allCPCData } from './utils/CPC/allCPC.data.ts'
+import { ResetOnRouteChange } from './comps/routing/ResetStateOnNavigation.tsx'
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <BrowserRouter>
-    <Routes>
-      <Route element={<Navbar/>}>
-      <Route element={<Footer/>}>
+   <BrowserRouter basename="/">
+    <ScrollRestorationWrapper> 
+    <ResetOnRouteChange>
+      <Routes>
+      <Route element={<Layout/>}>
       <Route path='/' element={<App/>}/>
       <Route path='/product/:id' element={<ProductDetails/>}/>
+      <Route path='/cart' element={<Cart/>}/>
+      <Route path='/wishlist' element={<Wishlist/>}/>
       <Route path='*' element={<NotFound/>}/>      
-      
-      {/* sections */}
-      <Route path='/pcs' element={<Products title="PCs" arr={allProducts} FilterType={Filter} filterArr={PC_FILTERS}/>}/>
-      <Route path='/laptops' element={<Products title="Laptops" arr={allProducts} FilterType={Filter} filterArr={LAPTOP_FILTERS}/>}/>
-      <Route path='/monitors' element={<Products title="Monitors" arr={allProducts} FilterType={Filter} filterArr={MONITOR_FILTERS}/>}/>
-      <Route path='/tablets' element={<Products title="Tablets" arr={allProducts} FilterType={Filter} filterArr={TABLET_FILTERS}/>}/>
-      <Route path='/phones' element={<Products title="Mobiles" arr={allProducts} FilterType={Filter} filterArr={MOBILE_FILTERS}/>}/>
-      
-      {/* Category Pages */}
-      <Route path='/categories/electronics' element={<CategoryPage arr={electronics} title="Electronics"/>}/>       
+      <Route path='/categories/:category' element={<CategoryPage dataArr={allCPCData} dataCategories={allCatesFilters}/>}/>       
 
+      <Route path='/category/:category' element={<ProductsPage categoryData={fullElecData} arr={allProducts} />}/>
+      <Route path='/b/:brand' element={<BrandPage data={allProducts}/>}/>
+      <Route path='/all-rv-products' element={<ProductsPage arr={[]} useRv={true} title="Your Recently Viewed Items" />}/>
       </Route>
-      </Route>
-    </Routes>
+     </Routes>
+    </ResetOnRouteChange>
+    </ScrollRestorationWrapper>
     </BrowserRouter>
-  </StrictMode>,
 )
