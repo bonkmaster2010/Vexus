@@ -4,7 +4,7 @@ import type { CreateUserIF } from "../utils/interfaces/state-interfaces/CreateUs
 
 export const useCreateUser = create<CreateUserIF>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       name: '',
       setName: (name) => set({ name }),
 

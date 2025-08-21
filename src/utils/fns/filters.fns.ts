@@ -28,9 +28,9 @@ function BrandCategoryFilter(manufacturer: string, products: any[]) {
   const filteredLinks = allElecLinks
     .map(link => {
       const filteredCf = link.cf
-        .map(cf => ({
+        .map((cf: any) => ({
           ...cf,
-          filters: cf.filters.filter(filter => {
+          filters: cf.filters.filter((filter: any) => {
             if (!('id' in filter) || !filter.id) return false;
 
             const normalizedFilterId = filter.id.startsWith("categoryPath.id=")
@@ -42,7 +42,7 @@ function BrandCategoryFilter(manufacturer: string, products: any[]) {
             );
           }),
         }))
-        .filter(cf => cf.filters.length > 0); 
+        .filter((cf: any) => cf.filters.length > 0); 
 
       return filteredCf.length > 0 ? { ...link, cf: filteredCf } : null;
     })

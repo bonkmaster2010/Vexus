@@ -43,7 +43,17 @@ function BrandPage({ data }: BPIF){
          </div>
         </div>}
 
-        {showOverlayedFilter && <OverlayedFilter specArr={[]} typeArr={[]} manufacturer={[]}/>}
+        {showOverlayedFilter && (
+        <OverlayedFilter 
+            Filter={Filter}  
+            filterProps={{
+            specArr: [],
+            typeArr: [],
+            manufacturer: []
+            }} 
+        />
+        )}
+
         </>
     )
 }

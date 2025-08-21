@@ -3,11 +3,6 @@ interface Sublink {
   route?: string;
 };
 
-interface LinkItem {
-  linkName: string;
-  route: string;
-  routeType: string;
-};
 
 interface BrandItem {
   id: string;
