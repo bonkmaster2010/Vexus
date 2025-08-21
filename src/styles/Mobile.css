@@ -183,7 +183,8 @@
   gap: 8px;
   font-size: 0.9rem;
   cursor: pointer;
-  padding: 12px 14px;
+  padding: 18px 14px;
+  padding-bottom: 0px;
   line-height: 1.2;
   margin: 0;
   height: auto;
