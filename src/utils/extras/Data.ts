@@ -1,4 +1,4 @@
-import test from '../../images/dreampc.jpeg';
+import test from '../../images/pc.jpeg';
 import { v4 as uuidv4 } from 'uuid';
 
 

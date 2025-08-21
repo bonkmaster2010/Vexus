@@ -9,8 +9,7 @@ import { allMobileMenuLinks } from '../../utils/Links/all-cates.links';
 import '../../styles/Mobile.css';
 
 function MobileMenu() {
-    const { toggleSingleGroup, singleGroup, showMM} = useMain();
-    const setShowMM = useMain(s => s.setShowMM);
+    const { toggleSingleGroup, singleGroup, setShowMM, showMM} = useMain();
 
     return (
         <div className={`main-mobile-menu-cont ${showMM ? 'displayed' : ''}`} onClick={() => setShowMM(false)}>

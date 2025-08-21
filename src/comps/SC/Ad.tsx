@@ -1,10 +1,13 @@
-import ad1 from '../../images/upscalemedia-transformed.png';
-import ad2 from '../../images/microless-ad2.webp';import { useState } from 'react';
+import ad1 from '../../images/ads/upscalemedia-transformed.png';
+import ad2 from '../../images/ads/microless-ad2.webp';
+import ad3 from '../../images/ads/microless-gl-ad3.jpg';
+import ad4 from '../../images/ads/microless-ad4.webp';
+import { useState } from 'react';
 
 
 function Ad(){
    const [imageIndex, setImageIndex] = useState<number>(0);
-   const srcs = [ad1, ad2]
+   const srcs = [ad1, ad2, ad3, ad4]
 
    function left(){
       if(imageIndex <= 0){return}
@@ -21,7 +24,7 @@ function Ad(){
     <div className="ad" style={{
     backgroundImage: `url(${srcs[imageIndex]})`,
     backgroundRepeat: 'no-repeat',
-    backgroundSize: 'contain',
+    backgroundSize: '100%',
     }}>
 
       <div className='image-dot-cont'>

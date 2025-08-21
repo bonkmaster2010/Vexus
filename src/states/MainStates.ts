@@ -1,7 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type { Main, AccountReview } from "../utils/interfaces/state-interfaces/MainState.interfaces";
-import { allProducts } from "../utils/extras/Data";
 
 export const useMain = create<Main>()(
   persist(
@@ -48,7 +47,7 @@ export const useMain = create<Main>()(
       },
 
       /* Wishlist */
-      wishlist: allProducts,
+      wishlist: [],
       addItemToWishlist: (product) => set({ wishlist: [...get().wishlist, product] }),
       removeItemFromWishlist: (productToRemove) =>
         set({ wishlist: get().wishlist.filter((product) => product !== productToRemove) }),
@@ -135,7 +134,7 @@ export const useMain = create<Main>()(
         set({ accountReviews: get().accountReviews.filter((_, i) => i !== idx) }),
 
       /* RV */
-      rv: allProducts.slice(0, 9),
+      rv: [],
       addItemToRv: (product) => set({ rv: [...get().rv, product] }),
       emptyAllRvItems: () => set({ rv: [] }),
 

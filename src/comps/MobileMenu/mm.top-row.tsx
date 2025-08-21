@@ -8,7 +8,7 @@ function MMTopRow(){
     return (
         <div className="mm-top-row">
         <h3 className="mm-logo">V e x u s</h3>
-        {<p>Hello, {name}!</p>}
+        {<p>Hello, {name ? name : "User"}!</p>}
         </div>
     )
 };
