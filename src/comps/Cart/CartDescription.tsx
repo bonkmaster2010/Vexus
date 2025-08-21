@@ -2,7 +2,7 @@ import { useMain } from "../../states/MainStates";
 import WishlistAndTrash from "./WishlistAndTrash";
 
 function CartDescription({ product, navigate}: any) {
-    const { wishlist, removeItemFromWishlist, addItemToWishlist, removeItemFromCart } = useMain()
+    const { wishlist, removeItemFromWishlist, addItemToWishlist, removeItemFromCart, isMobile} = useMain()
 
     return (
         <div className="cart-product-desc">
@@ -20,7 +20,7 @@ function CartDescription({ product, navigate}: any) {
                 </p>}
             </div>
             
-            <p id="cart-sold-by">Sold by: <b>Ninja</b></p>
+            <p id="cart-sold-by">Sold by: <b>Vexus</b></p>
             <div className="cart-extras">
                 <p id="cart-delivered-by">Delivered by <span>Jul 21</span></p>
                 <p id="if-u-order">If you order within 18 Minutes</p>
@@ -28,13 +28,13 @@ function CartDescription({ product, navigate}: any) {
 
             <p id="cart-warranty">1 Year Warranty</p>
 
-            <WishlistAndTrash
+            {!isMobile && <WishlistAndTrash
                 wishlist={wishlist}
                 product={product}
                 removeItemFromCart={removeItemFromCart}
                 addItemToWishlist={addItemToWishlist}
                 removeItemFromWishlist={removeItemFromWishlist}
-            />
+            />}
         </div>
     );
 }

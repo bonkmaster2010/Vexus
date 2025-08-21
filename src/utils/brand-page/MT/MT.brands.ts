@@ -1,4 +1,4 @@
-import { apple, huawei, micro, nokia, oppo, samsung, sha, sony, ubl } from "./MT.brands.imgs";
+import { apple, huawei, micro, nokia, oppo, samsung, sha, sony, ubl } from "../../image-arrays/MT.brands.imgs";
 
 
 export const MT_B = {

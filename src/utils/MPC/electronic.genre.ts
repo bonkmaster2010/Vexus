@@ -1,2 +1,2 @@
-import {el1, el2, el3, el4} from "../image-arrays/MPC.imgs";
-export const electronicsGenre = [{src: el1, route: "headphones"}, {src: el2, route: "phones"}, {src: el3, route: "tvs"}, {src: el4, route: "projectors"}];
+import {MPEC1, MPEC2, MPEC3, MPEC4} from "../image-arrays/MPC.imgs";
+export const MPECelctronicsGenre = [{src: MPEC1, route: "headphones"}, {src: MPEC2, route: "phones"}, {src: MPEC3, route: "tvs"}, {src: MPEC4, route: "projectors"}];

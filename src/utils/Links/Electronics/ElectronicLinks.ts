@@ -1,9 +1,18 @@
-import { damFiltersCf, laaFiltersCf, mobileFiltersCf, mtAcessoriesCf, pc_compsFiltersCf, smartwatchFiltersCf, tabletFiltersCf } from "./Electronic.cf";
+import { computerAccessoriesCF, damFiltersCf, laaFiltersCf, laFiltersCf, mobileFiltersCf, mtAcessoriesCf, pc_compsFiltersCf, smartwatchFiltersCf, tabletFiltersCf } from "./Electronic.cf";
 import { CALSubLinks, MTSubLinks } from "./ElectronicSubLinks";
 
+interface Link {
+  linkName: string;
+  route: string;
+  routeType: string;
+  subLinks: { title: string; id: string; route: string }[];
+  cf: any;
+  key: string;
+  display?: boolean;  
+}
 
 
-export const CALLinks = [
+export const CALLinks: Link[] = [
   {
     linkName: "Desktops & Monitors",
     route: "dam",
@@ -13,12 +22,29 @@ export const CALLinks = [
     key: 'dam'
   },
   {
+   linkName: "Computer Accessories",
+   route: "computerAccessories",
+   routeType: "categories",
+   subLinks: CALSubLinks.desktopAccessories,
+   cf: computerAccessoriesCF,
+   key: 'computerAccessories'
+  },
+  {
     linkName: "Laptops & Accessories",
     route: "laa",
     routeType: "categories",
     subLinks: CALSubLinks.laptop,
     cf: laaFiltersCf,
     key: 'laa'
+  },
+  {
+    linkName: "Laptops Accessories",
+    route: "la",
+    routeType: "categories",
+    subLinks: CALSubLinks.laptopAccessories,
+    cf: laFiltersCf,
+    key: 'la',
+    display: false
   },
   {
     linkName: "Computer Components",
@@ -31,9 +57,9 @@ export const CALLinks = [
 ];
 
 
-export const MBLinks = [
+export const MBLinks: Link[] = [
   {
-    linkName: 'Mobiles',
+    linkName: 'Mobile Phones',
     route: 'mobiles',
     routeType: 'category',
     subLinks: MTSubLinks.mobile,
@@ -58,10 +84,13 @@ export const MBLinks = [
   },
   {
     linkName: 'Accessories',
-    route: 'accessories',
+    route: 'ma',
     routeType: 'categories',
     subLinks: MTSubLinks.mobileAccessories,
     cf: mtAcessoriesCf,
-    key: 'accessories'
+    key: 'ma'
   }
 ];
+
+
+export const allElecLinks = [...CALLinks, ...MBLinks];

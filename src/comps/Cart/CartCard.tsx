@@ -6,7 +6,7 @@ import { useMain } from "../../states/MainStates";
 
 function CartCard({ product, index, navigate}: any) {
     
-    const { wishlist } = useMain()
+    const { wishlist, isMobile } = useMain()
 
     return (
         <div className="cart-card">
@@ -19,11 +19,13 @@ function CartCard({ product, index, navigate}: any) {
                 />
                 <CartPrice product={product}/>
             </div>
-            <hr className="cart-card-mobile-hr" />
-            <WishlistAndTrash
+
+            {isMobile && <div className="wat-hr"/>}
+
+            {isMobile && <WishlistAndTrash
                 wishlist={wishlist}
                 product={product}
-            />
+            />}
         </div>
     );
 }

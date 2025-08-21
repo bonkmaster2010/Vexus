@@ -1,20 +1,14 @@
 import { NavLink, useNavigate } from "react-router";
 import { useFiltersWithQuery } from "../hooks/useFilterWithQuery";
 import { useMain } from "../../states/MainStates";
-import { useEffect } from "react";
 import type { DropdownProps } from "../../utils/interfaces/dropdown";
+import '../../styles/Dropdown.css';
 
 function Dropdown({ data, route, src, brandArr = [], type }: DropdownProps) {
   const { updateFilter } = useFiltersWithQuery();
   const dropdown = useMain((state) => state.dropdown);
   const setDropdown = useMain((state) => state.setDropdown);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (brandArr.length > 0) {
-      console.log(`Brand array for dropdown type "${type}"`, brandArr);
-    }
-  }, [brandArr, type]);
 
   function handleRouting(id: string, route: string, routeType: string) {
     const updatedParams = updateFilter("types", id, true);
@@ -31,7 +25,7 @@ function Dropdown({ data, route, src, brandArr = [], type }: DropdownProps) {
     >
       <div className="dropdown-content-wrapper">
         {/* Main Links */}
-        {data.map((link: any) => (
+        {data.filter((link: any) => link.display !== false).map((link: any) => (
           <div key={`mainlink-${type}-${link.route}`} className="dropdown-links">
             <NavLink
               className="main-dropdown-link"

@@ -1,5 +1,5 @@
 import payment from '../images/payment-options.png';
-import { Outlet, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 import { useMain } from '../states/MainStates';
 import '../styles/Footer.css';
 
@@ -22,7 +22,7 @@ function Footer() {
          <div className='rv-cont'>
 
            {rv.map((product, i: number) => (
-            <div onClick={() => navi(`/product/${i}`)} className='rv-card'>
+            <div key={product.id} onClick={() => navi(`/product/${i}`)} className='rv-card'>
               <img src={product.src[0]} alt={`${product.title} image`}/>
             </div>
            ))}
@@ -60,12 +60,12 @@ function Footer() {
           <p>Follow us on social media (coming soon)</p>
         </div>
         </div>
-      
+
       </footer>
       
-      <hr id='footer-hr-bottom'/>
-      
       <div className="copyright">
+      <div className='footer-hr-bottom'/>
+
         <small>© 2011 - 2025 vexus.com, All Rights Reserved.</small>
         <small>Privacy Policy | Terms & Conditions</small>
       </div>

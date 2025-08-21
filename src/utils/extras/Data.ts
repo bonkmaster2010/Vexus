@@ -10,8 +10,8 @@ export const TestProducts: any[] = [
         price: 2500,
         salePrice: 2000,
         warranty: 3,
-        category: 'pcs',
-        specs: [{inches: 30}],
+        category: 'keyboards',
+        specs: [{name: 'inches', value: 'giigigi'}, {name: 'inches', value: 30}, {name: 'inches', value: 30}, {name: 'inches', value: 30}],
         src: [test],
     },
     {
@@ -107,7 +107,7 @@ export const TestProducts: any[] = [
         title: "iPad Pro 12.9",
         desc: "Tablet for creatives with M2 chip.",
         price: 1400,
-        category: 'tablets',
+        category: 'selfieSticks',
         src: [test],
     },
     {

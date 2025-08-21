@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
+import { useMain } from "../../states/MainStates";
 
 export default function ScrollRestorationWrapper({ children }: { children: React.ReactNode }) {
     const { pathname } = useLocation();
@@ -16,6 +17,15 @@ export default function ScrollRestorationWrapper({ children }: { children: React
             setShowChildren(false);
         };
     }, [pathname]);
+
+  const setIsMobile = useMain((s) => s.setIsMobile);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 770);
+    checkMobile(); 
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, [setIsMobile]);
 
     return showChildren ? <>{children}</> : null;
 }

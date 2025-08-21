@@ -1,24 +1,43 @@
+.main-wishlist-cont{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 100%;
+    padding: 20px;
+}
+
+.small-hr{
+    background-color: #6e3fd3;
+    margin: 15px 0px;
+    width: 100%;
+}
+
 .wishlist-content-wrapper {
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
     gap: 20px;
-    width: 100%;
-    padding: 20px;
+    min-width: 100%;
+    padding: 0px;
 }
 
 .wishlist-card {
-    background-color: #1b1b1b;
-    border: 1px solid #292929;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    border-radius: 10px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-    transition: border 0.3s, box-shadow 0.3s;
-}
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+justify-content: space-between;
 
+box-sizing: border-box;
+color: #fff;
+color-scheme: dark;
+font: 400 13px/21px arial, sans-serif;
+
+border: 1px solid #303030;
+padding: 22px 20px;
+margin: 5px 0;
+text-align: left;
+outline: none;
+
+}
 
 
 .main-wishlist-card-content {

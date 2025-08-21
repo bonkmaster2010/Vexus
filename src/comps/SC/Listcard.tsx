@@ -18,11 +18,11 @@ function ListCard({product, title, price, src, style, route, salePrice}: Listcar
          <div className='list-card-content-wrapper'>
          <div className='main-card-content'> 
         <div className='list-card-img-cont'>
-        <img src={src[0]} alt={`${title} image`}/>
+        <img onClick={() => navi(`/product/${route}`)} src={src[0]} alt={`${title} image`}/>
         </div>
 
         <div className='list-card-middle-row'>
-          <h4 id='list-card-product-title'>{title.slice(0, 250)}</h4>
+          <h4 id='list-card-product-title' onClick={() => navi(`/product/${route}`)}>{title.slice(0, 250)}</h4>
 
           <ul>
             {fakeSpecs.map((s: string) => (
@@ -34,12 +34,12 @@ function ListCard({product, title, price, src, style, route, salePrice}: Listcar
         <div className='list-card-last-row'>
             
             <div className='list-card-price-cont'>
-            <span className='list-card-price'>USD <span>{price}</span></span>
-            {salePrice && <span className='list-card-sale-price'>USD {salePrice}</span>}
+            <span className='list-card-price'>USD <span className='list-card-price price'>{price}</span></span>
+            <span className='list-card-sale-price'>USD {salePrice ?? 10000}</span>
            </div>
         </div> 
+        
         </div>
-
         </div>
 
        <div className='list-card-bottom-row'>

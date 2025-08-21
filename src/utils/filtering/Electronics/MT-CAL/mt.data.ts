@@ -4,8 +4,9 @@ import {
     SMARTWATCH_FILTERS, 
 } from './mt.specs';
 
-import { tabletTypeFilters, phoneTypeFilters, smartwatchTypeFilters } from './mt_types';
+import { tabletTypeFilters, phoneTypeFilters, smartwatchTypeFilters } from './mt.types';
 import { phoneManufacturers, smartwatchManufacturers } from './mt.manufacturers';
+import { MADATA } from './ma.data';
 
 
 export const MBData = {
@@ -27,5 +28,7 @@ export const MBData = {
         filters: SMARTWATCH_FILTERS,
         types: smartwatchTypeFilters,
         manufacturers: smartwatchManufacturers,
-    }
+    },
+
+    ...MADATA
 };

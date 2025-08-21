@@ -3,7 +3,7 @@ import Section from './comps/SC/Section';
 import GenreCards from './comps/GenreCards';
 import CC from './comps/SC/CategoryCard';
 import useResetFilters from './comps/hooks/ResetFilters.hook';
-import { gamingGenre, electronicsGenre, TC_IMAGES} from './utils/MPC/exports.mpc';
+import { gamingGenre, MPECelctronicsGenre, TC_IMAGES} from './utils/MPC/exports.mpc';
 import { TestProducts } from './utils/extras/Data';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router';
@@ -14,9 +14,10 @@ function App() {
   const { clearUrlParams } = useResetFilters();
   
   useEffect(() => {clearUrlParams()}, [location.search])
-
+  
   return (
     <>
+    
     <div className='main-page-cont'>
       <Ad/>
 
@@ -33,14 +34,14 @@ function App() {
       <Section arr={TestProducts} title="BEST DEALS ON FURNITURE"/>
       <Section arr={TestProducts} title="POPULAR NETWORKING DEVICES"/>
 
-      <GenreCards images={electronicsGenre} title="ELECTRONICS" />
+      <GenreCards images={MPECelctronicsGenre} title="ELECTRONICS" />
   
       <Section arr={TestProducts} title="POPULAR HEADPHONES"/>
       <Section arr={TestProducts} title="ITEMS YOU MAY LIKE"/>
       
         <div className="top-rated-cates-cont">
         <div className="top-rated-cates">
-            {TC_IMAGES.map((obj: any, i: number) => (
+            {TC_IMAGES.map((obj: any) => (
               <CC key={obj.title} title={obj.title} src={obj.src} route={obj.route}/>
             ))}
         </div>

@@ -1,8 +1,8 @@
 import { useMain } from "../../states/MainStates";
-import type { CartProduct } from "../../utils/interfaces/state-interfaces/MainState.interfaces";
+import type { CartProduct } from "../../utils/interfaces/components/SC.if";
 
 function CartPrice({ product }: { product: CartProduct}) {
-    const { updateQuantity } = useMain();
+    const { updateQuantity, isMobile} = useMain();
     const quantities = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
     const handleQuantityChange = (e: React.ChangeEvent<HTMLSelectElement>, id: string, warranty: number) => {
@@ -25,7 +25,7 @@ function CartPrice({ product }: { product: CartProduct}) {
                 )}
             </div>
 
-            <div className="price-cont-quantity-select">
+            {!isMobile && <div className="price-cont-quantity-select">
                 <span>Quantity</span>
                 <select value={product.quantity > 10 ? 10 : product.quantity} onChange={(e) => handleQuantityChange(e, product.id, product.warranty)}>
                     {quantities.map((op) => (
@@ -34,7 +34,7 @@ function CartPrice({ product }: { product: CartProduct}) {
                         </option>
                     ))}
                 </select>
-            </div>
+            </div>}
         </div>
     );
 }

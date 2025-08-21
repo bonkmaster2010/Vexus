@@ -6,7 +6,10 @@ function Checkout(){
     const [fullPrice, setFullPrice] = useState(0)
     const [showCuponInput, setShowCuponInput] = useState(true);
     const [cuponInput, setCuponInput] = useState('');
+    const [proceed, setProceed] = useState(false);
+
     const cart = useMain(s => s.cart);
+    const { addItemsToOrders } = useMain();
     const navi = useNavigate();
     
     useEffect(() => {
@@ -18,8 +21,9 @@ function Checkout(){
       setFullPrice(totalPrice);
     }, [cart]);
 
+
     return (
-    <div className="checkout-cont">
+    cart.length > 0 && <div className="checkout-cont">
       <div className="checkout-content-wrapper">
           
           <div className="checkout-total-wrapper">
@@ -46,16 +50,20 @@ function Checkout(){
 
            <div className="secure-checkout-cont">
            <button onClick={() => navi('/')} id="continue-shopping"><span> Continue shopping </span></button>
-           <button className="secure-checkout-btn">Secure Checkout</button>
+           <button className="secure-checkout-btn"
+            onClick={() => proceed ? addItemsToOrders([...cart]) : setProceed(true)}
+           >{proceed ? "Confirm Order" : "Secure Checkout"}</button>
            </div>
 
            <div className="secure-checkout-cont-mobile">
-            <button className="secure-checkout-btn">Secure Checkout</button>
+            <button className="secure-checkout-btn"
+            onClick={() => proceed ? addItemsToOrders([...cart]) : setProceed(true)}
+            >{proceed ? "Confirm Order" : "Secure Checkout"}</button>
            </div>
 
       </div>
     </div>
-    )
+      )
 }
 
 export default Checkout;

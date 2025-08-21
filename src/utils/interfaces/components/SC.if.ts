@@ -70,6 +70,7 @@ export interface PCard extends ListcardIF{
 export interface WishlistCardIF{
     product: CartProduct;
     index: number;
+    showMtc?: boolean;
 };
 
 /* Section */

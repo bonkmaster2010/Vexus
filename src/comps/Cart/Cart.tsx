@@ -21,7 +21,7 @@ function Cart() {
             {cart.length > 0 &&  <div className="cart">
                     {cart.map((product, i: number) => (
                         <CartCard
-                            key={product.id}
+                            key={`${product.id} - ${product.title} - ${product.desc}`}
                             product={product}
                             index={i}
                             navigate={navi}
@@ -32,7 +32,8 @@ function Cart() {
                         />
                     ))}
                 </div>}
-            {cart.length > 0 && <Checkout/>}
+                
+            <Checkout/>
 
             <hr style={{width: "100%", opacity: "0.5"}}/>
 

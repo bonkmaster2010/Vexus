@@ -2,7 +2,7 @@ import PSS from "./SC/ProductsScrollSection";
 import Noti from "./SC/noti";
 import Filter from "./Filter";
 import OverlayedFilter from "./SC/OverlayedFilter";
-import { CAL_B } from "../utils/brand-page/CAL/CAl-brands";
+import { CAL_B } from "../utils/brand-page/CAL/CAl.brands";
 import { useMain } from "../states/MainStates";
 import { useParams } from "react-router";
 import { FullBrandArr } from "../utils/brand-page/all.brand.arr";

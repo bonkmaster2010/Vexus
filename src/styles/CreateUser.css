@@ -1,0 +1,91 @@
+.main-create-user-cont{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    padding-top: 40px;
+    gap: 50px;
+    background-color: #101010;
+}
+
+.create-user-logo{
+    color: white;
+    font-size: 35px;
+    cursor: pointer;
+}
+
+.create-user-cont-wrapper{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 362px;
+    gap: 30px;
+}
+
+.create-user-input-cont-title{
+    color: white;
+    width: 100%;
+};
+
+.create-user-input-cont{
+    display: flex;
+    width: 100%;
+    gap: 30px;
+}
+
+.create-user-input-cont input{
+    width: 100%;
+    padding: 7px 8px;
+    border: 1px solid #303030;
+    border-radius: 3px;
+    color: #e1e1e1;
+    background-color: #252525;
+}
+
+.create-user-input-cont input:focus{
+  outline: none;
+}
+
+.error-input {
+  outline: 1px solid rgba(249,0,0,.41);
+}
+
+
+.place-error {
+    color: #dc2449;         
+    font-size: 12px;       
+    text-align: right;      
+    padding: 0 0 8px 0;     
+    min-height: 24px;        
+    line-height: 24px;        
+    display: block;         
+    user-select: text;        
+}
+
+
+.register-btn{
+    background-color: black;
+    color: white;
+    border: none;
+    border-bottom: 3px solid purple;
+    font-size: 15px;
+    padding: 8px 10px;
+    margin-top: 0px;
+}
+
+.register-btn:hover{
+    cursor: pointer;
+    background-color: rgb(70, 70, 70);
+}
+
+@media(max-width: 766px){
+    .create-user-cont-wrapper{
+       max-width: 90%;
+       pad: 0px;
+    }
+
+    .create-user-input-cont-title{
+        text-align: center;
+    }
+}

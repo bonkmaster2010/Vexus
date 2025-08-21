@@ -1,4 +1,4 @@
-import { asus, msi, intel, amd, razer, corsair, bnq, hp, lenovo } from "./CAL-brands.imgs";
+import { asus, msi, intel, amd, razer, corsair, bnq, hp, lenovo } from "../../image-arrays/CAL-brands.imgs";
 import { v4 as uuidv4 } from 'uuid';
 
 export const dropdownCalbrands = [

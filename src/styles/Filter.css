@@ -37,7 +37,15 @@
 .filter-options {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  max-height: 170px;
   gap: 6px;
+  transition: max-height 0.6s ease;
+}
+
+.filter-options.scrollable{
+  overflow: scroll;
+  max-height: 309px;
 }
 
 .filter-checkbox-cont {
@@ -100,18 +108,23 @@ input[type="checkbox"] {
 }
 
 .overlay {
+  display: flex;
   position: fixed;          
   top: 0;                   
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0,0,0,1);
-  display: none;            
-  flex-direction: column;
-  overflow: scroll;
-  z-index: 10000;  
+  background-color: rgb(20, 20, 20);
+  flex-direction: column;   
+  overflow-y: auto;  
+  z-index: 100;
+  height: 0px;
+  transition: all 0.4s ease-in-out;
 }
 
+.overlay.active{
+  height: 100vh;
+}
 
 .overlay .filtering-container, .overlay .cf-filtering-container{
   max-width: 100%;
@@ -124,26 +137,23 @@ input[type="checkbox"] {
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 30px 25px;
+  height: fit-content;
+  max-width: none;
+  padding: 10px 15px;
 }
 
-.overlay-content-wrapper .filtering-container hr{
-  width: 100%;
-}
 
 #close-overlayed-filter-btn{
   margin-left: auto;
-  margin-bottom: auto;
   width: fit-content;
   border: none;
-  background-color: #2c2c2c;
+  background-color: #3a3a3a;
   color: white;
   font-weight: bold;
-  padding: 10px 12px;
+  padding: 10px 16px;
   font-size: 16px;
   cursor: pointer;
 }
-
 
 #sort-by-text{
   color: white;
@@ -170,16 +180,33 @@ input[type="checkbox"] {
   background-color: #2a203b;
 }
 
+.show-more-btn{
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.show-more-btn svg{
+  fill: #A084DC;
+  transition: fill 0.3s ease;
+}
+
+.show-more-btn:hover svg{
+  fill: #774ed1;
+}
+
+.overlay-content-wrapper .pdr-long{
+  width: 90vw;
+}
+
 @media(max-width: 766px){
   .filtering-container{
     display: none;
   }
 
   .overlayed-filter-btn{
-    display: flex;
-  }
-
-  .overlay{
     display: flex;
   }
 

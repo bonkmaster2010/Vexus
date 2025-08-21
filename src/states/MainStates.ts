@@ -1,90 +1,192 @@
 import { create } from "zustand";
-import type { Main } from "../utils/interfaces/state-interfaces/MainState.interfaces";
+import { persist } from "zustand/middleware";
+import type { Main, AccountReview } from "../utils/interfaces/state-interfaces/MainState.interfaces";
 import { allProducts } from "../utils/extras/Data";
 
-
-
-
-export const useMain = create<Main>((set, get) => ({
-    cart: [],
-        
-    addItemToCart: (product, quantity, warranty) => {
+export const useMain = create<Main>()(
+  persist(
+    (set, get) => ({
+      /* Cart */
+      cart: [],
+      addItemToCart: (product, quantity, warranty) => {
         const { cart } = get();
-        const productIndex = cart.findIndex(item => item.id === product.id && item.warranty === warranty);
-
+        const productIndex = cart.findIndex(
+          (item) => item.id === product.id && item.warranty === warranty
+        );
         if (productIndex !== -1) {
-            const updatedCart = cart.map((item, index) => 
-                index === productIndex
-                    ? item.quantity < 10 ? { ...item, quantity: item.quantity + quantity}
-                    : item
-                    : item
-            );
-            set({ cart: updatedCart });
+          const updatedCart = cart.map((item, index) =>
+            index === productIndex
+              ? { ...item, quantity: Math.min(item.quantity + quantity, 10) }
+              : item
+          );
+          set({ cart: updatedCart });
         } else {
-            set({ cart: [...cart, { ...product, quantity, warranty }] });
+          set({ cart: [...cart, { ...product, quantity, warranty }] });
         }
-    },
-
-
-    removeItemFromCart: (product, warranty) => {
+      },
+      removeItemFromCart: (product, warranty) => {
         const { cart } = get();
+        set({
+          cart: cart
+            .map((item) =>
+              item.id === product.id && item.warranty === warranty
+                ? { ...item, quantity: item.quantity - 1 }
+                : item
+            )
+            .filter((item) => item.quantity > 0),
+        });
+      },
+      updateQuantity: (productId, warranty, quantity) => {
+        const { cart } = get();
+        set({
+          cart: cart.map((item) =>
+            item.id === productId && item.warranty === warranty
+              ? { ...item, quantity }
+              : item
+          ),
+        });
+      },
 
-        const updatedCart = cart.map(item => {
-        if(item.id === product.id && item.warranty ===  warranty){
-            return {...item, quantity: item.quantity - 1};
+      /* Wishlist */
+      wishlist: allProducts,
+      addItemToWishlist: (product) => set({ wishlist: [...get().wishlist, product] }),
+      removeItemFromWishlist: (productToRemove) =>
+        set({ wishlist: get().wishlist.filter((product) => product !== productToRemove) }),
+
+      /* Orders */
+      orders: [],
+      addItemsToOrders: (items) => set({ orders: [...get().orders, ...items], cart: [] }),
+      cancelOrder: (idx) =>
+        set({ orders: get().orders.filter((_, i) => i !== idx) }),
+
+      /* Addresses */
+      addresses: [],
+      setAddresses: (address) => set({ addresses: [...get().addresses, address] }),
+      deleteAddress: (idx) =>
+        set({ addresses: get().addresses.filter((_, i) => i !== idx) }),
+      editAddress: (newAddress, i) => {
+        const updated = get().addresses.map((a, index) =>
+          index === i
+            ? {
+                name: newAddress.name ?? a.name,
+                address_arr: newAddress.address_arr ?? a.address_arr,
+                mobile_number: newAddress.mobile_number ?? a.mobile_number,
+              }
+            : a
+        );
+        set({ addresses: updated });
+      },
+
+      /* Reviews (INDEX-BASED) */
+      reviews: [],
+      addProductReview: (reviewData) => {
+        const reviews = get().reviews;
+        const exists = reviewData.productIndex;
+        const found = reviews.findIndex((r) => r.productIndex === exists);
+        if (found === -1) {
+          set({ reviews: [...reviews, reviewData] });
+        } else {
+          const updated = reviews.map((r) =>
+            r.productIndex === exists
+              ? { ...r, reviews: [...r.reviews, ...reviewData.reviews] }
+              : r
+          );
+          set({ reviews: updated });
         }
-        return item
-        }).filter(item => item.quantity > 0);
+      },
+      addReview: (reviewText, idx) => {
+        if (idx === -1) return;
+        const updated = get().reviews.map((r) =>
+          r.productIndex === idx
+            ? { ...r, reviews: [...r.reviews, reviewText] }
+            : r
+        );
+        set({ reviews: updated });
+      },
+      deleteReview: (reviewIdx, productIdx) => {
+        const updated = get().reviews.map((r) =>
+          r.productIndex === productIdx
+            ? { ...r, reviews: r.reviews.filter((_, i) => i !== reviewIdx) }
+            : r
+        );
+        set({ reviews: updated });
+      },
+      editReview: (productIndex: number, newReview: string, reviewIdx: number) => {
+        const { reviews } = get();
 
-        set({cart: updatedCart});
-    },
+        const productPos = reviews.findIndex(r => r.productIndex === productIndex);
+        if (productPos === -1) return;
 
-    updateQuantity: (productId: string, warranty: number, quantity: number) => {
-    const { cart } = get();
-    const updatedCart = cart.map(item =>
-        item.id === productId && item.warranty === warranty
-            ? { ...item, quantity: quantity }
-            : item
-    );
-    set({ cart: updatedCart });
-},
+        const updated = reviews.map((r, i) =>
+          i === productPos
+            ? { ...r, reviews: r.reviews.map((rev, j) => (j === reviewIdx ? newReview : rev)) }
+            : r
+        );
 
-
-    /* Wishlist */
-       wishlist: allProducts.slice(0, 5),
-        addItemToWishlist: (product) => {
-            const { wishlist } = get();
-
-                set({ wishlist: [...wishlist, product] });
-            
-        },
-
-    removeItemFromWishlist: (id) => {
-        const { wishlist } = get();
-        const filteredList = wishlist.filter((product) => product.id !== id);
-        set({wishlist: filteredList})
-    },
+        set({ reviews: updated });
+      },
 
 
-    /* Recently Viewed Items*/
-    rv: allProducts.slice(0, 9),
-    addItemToRv: (product) => {
-        const { rv } = get();
-        set({ rv: [...rv, product] });
-    },
-    emptyAllRvItems: () => set({rv: []}),
+      /* Account Reviews */
+      accountReviews: [],
+      addAccountReview: (review: AccountReview) =>
+        set({ accountReviews: [review, ...get().accountReviews] }),
+      deleteAccountReview: (idx) =>
+        set({ accountReviews: get().accountReviews.filter((_, i) => i !== idx) }),
 
-    /* Overlayed Filter */
-    showOverlayedFilter: false,
-    setShowOverlayedFilter: (boo?: boolean) => set((s) => ({ showOverlayedFilter: typeof boo === "boolean" ? boo : !s.showOverlayedFilter})),
+      /* RV */
+      rv: allProducts.slice(0, 9),
+      addItemToRv: (product) => set({ rv: [...get().rv, product] }),
+      emptyAllRvItems: () => set({ rv: [] }),
 
-    /* Dropdown */
-    dropdown: '',
-    setDropdown: (type) => set({dropdown: type}),
+      /* Overlay Filter */
+      showOverlayedFilter: false,
+      setShowOverlayedFilter: (boo) =>
+        set({
+          showOverlayedFilter:
+            typeof boo === "boolean" ? boo : !get().showOverlayedFilter,
+        }),
 
-    /* Grid or List */
-    grid: true,
-    setGrid: (boo) => {
-        console.log(boo)
-        set({grid: boo})} 
-}))
+      /* Dropdown */
+      dropdown: "",
+      setDropdown: (type) => set({ dropdown: type }),
+
+      /* Grid/List */
+      grid: true,
+      setGrid: (boo) => set({ grid: boo }),
+
+      /* User */
+      registered: false,
+      SignUp: () => set({ registered: true }),
+      Logout: () => set({ registered: false }),
+
+      /* Expanded Groups */
+      expandedGroups: {},
+      toggleGroup: (groupName, val) =>
+        set((state) => ({
+          expandedGroups: {
+            ...state.expandedGroups,
+            [groupName]: state.expandedGroups[groupName] === val ? null : val,
+          },
+        })),
+      resetGroup: () => set({ expandedGroups: {} }),
+
+      /* Mobile Menu */
+      showMM: false,
+      setShowMM: (boo) => set({ showMM: boo }),
+      singleGroup: "",
+      toggleSingleGroup: (type) => {
+        const current = get().singleGroup;
+        set({ singleGroup: current === type ? "" : type });
+      },
+
+      /* Mobile */
+      isMobile: window.innerWidth <= 770,
+      setIsMobile: (boo) => set({ isMobile: boo }),
+    }),
+    {
+      name: "main-storage",
+      partialize: (state) => ({ registered: state.registered }),
+    }
+  )
+);

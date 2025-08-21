@@ -67,7 +67,7 @@
 
 .nf-img-m{
   display: none;
-  max-width: 675px;
+  max-width: 475px;
 }
 
 @media(max-width: 760px){
@@ -89,11 +89,13 @@
   }
 
   .not-found-text-cont{
+    font-size: 70px;
     justify-content: center;
     align-items: center;
   }
 
   .nf-small-text{
+    font-size: 18px;
     max-width: none;
   }
 }

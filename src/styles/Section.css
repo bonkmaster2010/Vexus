@@ -20,14 +20,13 @@
 }
 
 .section-products {
-    display: flex;
-    width: 100%;
-    gap: 12px;
-    padding: 20px 0px;
-    overflow-x: scroll;          
-    scroll-behavior: smooth;   
-    scroll-snap-type: x mandatory; 
-    -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 12px;
+  padding: 20px 0px;
+  overflow-x: hidden;
+
 }
 
 .section-btns {
@@ -99,10 +98,9 @@
 }
 
 .grid-btn, .list-btn{
-  max-width: 58px;
-  max-height: 32px;
-  min-width: 36px;
-  min-height: 32px;
+  width: 58px;
+  height: 32px;
+
   background-color: #1c1425;
   color: white;
   border: 1px solid #2a1e38;
@@ -113,12 +111,10 @@
 .grid-btn.active, .list-btn.active{
   width: 58px;
   height: 32px;
-  min-width: 36px;
-  min-height: 32px;
   background-color: #2a1e38;
   color: white;
   border: none;
-  cursor: pointer;
+  cursor: default;
 }
 
 .sort-by-cont{
@@ -135,11 +131,13 @@
 
 @media(max-width: 770px){
     .section-btns{
-        display: none;
+      display: none;
     }
 
     .section-cont, .section-products{
-      overflow: scroll;
+      overflow-x: scroll;          
+      scroll-behavior: smooth;   
+      -webkit-overflow-scrolling: touch;
     }
 }
 
@@ -149,9 +147,10 @@
   }
 }
 
-@media(max-width: 744px){
+@media(max-width: 767px){
   .section-cont, .products-page-section{
-    width: 100%;
+    width: 95%;
+    margin: auto auto;
   }
 }
 

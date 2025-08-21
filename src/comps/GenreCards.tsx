@@ -1,15 +1,16 @@
 import GenreCard from './SC/GenreCard';
+import type { GenreCardsIF } from '../utils/interfaces/components/main.comps.if';
 import '../styles/GenreCards.css'
 
-function GenreCards({title, images}: any){
+function GenreCards({title, images}: GenreCardsIF){
 
     return(
       <>
       <div className='genre-cont'>
         <h3 style={{marginTop: '5px', marginBottom: '30px'}}>{title}</h3>
          <div className='genre-card-cont'>
-          {images.map((obj: any) => (
-            <GenreCard src={obj.src} route={obj.route}/>
+          {images.map((obj) => (
+            <GenreCard key={obj.route} src={obj.src} route={`/category/${obj.route}`}/>
           ))}
        </div>
      </div>

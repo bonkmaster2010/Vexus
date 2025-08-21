@@ -2,8 +2,9 @@ import { useNavigate } from "react-router";
 import { useMain } from "../../states/MainStates";
 import type { WishlistCardIF } from "../../utils/interfaces/components/SC.if";
 
-function WishlistCard({ product, index }: WishlistCardIF){
-     
+function WishlistCard({ product, index, showMtc = true}: WishlistCardIF){
+     console.log("showMtc:", showMtc);
+
      const navigate = useNavigate();
      const { addItemToCart, removeItemFromWishlist } = useMain();
      
@@ -23,7 +24,7 @@ function WishlistCard({ product, index }: WishlistCardIF){
             </div>
 
             <h3 onClick={() => navigate(`/product/${index}`)} id="wishlist-product-name">{product.title}</h3>
-            <p id="wishlist-sold-by">Sold by: <b>Ninja</b></p>
+            <p id="wishlist-sold-by">Sold by: <b>Vexus</b></p>
         
                 <p className="wishlist-card-price">USD {product.price}</p>
                 {product.salePrice && <p className="wishlist-card-sale-price">USD {product.salePrice}</p>}
@@ -33,10 +34,10 @@ function WishlistCard({ product, index }: WishlistCardIF){
             </div>
 
 
-             <div className="mtcAndremove">
-                <span onClick={() => addItemToCart(product, 1, 0)}>Move to Cart</span>
-                <span onClick={() => removeItemFromWishlist(product.id)}>Remove</span>
-             </div>
+             {showMtc && <div className="mtcAndremove">
+               <span onClick={() => addItemToCart(product, 1, 0)}>Move to Cart</span>
+               <span onClick={() => removeItemFromWishlist(product)}>Remove</span>
+             </div>}
         </div>
      )
 }

@@ -41,7 +41,8 @@
     width: fit-content;
     max-width: 1200px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
     gap: 10px;
 }
 
@@ -49,9 +50,9 @@
     display: flex;
 }
 
-@media(max-width: 1279px){
-    .category-cont{
-        grid-template-columns: repeat(3, 1fr);
+@media(max-width: 767px){
+    .category-page-main-cont{
+        width: 100vw;
     }
 }
 

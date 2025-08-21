@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { apple, huawei, micro, nokia, oppo, samsung, sha, sony, ubl } from './MT.brands.imgs';
+import { apple, huawei, micro, nokia, oppo, samsung, sha, sony, ubl } from '../../image-arrays/MT.brands.imgs';
 
 export const dropdownMtbrands = [
     {title: 'apple', src: apple, route: 'apple', id: uuidv4()},

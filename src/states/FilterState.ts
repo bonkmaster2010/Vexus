@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { FiltersState } from "../utils/interfaces/state-interfaces/Filter.interface";
+import type { FiltersState } from "../utils/interfaces/state-interfaces/FilterState.interface";
 
 export const useFilters = create<FiltersState>((set, get) => ({
   selectedTypes: [],  

@@ -5,8 +5,16 @@ export const damFiltersCf = [
     {name: "Desktops & Monitors", filters: [...CALSubLinks.desktop, ...CALSubLinks.monitor], routeType: `categories`, route: 'dam'},
 ];
 
+export const computerAccessoriesCF = [
+    {name: "Computer Accessories", filters: [...CALSubLinks.desktopAccessories], routeType: `categories`, route: 'computerAccessories'}
+];
+
 export const laaFiltersCf = [
     {name: "Laptops & Accessories", filters: [{title: 'Laptops', route: 'laptops'}, ...CALSubLinks.laptop], routeType: `categories`, route: 'laa'}
+];
+
+export const laFiltersCf = [
+    {name: "Laptops Accessories", filters: [...CALSubLinks.laptopAccessories], routeType: `categories`, route: 'la'}
 ];
 
 export const pc_compsFiltersCf = [

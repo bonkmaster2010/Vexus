@@ -1,9 +1,9 @@
 import { MBData } from "./MT-CAL/mt.data";
 import { pc_comps_data } from "./pc-comps/pc-comps.data";
-import { LAAData } from "./LAA-DAM/laa.data";
+import { CALData } from "./LAA-DAM/cal.data";
 
-export const fullElecData = {
-  ...LAAData,
+export const fullElecCategoriesData = {
+  ...CALData,
   ...MBData,
   ...pc_comps_data
 };

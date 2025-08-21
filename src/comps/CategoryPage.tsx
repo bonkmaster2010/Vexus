@@ -6,7 +6,7 @@ import OverlayedFilter from "./SC/OverlayedFilter";
 import { allProducts } from "../utils/extras/Data";
 import { useParams } from "react-router";
 import { useMain } from "../states/MainStates";
-import type { CategoryPageIF } from "../utils/interfaces/components/main.comps.if";
+import type { CategoryPageCategory, CategoryPageIF } from "../utils/interfaces/components/main.comps.if";
 import '../styles/CategoryPage.css';
 
 function CategoryPage({ dataArr, dataCategories}: CategoryPageIF){
@@ -34,6 +34,7 @@ function CategoryPage({ dataArr, dataCategories}: CategoryPageIF){
   : lonleyGroupPart[0] 
   ? [lonleyGroupPart[0]] 
   : [];
+
   const data = foundObj[c].data;
 
   return (
@@ -48,8 +49,8 @@ function CategoryPage({ dataArr, dataCategories}: CategoryPageIF){
 
           <h4>Shop by category</h4>
           <div className="category-cont">
-            {data.map((cate: any, i: number) => (
-              <CC key={i} title={cate.title} src={cate.src} route={cate.type ? `/categories/${cate.route}` : `/category/${cate.route}`} />
+            {data.map((cate: CategoryPageCategory, i: number) => (
+              <CC key={i} title={cate.title} src={cate.src} route={cate.routeType ? `/categories/${cate.route}` : `/category/${cate.route}`} />
             ))}
           </div>
         </div>
@@ -62,8 +63,8 @@ function CategoryPage({ dataArr, dataCategories}: CategoryPageIF){
     </div>
 
     {showOverlayedFilter && <OverlayedFilter
-   Filter={CategoryFilter}
-   filterProps={{
+    Filter={CategoryFilter}
+    filterProps={{
     data: mainLinks ? mainLinks : lonleyGroupPart.mainLinks,
     title: "",
     key: c

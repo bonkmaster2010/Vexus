@@ -1,19 +1,18 @@
 import Noti from "./SC/noti";
 import OverlayedFilter from "./SC/OverlayedFilter";
 import Filter from "./Filter";
-import Footer from "./Footer";
 import PSS from "./SC/ProductsScrollSection";
 import { useMain } from "../states/MainStates";
 import { useParams } from "react-router";
-import '../styles/Products.css';
 import type { ProductsProps } from "../utils/interfaces/components/main.comps.if";
+import '../styles/Products.css';
 
 function ProductsPage({ arr, categoryData, useRv = false, title}: ProductsProps) {
       const { rv, showOverlayedFilter } = useMain();
       const { category: rawCategory } = useParams<{ category?: string; key?: string }>();
 
       const category = rawCategory || "";
-
+     
 
      const categoryInfo = !useRv && categoryData ? 
       categoryData[category]
@@ -23,7 +22,8 @@ function ProductsPage({ arr, categoryData, useRv = false, title}: ProductsProps)
       manufacturers: [],
       title: title || "Products",
     };
-    
+    console.log(category)
+    console.log(categoryInfo)
     if (!useRv && !categoryInfo) return <Noti text="Category not found"/>
 
     const filteredProducts = arr.filter(p => p.category.toLowerCase() === category.toLowerCase());
@@ -49,8 +49,6 @@ function ProductsPage({ arr, categoryData, useRv = false, title}: ProductsProps)
               </div>
             </div>
           </div>
-
-          <Footer />
         </>
       )}
 

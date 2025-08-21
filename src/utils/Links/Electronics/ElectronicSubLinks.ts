@@ -1,30 +1,40 @@
+
 export const CALSubLinks = {
   desktop: [
     { title: "Gaming Desktops", id: "pcmcat295700050012", route: "pcs" },
     { title: "All-in-One Desktops", id: "abcat0501000", route: "pcs" },
     { title: "Tower Desktops", id: "abcat0503000", route: "pcs" },
     { title: "Mini Desktops", id: "pcmcat748301884262", route: "pcs" },
-    { title: "Monitors", route: "monitors" },
-    { title: "Workstation Desktops", id: "pcmcat120300050028", route: "pcs" }
+    { title: "Workstation Desktops", id: "pcmcat120300050028", route: "pcs" },
+    { title: "Monitors", id: "pcmcat748301677852", route: "monitors" }
+  ],
+
+  desktopAccessories: [
+    { title: "Keyboards", id: "abcat0803000", route: "keyboards" },
+    { title: "Mouses", id: "abcat0803010", route: "miceAndTrackballs" },
+    { title: "Webcams", id: "abcat0803050", route: "webcams" },
+    { title: "Microphones", id: "abcat0803060", route: "microphones" },
+    { title: "Speakers", id: "abcat0803040", route: "speakers" },
+    { title: "USB Hubs & Adapters", id: "abcat0803090", route: "usbHubsAndAdapters" },
   ],
 
   laptop: [
     { title: "Gaming Laptops", id: "pcmcat247400050000", route: "laptops" },
     { title: "2-in-1 Laptops", id: "pcmcat247400050001", route: "laptops" },
     { title: "MacBook", id: "abcat0902000", route: "laptops" },
-    { title: "Chargers & Adapters", id: "categoryPath.id=abcat0511000", route: "laptopChargers" },
-    { title: "Bags & Cases", id: "categoryPath.id=abcat0512000", route: "laptopBags" },
-    { title: "Cooling Pads & Fans", id: "categoryPath.id=abcat0515000", route: "laptopCoolingpads" },
-    { title: "Docking Stations & Hubs", id: "categoryPath.id=abcat0516000", route: "laptopDocking" },
-    { title: "Adjustable Stands", id: "categoryPath.id=abcat0517000", route: "laptopAdjustableStand" }
+    { title: "Chargers & Adapters", id: "abcat0511000", route: "laptopChargers" },
+    { title: "Bags & Cases", id: "abcat0512000", route: "laptopBags" },
+    { title: "Cooling Pads & Fans", id: "abcat0515000", route: "laptopCoolingpads" },
+    { title: "Docking Stations & Hubs", id: "abcat0516000", route: "laptopDocking" },
+    { title: "Adjustable Stands", id: "abcat0517000", route: "laptopAdjustableStand" }
   ],
 
   laptopAccessories: [
-    { title: "Chargers & Adapters", id: "categoryPath.id=abcat0511000", route: "laptopChargers" },
-    { title: "Bags & Cases", id: "categoryPath.id=abcat0512000", route: "laptopBags" },
-    { title: "Cooling Pads & Fans", id: "categoryPath.id=abcat0515000", route: "laptopCoolingpads" },
-    { title: "Docking Stations & Hubs", id: "categoryPath.id=abcat0516000", route: "laptopDocking" },
-    { title: "Adjustable Stands", id: "categoryPath.id=abcat0517000", route: "laptopAdjustableStand" }
+    { title: "Chargers & Adapters", id: "abcat0511000", route: "laptopChargers" },
+    { title: "Bags & Cases", id: "abcat0512000", route: "laptopBags" },
+    { title: "Cooling Pads & Fans", id: "abcat0515000", route: "laptopCoolingpads" },
+    { title: "Docking Stations & Hubs", id: "abcat0516000", route: "laptopDocking" },
+    { title: "Adjustable Stands", id: "abcat0517000", route: "laptopAdjustableStand" }
   ],
 
   monitor: [
@@ -36,15 +46,15 @@ export const CALSubLinks = {
   ],
 
   pc_comps: [
-  { title: "Graphics Cards", id: "categoryPath.id=abcat0508003", route: "graphicsCards" },
-  { title: "Processors", id: "categoryPath.id=abcat0502000", route: "processors" },
-  { title: "RAM", id: "categoryPath.id=abcat0507000", route: "ram" },
-  { title: "Storage", id: "categoryPath.id=abcat0504000", route: "storage" },
-  { title: "Motherboards", id: "categoryPath.id=abcat0503000", route: "motherboards" },
-  { title: "PC Cases", id: "categoryPath.id=abcat0509000", route: "pcCases" },
-  { title: "Power Supplies", id: "categoryPath.id=abcat0507009", route: "powerSupplies" },
-  { title: "Coolers (Fans & Heatsinks)", id: "categoryPath.id=abcat0506000", route: "coolers" },
-  ],
+    { title: "Graphics Cards", id: "abcat0508003", route: "graphicsCards" },
+    { title: "Processors", id: "abcat0502000", route: "processors" },
+    { title: "RAM", id: "abcat0507000", route: "ram" },
+    { title: "Storage", id: "abcat0504000", route: "storage" },
+    { title: "Motherboards", id: "abcat0503000", route: "motherboards" },
+    { title: "PC Cases", id: "abcat0509000", route: "pcCases" },
+    { title: "Power Supplies", id: "abcat0507009", route: "powerSupplies" },
+    { title: "Coolers (Fans & Heatsinks)", id: "abcat0506000", route: "coolers" }
+  ]
 };
 
 export const MTSubLinks = {
@@ -75,15 +85,13 @@ export const MTSubLinks = {
   ],
 
   mobileAccessories: [
-  { title: "Cases & Protectors", id: "mobileCasesAndSkins", route: "casesAndProtectors" },
-  { title: "Chargers & Cables", id: "cellPhoneChargersAndCables", route: "chargersAndCables" },
-  { title: "Other Mobile Phone Accessories", id: "otherCellPhoneAccessories", route: "otherMobilePhoneAccessories" },
-  { title: "Portable Bluetooth Speakers", id: "portableBluetoothSpeakers", route: "portableBluetoothSpeakers" },
-  { title: "Mobile Phone Screen Protectors", id: "cellPhoneScreenProtectors", route: "mobilePhoneScreenProtectors" },
-  { title: "Mounts and Holders", id: "cellPhoneMountsAndHolders", route: "mountsAndHolders" },
-  { title: "Power Banks", id: "powerBanks", route: "powerBanks" },
-  { title: "Memory Cards", id: "memoryCards", route: "memoryCards" },
-  { title: "Lens Attachments", id: "cellPhoneLensAttachments", route: "lensAttachments" },
-  { title: "Selfie Sticks", id: "selfieSticks", route: "selfieSticks" }
-  ],
-}
+    { title: "Headsets", id: "abcat0204000", route: "headsets"},
+    { title: "Cases & Protectors", id: "mobileCasesAndSkins", route: "casesAndProtectors" },
+    { title: "Chargers & Cables", id: "cellPhoneChargersAndCables", route: "chargersAndCables" },
+    { title: "Screen Protectors", id: "cellPhoneScreenProtectors", route: "mobilePhoneScreenProtectors" },
+    { title: "Mounts and Holders", id: "cellPhoneMountsAndHolders", route: "mountsAndHolders" },
+    { title: "Power Banks", id: "powerBanks", route: "powerBanks" },
+    { title: "Lens Attachments", id: "cellPhoneLensAttachments", route: "lensAttachments" },
+    { title: "Selfie Sticks", id: "selfieSticks", route: "selfieSticks" },
+  ]
+};

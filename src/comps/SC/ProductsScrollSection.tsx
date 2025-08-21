@@ -1,4 +1,3 @@
-import OverlayedFilter from "./OverlayedFilter";
 import Svg from "../../utils/extras/Svgs";
 import ListCard from "./Listcard";
 import PCardComp from "./PcCard";
@@ -7,7 +6,7 @@ import type { PSSIF } from "../../utils/interfaces/components/SC.if";
 import '../../styles/Section.css';
 
 function PSS({ data, useRv}: PSSIF){
-    const { emptyAllRvItems, showOverlayedFilter, setShowOverlayedFilter, grid, setGrid} = useMain();
+    const { emptyAllRvItems, setShowOverlayedFilter, grid, setGrid} = useMain();
 
     return (
      <>

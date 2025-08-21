@@ -1,0 +1,133 @@
+.mm-my-profile-main-cont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-bottom: 40px;
+    gap: 20px;
+}
+
+.mm-my-profile-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    width: 100%;
+    gap: 30px;
+    max-width: 1200px;
+}
+
+.mm-info-wrapper {
+    display: flex;
+    flex-direction: column;
+    background-color: #202020;
+    width: 100%;
+    overflow: hidden;
+}
+
+.mm-info-header {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 15px 30px;
+    background-color: #404040;
+}
+
+.mm-info-header.small{
+    font-size: 13px;
+    font-weight: normal;
+}
+
+.mm-my-profile-user-details-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+.mm-my-profile-user-details-wrapper.grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    padding: 30px 25px 0 25px;
+    gap: 25px;
+}
+
+.input-with-label {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 6px;
+}
+
+.mm-my-profile-user-details-wrapper label {
+    font-size: 15px;
+    font-weight: 500;
+    color: #cccccc;
+}
+
+.mm-my-profile-user-details-wrapper input {
+    background-color: #181818;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 7px 12px;
+    font-size: 15px;
+    border-radius: 2px;
+}
+
+.mm-my-profile-user-details-wrapper input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #8C5CE8; 
+}
+
+.mm-my-profile-delete-my-account {
+    display: flex;
+    flex-direction: column;
+    background-color: #202020;
+    padding: 18px;
+    width: 100%;
+    gap: 8px;
+}
+
+.mm-my-profile-save-details-cont {
+    margin-top: auto;
+}
+
+.mm-my-profile-save-details-btn {
+    background-color: #8C5CE8;
+    border-radius: 4px;
+    color: white;
+    padding: 12px 20px;
+    border: 1px solid #460cbb;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    min-width: 140px;
+    font-size: 15px;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+    margin-top: 20px;
+}
+
+.mm-my-profile-save-details-btn:hover {
+    background-color: #7b4fd2;
+}
+
+@media (max-width: 1200px) {
+    .mm-my-profile-user-details-input-wrapper {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 770px) {
+    .mm-my-profile-content-wrapper {
+        width: 100%;
+        padding: 0px;
+        gap: 25px;
+    }
+    
+    .mm-my-profile-user-details-input-wrapper {
+        padding: 20px;
+        gap: 18px;
+    }
+}

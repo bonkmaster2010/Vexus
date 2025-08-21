@@ -3,7 +3,7 @@ import { useFiltersWithQuery } from "./hooks/useFilterWithQuery";
 import type { CFIF } from "../utils/interfaces/components/main.comps.if";
 import "../styles/CF.css";
 
-function CategoryFilter({ title, data }: CFIF) {
+function CategoryFilter({ title, data}: CFIF) {
   const { updateFilter } = useFiltersWithQuery();
   const navigate = useNavigate();
 
@@ -41,7 +41,7 @@ function CategoryFilter({ title, data }: CFIF) {
                       <NavLink
                         className="cf-sublink"
                         key={`cf-sublink-${sl.id}-${sl.route}`}
-                        to={`/category/${sl.route}`}
+                        to={`/${sl.route}`}
                         onClick={(e) => {
                           e.preventDefault();
                           handleRouting(
@@ -59,7 +59,7 @@ function CategoryFilter({ title, data }: CFIF) {
               </div>
             ))}
             </div>
-
+            {data[i] !== data[data.length - 1] && <div className='pdr-long'/>}
           </div>
         ))}
       </div>

@@ -1,0 +1,97 @@
+
+
+
+.address-card{
+    box-sizing: border-box;
+    color: #e1e1e1;
+    color-scheme: dark;
+    display: flex;
+    flex-wrap: wrap;
+    font: 400 13px/21px Arial, sans-serif;
+    padding: 15px 25px;
+    position: relative;
+    text-align: left;
+    border-bottom: none;
+    outline: none;
+    gap: 25px;
+}
+
+.col{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-sizing: border-box;
+    color: #e1e1e1;
+    color-scheme: dark;
+    font: 400 13px/21px Arial, sans-serif;
+    margin-bottom: 20px;
+    outline: none;
+    text-align: left;
+    max-width: 300px;
+}
+
+.txt-cont{
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.col-btn-cont {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px; 
+  font: 400 13px/21px Arial, sans-serif;
+  color: #e1e1e1;
+  width: fit-content; 
+  position: relative;
+  overflow: hidden;
+  margin: auto 0px;
+  margin-left: auto;
+}
+
+.address-btn {
+  background-color: #404040;
+  border: 1px solid #404040;
+  border-radius: 4px;
+  color: #cfcfcf;
+  cursor: pointer;
+  font: 400 12px/17px Arial, sans-serif;
+  padding: 4px 14px;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  touch-action: manipulation;
+  width: 100%; 
+  transition: all 0.2s ease;
+}
+
+.address-btn:hover {
+  background-color: #505050;
+  color: #ffffff;
+}
+
+.address-hr{
+    height: 1px;
+    width: 100%;
+    background-color: #505050;
+    margin: 0px auto;
+    margin-top: 5px;
+}
+
+@media(max-width: 864px){
+    .address-card{
+      flex-direction: column;
+      gap: 0px;
+    }
+
+    .col{
+        gap: 2px;
+    }
+
+    .col-btn-cont{
+      margin: 0px auto;
+      flex-direction: row;
+    }
+}
