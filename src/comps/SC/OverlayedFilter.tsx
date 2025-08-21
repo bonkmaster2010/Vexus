@@ -1,7 +1,8 @@
 import { useMain } from "../../states/MainStates";
+import type { FilterProps } from "../../utils/interfaces/components/SC.if";
 
 
-function OverlayedFilter({ Filter, filterProps }: { Filter: React.ComponentType<any>, filterProps: any }) {
+function OverlayedFilter({ Filter, filterProps }: { Filter: React.ComponentType<any>, filterProps: FilterProps }) {
   const { setShowOverlayedFilter, showOverlayedFilter } = useMain();
 
   return (
