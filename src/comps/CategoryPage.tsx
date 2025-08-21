@@ -67,7 +67,6 @@ function CategoryPage({ dataArr, dataCategories}: CategoryPageIF){
     filterProps={{
     data: mainLinks ? mainLinks : lonleyGroupPart.mainLinks,
     title: "",
-    key: c
    }}
    />}
    </>
