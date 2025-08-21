@@ -108,7 +108,9 @@
 .mm-links-wrapper {
   display: flex;
   flex-direction: column;
+  flex: 1;
   gap: 14px;
+  height: fit-content;
 }
 
 .mm-links-wrapper.noGap{
@@ -164,12 +166,11 @@
 /* Submenu container */
 .mm-submenu {
   display: flex;
-  height: 100vh;
+  height: fit-content;
   width: 280px;   
   flex-direction: column;
   gap: 6px;
   background: transparent; 
-  border-right: 2px solid #4b367c; 
   padding: 15px 0;
   overflow-y: auto;
   transition: transform 0.4s ease;

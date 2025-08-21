@@ -18,8 +18,8 @@ function UserUtils(){
     </button>
     
     {!registered && <>
-    <button className="navbar-button">
-    <Svg type='signup'/>
+    <button className="navbar-button" onClick={() => navi('/register')}>
+    <Svg type='signup' />
     Register
     </button>
     </>
