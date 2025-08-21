@@ -215,7 +215,7 @@ input[type=number] {
   gap: 20px;
   padding: 0px 30px;
   color: white;
-  margin: 40px 0px 20px 0px;
+  margin: 40px 0px 0px 0px;
 }
 
 .pa-main-content {
@@ -242,6 +242,6 @@ input[type=number] {
 
 @media(max-width: 770px){
   .profile-layout{
-    padding: 0px 20px;
+    padding: 0px 0px;
   }
 }

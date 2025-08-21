@@ -1,13 +1,12 @@
+import Svg from "../../utils/extras/Svgs";
 import { useNavigate } from "react-router";
 import { useMain } from "../../states/MainStates"
-import Svg from "../../utils/extras/Svgs";
-import { useEffect } from "react";
 
 function UserUtils(){
     const navi = useNavigate();   
-    const { registered, SignUp, toggleSingleGroup} = useMain();
-  
-    useEffect(() => SignUp(), [])
+    const { toggleSingleGroup } = useMain();
+    const registered = useMain(s => s.registered)
+
 
     return (
     <div className="mm-user-utils">
