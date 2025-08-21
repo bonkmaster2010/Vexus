@@ -1,11 +1,7 @@
 {
   "version": 2,
-  "buildCommand": "SKIP_PREFLIGHT_CHECK=true react-scripts build || true",
-  "framework": "create-react-app",
   "builds": [
     { "src": "package.json", "use": "@vercel/static-build" }
   ],
-  "routes": [
-    { "src": "/(.*)", "dest": "/" }
-  ]
+  "buildCommand": "vite build"
 }
