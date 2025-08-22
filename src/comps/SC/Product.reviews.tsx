@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useMain } from "../../states/MainStates";
 import "../../styles/Review.css";
-import Noti from "./noti";
 
 function ProductReviews({ productTitle, idx }: { productTitle: string; idx: number }) {
   const [review, setReview] = useState("");
