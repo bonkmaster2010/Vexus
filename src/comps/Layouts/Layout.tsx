@@ -1,7 +1,8 @@
 import Footer from ".././Footer";
 import Navbar from ".././Navbar";
-import MobileMenu from ".././MobileMenu/MobileMenu";import { Outlet } from "react-router";
+import MobileMenu from ".././MobileMenu/MobileMenu";
 import MobileNavbar from ".././MobileMenu/MobileNavbar";
+import { Outlet } from "react-router";
 import { useMain } from "../../states/MainStates";
 import { useEffect } from 'react';
 

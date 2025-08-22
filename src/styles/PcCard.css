@@ -22,9 +22,10 @@
 }
 
 .section-card {
-  border: 1px solid #A084DC;
+  border: 1px solid #251a31;
   flex: 0 0 auto;
   width: 100%;
+  min-width: 200px;
   max-width: 220px;
   padding: 20px 20px 40px;
   cursor: pointer;
@@ -35,6 +36,7 @@
   flex-direction: column;
   transition: 0.3s;
   align-items: stretch;
+  
 }
 
 .section-card img {
@@ -64,12 +66,13 @@
 }
 
 .pc-card-desc h3{
-  font-size: 16px !important;
+  font-size: 13px !important;
   color: #B87EDC;
   margin: 8px 0;
   word-wrap: break-word;
   white-space: normal;
   max-width: 100%;
+  margin-bottom: 17px;
 }
 
 .add-to-cart-btn {
@@ -98,17 +101,18 @@
   margin-top: auto;
 }
 
+
 .pc-card-price {
-  font-size: 19px !important;
-  font-weight: bold;
+  font-size: 20px !important;
+  font-weight: 700;
 }
 
 .currency-name {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: normal;
 }
 
-.pc-card-sale-price {
+.pc-card-sale-price{
   text-decoration: line-through;
   opacity: 0.7;
   margin-bottom: auto;
@@ -310,6 +314,12 @@
 .list-card-bottom-row button:hover {
   color: #ffffff;
   background-color: #3e2e53;
+}
+
+@media(max-width: 1000px){
+  .section-card{
+    max-width: 280px;
+  }
 }
 
 @media (max-width: 620px) {

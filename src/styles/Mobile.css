@@ -307,3 +307,9 @@
   top: 0px;
   left: 14px;
 }
+
+@media(max-width: 580px){
+  .mm-navbar{
+    margin-bottom: 0px;
+  }
+}

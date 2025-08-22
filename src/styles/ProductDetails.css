@@ -1,13 +1,13 @@
 
 .product-details-cont-main{
-    padding: 0px 40px;
-    padding-right: 0px;
+  padding: 0px 40px;
+  padding-right: 0px;
 }
 
 .product-details-cont{
-    padding-top: 20px;
-    display: flex;
-    gap: 15px;
+  padding-top: 20px;
+  display: flex;
+  gap: 15px;
 }
 
 .pd-image-cont{
@@ -196,7 +196,7 @@
 
 .fulfilled-by{
     color: white;
-    background-color: rgb(158, 2, 158);
+    background-color: rgb(168, 2, 168);
     margin-top: 6px;
     font-weight: 700;
     border-radius: 14px;
@@ -259,18 +259,19 @@
 }
 
 .add-to-cart{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    padding-right: 20px;
-    width: 100%;
-    max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding-right: 20px;
+  width: 100%;
+  max-width: 400px;
 }
 
 #inStock{
-    color: rgb(0, 151, 0);
-    font-weight: 600;
+  color: rgb(0, 151, 0);
+  font-weight: 600;
+  margin-right: auto;
 }
  
 .add-to-cart button {
@@ -393,14 +394,13 @@
     border: 1px solid #7e59cc;
 }
 
-
 /* Specs Table */
 .specs-cont{
   padding: 0px 22px;
 }
 
 .specs {
-  padding: 20px 24px;
+  padding: 20px 0px;
   color: white;
   max-width: 95%;
   margin: 0px auto;
@@ -514,12 +514,12 @@
 /* Hello everybody my name's Markiplier (mobile support) */
 @media(max-width: 990px){
     .desc-price-wrapper{
-        flex-direction: column;
+      flex-direction: column;
     }
 
     .product-price{
-        padding: 0px;
-        width: 100%;
+      padding: 0px;
+      width: 100%;
     }
 }
 
@@ -594,7 +594,7 @@
 
 @media (max-width: 580px) {
   .product-details-cont-main {
-    padding: 0px 0px;
+    padding: 0px 5px;
   }
 
   .product-details-cont{

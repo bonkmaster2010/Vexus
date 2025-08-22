@@ -19,6 +19,7 @@ function PCardComp({product, title, price, src, style, route, salePrice, CartTyp
         <h3>{title}</h3>
         
         <div className='pc-card-bottom-row'>
+          
         <p className='pc-card-price'><span className='currency-name'>USD</span> {price}</p>
         {salePrice && <p className='pc-card-sale-price'>USD {salePrice}</p>}
 

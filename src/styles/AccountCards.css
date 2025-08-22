@@ -1,13 +1,18 @@
 
 .main-account-cards-cont{
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-account-cards-cont .noti-cont{
+  margin-left: 0px;
+  margin-right: 0px;
 }
 
 .main-account-cards-cont .ma-user-details{
-    width: 100%;
-    max-width: none;
-    margin-bottom: 30px;
+  width: 100%;
+  max-width: none;
+  margin-bottom: 30px;
 }
 
 .account-cards-wrapper {
@@ -61,4 +66,11 @@ background-size: 110px auto;
   font-size: 13px;
   font-weight: 400;
   line-height: 21px;
+}
+
+@media(max-width: 770px){
+.main-account-cards-cont{
+  justify-content: center;
+  align-items: center;
+}
 }
