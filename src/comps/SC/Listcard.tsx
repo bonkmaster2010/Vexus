@@ -21,14 +21,9 @@ function ListCard({product, title, price, src, style, route, salePrice}: Listcar
         <img onClick={() => navi(`/product/${route}`)} src={src[0]} alt={`${title} image`}/>
         </div>
 
+        <div className='row-wrapper'>
         <div className='list-card-middle-row'>
           <h4 id='list-card-product-title' onClick={() => navi(`/product/${route}`)}>{title.slice(0, 250)}</h4>
-
-          <ul>
-            {fakeSpecs.map((s: string) => (
-                <li key={s}>{s}</li>
-            ))}
-          </ul>
         </div>
 
         <div className='list-card-last-row'>
@@ -39,6 +34,7 @@ function ListCard({product, title, price, src, style, route, salePrice}: Listcar
            </div>
         </div> 
         
+        </div>
         </div>
         </div>
 

@@ -139,6 +139,10 @@
       scroll-behavior: smooth;   
       -webkit-overflow-scrolling: touch;
     }
+
+    #sort-by-text{
+      display: none;
+    }
 }
 
 @media(max-width: 880px){

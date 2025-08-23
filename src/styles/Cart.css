@@ -44,7 +44,7 @@
     gap: 20px;
 }
 
-.main-card-content,
+.main-cart-cont .main-card-content,
 .main-wishlist-card-content {
     display: flex;
     flex-direction: row;
@@ -71,9 +71,9 @@
     height: 100%;
     max-width: 120px;
     max-height: 160px;
-    margin: auto;
     object-fit: cover;
     cursor: pointer;
+    border-radius: 6px;
 }
 
 .cart-product-desc,
@@ -448,9 +448,15 @@
         padding: 0;
     }
 
+    .cart-image-div{
+        height: 100%;
+        margin: auto 0px;
+        justify-content: center;
+        align-items: center;
+    }
+
     .cart-image-div img {
-        max-width: 90px;
-        max-height: 180px;
+        margin: auto 0px;
     }
 
     .left-mark-title {

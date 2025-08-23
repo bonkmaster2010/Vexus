@@ -46,7 +46,7 @@ function PSS({ data, useRv}: PSSIF){
       <div className={`products-cont${grid ? '' : '.list'} `}>
         {data.slice(0, 12).map((pro, i) => (
         grid ? <PCardComp
-        key={pro.id}
+        key={`${pro.id} - ${i}`}
         route={i}
         title={pro.title}
         src={pro.src}
@@ -55,7 +55,7 @@ function PSS({ data, useRv}: PSSIF){
         CartType={false}
         /> : <ListCard
         product={pro}
-        key={pro.id}
+        key={`${pro.id} - ${i}`}
         route={i}
         title={pro.title}
         src={pro.src}
