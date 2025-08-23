@@ -6,7 +6,6 @@ import '../../styles/PcCard.css';
 function ListCard({product, title, price, src, style, route, salePrice}: ListcardIF){
    const navi = useNavigate();
    const { addItemToRv } = useMain();
-   const fakeSpecs = ['test 1', 'test 2', 'test 3'];
 
    return ( 
     <>
