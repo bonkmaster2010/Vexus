@@ -11,11 +11,10 @@ function CartCard({ product, index, navigate}: any) {
     return (
         <div className="cart-card">
             <div className="main-card-content">
-                <CartImage src={product.src[0]} alt={product.title} navigate={() => navigate(`/product/${index}`)} />
+                <CartImage src={product.image} alt={product.name} navigate={() => navigate(`/product/${index}`)} />
                 <CartDescription 
                     product={product} 
                     navigate={() => navigate(`/product/${index}`)} 
-                    wishlist={wishlist}
                 />
                 <CartPrice product={product}/>
             </div>

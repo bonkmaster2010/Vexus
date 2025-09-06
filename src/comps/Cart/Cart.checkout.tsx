@@ -14,7 +14,7 @@ function Checkout(){
     
     useEffect(() => {
     const totalPrice = cart.reduce((total, item) => {
-        const itemTotal = item.price * item.quantity;
+        const itemTotal = parseInt(item.actual_price) * item.quantity;
         return total + itemTotal;
     }, 0);
 

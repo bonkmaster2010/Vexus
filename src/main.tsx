@@ -36,7 +36,7 @@ createRoot(document.getElementById('root')!).render(
       <Route path='/register' element={<CreateUser/>}/>
       <Route element={<Layout/>}>
       <Route path='/' element={<App/>}/>
-      <Route path='/product/:idx' element={<ProductDetails/>}/>
+      <Route path='/product/:productLink' element={<ProductDetails/>}/>
       <Route path='/cart' element={<Cart/>}/>
       <Route path='*' element={<NotFound/>}/>      
       <Route path='/categories/:category' element={<CategoryPage dataArr={allCPCData} dataCategories={allCatesFilters}/>}/>       

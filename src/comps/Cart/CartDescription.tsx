@@ -1,18 +1,19 @@
 import { useMain } from "../../states/MainStates";
+import type { Product } from "../../utils/extras/Data";
 import WishlistAndTrash from "./WishlistAndTrash";
 
-function CartDescription({ product, navigate}: any) {
+function CartDescription({ product, navigate}: {product: Product, navigate: any}) {
     const { wishlist, removeItemFromWishlist, addItemToWishlist, removeItemFromCart, isMobile} = useMain()
 
     return (
         <div className="cart-product-desc">
-            <h3 onClick={navigate} id="cart-product-name">{product.title}</h3>
+            <h3 onClick={navigate} id="cart-product-name">{product.name}</h3>
             
             <div className="cart-card-prices-mobile">
                 
                 <div className="prices-sale-normal-cont">
-                <p className="cart-card-price">USD {product.price}</p>
-                {product.salePrice && <p className="cart-card-sale-price">USD {product.salePrice}</p>}
+                <p className="cart-card-price">USD {product.actual_price}</p>
+                {product.discount_price && <p className="cart-card-sale-price">USD {product.discount_price}</p>}
                 </div>
 
                 {product.warranty && <p className="cart-card-warranty-price">

@@ -58,7 +58,7 @@ function CategoryPage({ dataArr, dataCategories}: CategoryPageIF){
         <hr/>
 
         <h3 style={{margin: '0 auto', marginTop: '10px', color: 'white'}}>Best selling</h3>  
-        <PSS data={allProducts} useRv={false} cf={true}/>
+        <PSS searchTerm="daily-offers" data={allProducts} useRv={false} cf={true}/>
       </div>
     </div>
 

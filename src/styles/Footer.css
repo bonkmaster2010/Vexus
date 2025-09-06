@@ -20,7 +20,7 @@
 .about-us p {
   font-size: 14px;
   line-height: 1.6;
-  width: 90%;
+  width: 100%;
   color: #ccc;
   margin-bottom: 15px;
 }
@@ -153,5 +153,5 @@
 .rv-card img{
   width: 70px;
   height: 91px;
-  object-fit: cover;
+  object-fit: contain;
 }

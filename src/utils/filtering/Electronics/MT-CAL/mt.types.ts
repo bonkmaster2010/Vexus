@@ -20,61 +20,64 @@ export const smartwatchTypeFilters = [
   { title: "Apple Watch", id: "apple" },
   { title: "Samsung Galaxy Watch", id: "samsung" },
   { title: "Fitbit", id: "fitbit" },
-  { title: "Garmin", id: "garmin" }
+  { title: "Fire-Boltt", id: "fire-boltt" },
+  { title: "boAt", id: "boAt" },
+  { title: "Hammer Ace", id: "Hammer Ace" },
+  { title: "Noise Pulse", id: "noise pulse" }
 ];
 
 export const headsetsTypeFilters = [
-  { title: "Over-Ear", id: "overEar" },
-  { title: "In-Ear", id: "inEar" },
-  { title: "On-Ear", id: "onEar" },
+  { title: "Over-Ear", id: "over Ear" },
+  { title: "In-Ear", id: "in Ear" },
+  { title: "On-Ear", id: "on Ear" },
   { title: "Wireless", id: "wireless" },
   { title: "Wired", id: "wired" },
-  { title: "Noise Cancelling", id: "noiseCancelling" }
+  { title: "Noise Cancelling", id: "noise Cancelling" }
 ];
 
 export const casesAndProtectorsTypeFilters = [
-  { title: "Hard Cases", id: "hardCases" },
-  { title: "Soft Cases", id: "softCases" },
+  { title: "Hard Cases", id: "hard Cases" },
+  { title: "Soft Cases", id: "soft Cases" },
   { title: "Skins", id: "skins" },
   { title: "Bumpers", id: "bumpers" },
-  { title: "Wallet Cases", id: "walletCases" }
+  { title: "Wallet Cases", id: "wallet Cases" }
 ];
 
 export const chargersAndCablesTypeFilters = [
-  { title: "Wall Chargers", id: "wallChargers" },
-  { title: "Car Chargers", id: "carChargers" },
-  { title: "Wireless Chargers", id: "wirelessChargers" },
-  { title: "Charging Cables", id: "chargingCables" },
-  { title: "Power Adapters", id: "powerAdapters" }
+  { title: "Wall Chargers", id: "wall Chargers" },
+  { title: "Car Chargers", id: "car Chargers" },
+  { title: "Wireless Chargers", id: "wireless Chargers" },
+  { title: "Charging Cables", id: "charging Cables" },
+  { title: "Power Adapters", id: "power Adapters" }
 ];
 
 export const screenProtectorsTypeFilters = [
-  { title: "Tempered Glass", id: "temperedGlass" },
-  { title: "Film Protectors", id: "filmProtectors" },
-  { title: "Privacy Screen", id: "privacyScreen" },
-  { title: "Matte Finish", id: "matteFinish" }
+  { title: "Tempered Glass", id: "tempered Glass" },
+  { title: "Film Protectors", id: "film Protectors" },
+  { title: "Privacy Screen", id: "privacy Screen" },
+  { title: "Matte Finish", id: "matte Finish" }
 ];
 
 export const mountsAndHoldersTypeFilters = [
-  { title: "Dashboard Mounts", id: "dashboardMounts" },
-  { title: "Windshield Mounts", id: "windshieldMounts" },
-  { title: "Vent Mounts", id: "ventMounts" },
-  { title: "Magnetic Mounts", id: "magneticMounts" }
+  { title: "Dashboard Mounts", id: "dashboard Mounts" },
+  { title: "Windshield Mounts", id: "windshield Mounts" },
+  { title: "Vent Mounts", id: "vent Mounts" },
+  { title: "Magnetic Mounts", id: "magnetic Mounts" }
 ];
 
 export const powerBanksTypeFilters = [
-  { title: "Portable Chargers", id: "portableChargers" },
-  { title: "Solar Power Banks", id: "solarPowerBanks" },
-  { title: "Fast Charging", id: "fastCharging" }
+  { title: "Portable Chargers", id: "portable Chargers" },
+  { title: "Solar Power Banks", id: "solar PowerBanks" },
+  { title: "Fast Charging", id: "fast Charging" }
 ];
 
 export const lensAttachmentsTypeFilters = [
-  { title: "Clip-On", id: "clipOn" },
-  { title: "Case-Mounted", id: "caseMounted" }
+  { title: "Clip-On", id: "clip On" },
+  { title: "Case-Mounted", id: "case Mounted" }
 ];
 
 export const selfieSticksTypeFilters = [
   { title: "Bluetooth", id: "bluetooth" },
   { title: "Wired", id: "wired" },
-  { title: "Tripod Compatible", id: "tripodCompatible" }
+  { title: "Tripod Compatible", id: "tripod Compatible" }
 ];

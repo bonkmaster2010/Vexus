@@ -2,31 +2,49 @@ import Svg from "../utils/extras/Svgs";
 import Noti from "./SC/noti";
 import ProductReviews from "./SC/Product.reviews";
 import { useParams } from "react-router";
-import { allProducts } from "../utils/extras/Data";
-import { useState } from "react";
+import { allProducts } from "../utils/extras/Data.ts";
+import { useEffect, useState } from "react";
 import { useMain } from "../states/MainStates";
+import { slugify } from "../utils/fns/extra.fns";
 import "../styles/ProductDetails.css";
+import { useFilters } from "../states/FilterState.ts";
 
 function ProductDetails() {
-  const params = useParams<{ idx?: string }>();
-  const idx = params.idx ? parseInt(params.idx, 10) : -1;
+  const params = useParams<{ productLink?: string }>();
+  const productLink = params.productLink ? params.productLink : '';
 
-  const product = allProducts[idx];
-  const [CWO, setCWO] = useState("1");
-  const [src, setSrc] = useState("");
+  const product = allProducts.find(p => slugify(p.name) === productLink);
+  const idx = allProducts.findIndex(p => slugify(p.name) === productLink);
+
   const [addToCartText, setAddToCartText] = useState("Add To Cart");
+  const [CWO, setCWO] = useState<string>('1');
   const [quantity, setQuantity] = useState(1);
   const [warranty, setWarranty] = useState(0);
   const addItemToCart = useMain((s) => s.addItemToCart);
   const quantityOptions = [1, 2, 3, 4, 5];
-  const { wishlist, addItemToWishlist, removeItemFromWishlist} = useMain();
+  const { wishlist, addItemToWishlist, removeItemFromWishlist } = useMain();
+  const { selectedSpecs } = useFilters();
 
-  function ChangeAddToCartText() {
+  const ChangeAddToCartText = () => {
     setAddToCartText("Added To Cart");
     setTimeout(() => setAddToCartText("Add To Cart"), 3000);
-  }
+  };
 
   if (!product) return <Noti text="Product not found" />;
+
+  function extractProductSpecs(title: string): string[] | undefined {
+    const matches = [...title.matchAll(/\(([^)]+)\)/g)]; 
+    if (!matches.length) return undefined;
+    const insideParentheses = matches[0][1].trim();
+    const specs = insideParentheses.split("|").map(spec => spec.trim());
+    return specs.length ? specs : undefined;
+  }
+
+  const specs = extractProductSpecs(product.name);
+  console.log(specs)
+
+  useEffect(() => console.log(selectedSpecs), [selectedSpecs])
+
 
   return (
     <>
@@ -34,40 +52,26 @@ function ProductDetails() {
         <div className="product-details-cont">
           <div className="pd-image-cont">
             <div className="image-wrapper-pd">
-              <img
-                className="product-image"
-                src={src || product.src[0]}
-                alt={product.title}
-              />
-              <button 
-              className="pd-add-to-wishlist-btn"
-              onClick={() => wishlist.includes(product) ? 
-              removeItemFromWishlist(product) : addItemToWishlist(product)}
+              <img className="product-image" src={product.image} alt={product.name} />
+              <button
+                className="pd-add-to-wishlist-btn"
+                onClick={() => wishlist.includes(product) ? removeItemFromWishlist(product) : addItemToWishlist(product)}
               >
-              {wishlist.includes(product) ? 
-              <Svg type='filled-heart'/> 
-              : 
-              <Svg type='heart'/>}
+                {wishlist.includes(product) ? <Svg type='filled-heart' /> : <Svg type='heart' />}
               </button>
-            </div>
-            <div className="product-image-picker">
-              {product.src.map((img: string, i: number) => (
-                <img key={i} onClick={() => setSrc(img)} src={img} alt="product" />
-              ))}
             </div>
           </div>
 
           <div className="desc-price-wrapper">
             <div className="product-desc-cont">
               <div className="product-desc">
-                <h3>{product.title}</h3>
+                <h3>{product.name}</h3>
                 <p id="sku">SKU: Alpha Male</p>
                 <hr className="pdr" />
-                <span>{product.desc}</span>
+                <span>i have to hard code this description :sob:</span>
                 <hr className="pdr" />
                 <p id="warranty">
-                  Warranty: <b>{CWO} {CWO === "1" ? "year" : "years"}</b> Effortless
-                  warranty claims with global coverage; shipping costs are on us
+                  Warranty: <b>{CWO} {CWO === "1" ? "year" : "years"}</b> Effortless warranty claims with global coverage; shipping costs are on us
                 </p>
                 <hr className="pdr" />
               </div>
@@ -78,13 +82,13 @@ function ProductDetails() {
             <div className="product-price">
               <div id="price">
                 <p>USD</p>
-                <h3>{product.price}</h3>
+                <h3>{product.actual_price}</h3>
               </div>
 
               <div id="sale-price">
                 <p id="sale-percentage">8% OFF</p>
                 <p id="before-sale-price">
-                  Was USD {(typeof product.price === "number" ? (product.price / 0.92).toFixed(2) : "N/A")}
+                  Was USD {(typeof product.actual_price === "number" ? (product.actual_price / 0.92).toFixed(2) : "N/A")}
                 </p>
               </div>
 
@@ -129,28 +133,21 @@ function ProductDetails() {
 
       <div className="pdr-long" />
 
-      {product.specs ? (
-        <div className="specs-cont">
-          <div className="specs">
+      <div className="specs-cont">
+        <div className="specs">
           <h3>Genral Specifications</h3>
-            <div className="spec-table">
-                {product.specs.map((spec: any, i: number) => (
-                  <div className="spec-cont" key={i}>
-                    <th>{spec.name}</th>
-                    <td data-label={spec.name}>{spec.value}</td>
-                  </div>
-                ))}
+          <div className="spec-table">
+            <div className="spec-cont">
+              <th>spec here lol</th>
+              <td data-label='spec lol'>ssssss</td>
             </div>
           </div>
         </div>
-      ) : <Noti text="This product doesn't have any specifications listed" />}
+      </div>
 
       <div className="pdr-long" />
 
-      <ProductReviews
-        productTitle={product.title}
-        idx={idx}           
-      />
+      <ProductReviews productTitle={product.name} idx={idx} />
     </>
   );
 }

@@ -18,12 +18,14 @@ function BrandPage({ data }: BPIF){
     }
 
     const b = FullBrandArr[brand];
+    const brandData = data.filter(p => p.name.toLowerCase().includes(brand));
 
     return (
         <>
-        {!showOverlayedFilter && <div className="main-products-cont"> 
+        {brandData.length == 0 && <Noti text='This brand has no products currently!'/>}
+        {!showOverlayedFilter && brandData.length > 0 && <div className="main-products-cont"> 
          <div className="filter-products-cont">
-             <Filter specArr={[]} typeArr={[]} manufacturer={[]}/>
+            <Filter specArr={[]} typeArr={[]} manufacturer={[]}/>
             <div className="vr"/>
              
              <div className="b-products-cont-wrapper">
@@ -38,7 +40,7 @@ function BrandPage({ data }: BPIF){
                  
                  <hr/>
 
-               <PSS data={data} title="test" useRv={false}/>
+               <PSS data={brandData} title="test" useRv={false}/>
              </div>
          </div>
         </div>}

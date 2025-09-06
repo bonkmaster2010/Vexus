@@ -2,37 +2,55 @@ import { create } from "zustand";
 import type { FiltersState } from "../utils/interfaces/state-interfaces/FilterState.interface";
 
 export const useFilters = create<FiltersState>((set, get) => ({
-  selectedTypes: [],  
+  selectedTypes: [],
   selectedSpecs: [],
-  
-  setSelectedTypes: (type) => {
+  selectedManufacturers: [],
+
+  // Toggle functions
+  setSelectedTypes: (type: string) => {
     const { selectedTypes } = get();
-    if (!selectedTypes.includes(type)) {
-      set({ selectedTypes: [...selectedTypes, type] });
-    } else {
-      set({ selectedTypes: selectedTypes.filter(t => t !== type) });
-    }
+    set({
+      selectedTypes: selectedTypes.includes(type)
+        ? selectedTypes.filter(t => t !== type)
+        : [...selectedTypes, type],
+    });
   },
 
-  setSelectedSpecs: (spec) => {
+  setSelectedSpecs: (spec: string) => {
     const { selectedSpecs } = get();
-    if (!selectedSpecs.includes(spec)) {
-      set({ selectedSpecs: [...selectedSpecs, spec] });
-    } else {
-      set({ selectedSpecs: selectedSpecs.filter(s => s !== spec) });
-    }
-  },
-  
-  resetSelectedSpecsExcept: (keepSpec) =>
     set({
-      selectedSpecs: [keepSpec],  
-    }),
+      selectedSpecs: selectedSpecs.includes(spec)
+        ? selectedSpecs.filter(s => s !== spec)
+        : [...selectedSpecs, spec],
+    });
+  },
+
+  setSelectedManufacturers: (manufacturer: string) => {
+    const { selectedManufacturers } = get();
+    set({
+      selectedManufacturers: selectedManufacturers.includes(manufacturer)
+        ? selectedManufacturers.filter(m => m !== manufacturer)
+        : [...selectedManufacturers, manufacturer],
+    });
+  },
+
+  // Reset functions keeping one item
+  resetSelectedSpecsExcept: (keepSpec: string) =>
+    set({ selectedSpecs: [keepSpec] }),
 
   resetSelectedTypesExcept: (keepType: string) =>
-    set({
-      selectedTypes: [keepType], 
-    }),
+    set({ selectedTypes: [keepType] }),
 
-  setSelectedSpecsArray: (specs) => set({ selectedSpecs: specs }),
-  setSelectedTypesArray: (types) => set({ selectedTypes: types }),
+  resetSelectedManufacturersExcept: (keepManufacturer: string) =>
+    set({ selectedManufacturers: [keepManufacturer] }),
+
+  // Directly set arrays
+  setSelectedManufacturerArray: (manufacturers: string[]) =>
+    set({ selectedManufacturers: manufacturers }),
+
+  setSelectedSpecsArray: (specs: string[]) =>
+    set({ selectedSpecs: specs }),
+
+  setSelectedTypesArray: (types: string[]) =>
+    set({ selectedTypes: types }),
 }));

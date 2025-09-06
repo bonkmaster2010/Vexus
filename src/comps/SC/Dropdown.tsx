@@ -2,18 +2,27 @@ import { NavLink, useNavigate } from "react-router";
 import { useFiltersWithQuery } from "../hooks/useFilterWithQuery";
 import { useMain } from "../../states/MainStates";
 import type { DropdownProps } from "../../utils/interfaces/dropdown";
+import type { DropDownLink } from "../../utils/Links/Electronics/ElectronicLinks";
 import '../../styles/Dropdown.css';
+import { useFilters } from "../../states/FilterState";
+import { useEffect } from "react";
 
 function Dropdown({ data, route, src, brandArr = [], type }: DropdownProps) {
   const { updateFilter } = useFiltersWithQuery();
+  const { selectedTypes, selectedManufacturers } = useFilters();
   const dropdown = useMain((state) => state.dropdown);
   const setDropdown = useMain((state) => state.setDropdown);
   const navigate = useNavigate();
 
-  function handleRouting(id: string, route: string, routeType: string) {
-    const updatedParams = updateFilter("types", id, true);
+  function handleRouting(id: string, route: string, routeType: string, filterType?: 'specs' | 'types' | 'manufacturers') {
+    const updatedParams = updateFilter(filterType ? filterType : "types", id, true);
     navigate(`/${routeType}/${route}?${updatedParams.toString()}`);
   }
+
+  useEffect(() => {
+  console.log(selectedTypes)
+  console.log(selectedManufacturers)
+  }, [selectedManufacturers, selectedTypes])
 
   if (dropdown !== type) return null;
 
@@ -25,7 +34,7 @@ function Dropdown({ data, route, src, brandArr = [], type }: DropdownProps) {
     >
       <div className="dropdown-content-wrapper">
         {/* Main Links */}
-        {data.filter((link: any) => link.display !== false).map((link: any) => (
+        {data.filter((link: DropDownLink) => link.display !== false).map((link: DropDownLink) => (
           <div key={`mainlink-${type}-${link.route}`} className="dropdown-links">
             <NavLink
               className="main-dropdown-link"
@@ -44,7 +53,7 @@ function Dropdown({ data, route, src, brandArr = [], type }: DropdownProps) {
                 to={`/category/${sl.route}`}
                 onClick={(e) => {
                   e.preventDefault();
-                  handleRouting(sl.id, `${sl.route}`, "category");
+                  handleRouting(sl.id, `${sl.route}`, "category", link.filterType);
                 }}
               >
                 {sl.title}

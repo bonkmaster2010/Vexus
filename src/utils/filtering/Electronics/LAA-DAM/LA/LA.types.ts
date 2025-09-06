@@ -1,35 +1,35 @@
 export const laptopChargerTypeFilters = [
-  { title: "AC Adapter", id: "pcmcat20940005001" },
-  { title: "USB-C Charger", id: "pcmcat20940005002" },
-  { title: "Car Charger", id: "pcmcat20940005003" },
-  { title: "Docking Charger", id: "pcmcat20940005004" }
+  { title: "AC Adapter", id: "ac adapter" },
+  { title: "USB-C Charger", id: "usb-c" },
+  { title: "Car Charger", id: "car charger" },
+  { title: "Docking Charger", id: "docking charger" }
 ];
 
 export const laptopBagTypeFilters = [
-  { title: "Backpack", id: "pcmcat20940006001" },
-  { title: "Messenger Bag", id: "pcmcat20940006002" },
-  { title: "Sleeve", id: "pcmcat20940006003" },
-  { title: "Briefcase", id: "pcmcat20940006004" },
-  { title: "Roller Bag", id: "pcmcat20940006005" }
+  { title: "Backpack", id: "backpack" },
+  { title: "Messenger Bag", id: "messenger bag" },
+  { title: "Sleeve", id: "sleeve" },
+  { title: "Briefcase", id: "briefcase" },
+  { title: "Roller Bag", id: "roller bag" }
 ];
 
 export const laptopCoolingPadsTypeFilters = [
-  { title: "Single Fan Cooling Pad", id: "pcmcat20940007001" },
-  { title: "Multi Fan Cooling Pad", id: "pcmcat20940007002" },
-  { title: "USB Fan", id: "pcmcat20940007003" },
-  { title: "Adjustable Height Cooling Pad", id: "pcmcat20940007004" }
+  { title: "Single Fan Cooling Pad", id: "single fan cooling pad" },
+  { title: "Multi Fan Cooling Pad", id: "multi fan cooling pad" },
+  { title: "USB Fan", id: "usb fan" },
+  { title: "Adjustable Height Cooling Pad", id: "adjustable height cooling pad" }
 ];
 
 export const laptopDockingStationsTypeFilters = [
-  { title: "Docking Station", id: "pcmcat20940008001" },
-  { title: "USB Hub", id: "pcmcat20940008002" },
-  { title: "Thunderbolt Dock", id: "pcmcat20940008003" },
-  { title: "Universal Dock", id: "pcmcat20940008004" }
+  { title: "Docking Station", id: "docking station" },
+  { title: "USB Hub", id: "usb hub" },
+  { title: "Thunderbolt Dock", id: "thunderbolt dock" },
+  { title: "Universal Dock", id: "universal dock" }
 ];
 
 export const laptopAdjustableStandsTypeFilters = [
-  { title: "Height Adjustable Stand", id: "pcmcat20940009001" },
-  { title: "Angle Adjustable Stand", id: "pcmcat20940009002" },
-  { title: "Portable Stand", id: "pcmcat20940009003" },
-  { title: "Fixed Stand", id: "pcmcat20940009004" }
+  { title: "Height Adjustable Stand", id: "height adjustable stand" },
+  { title: "Angle Adjustable Stand", id: "angle adjustable stand" },
+  { title: "Portable Stand", id: "portable stand" },
+  { title: "Fixed Stand", id: "fixed stand" }
 ];

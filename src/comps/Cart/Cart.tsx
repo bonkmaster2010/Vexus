@@ -1,5 +1,4 @@
 import { useMain } from "../../states/MainStates";
-import { allProducts } from "../../utils/extras/Data";
 import { useNavigate } from "react-router";
 import CartCard from "./CartCard";
 import Checkout from "./Cart.checkout";
@@ -18,10 +17,11 @@ function Cart() {
             <h2 className="left-mark-title" style={{marginBottom: "25px"}}>Your shopping cart</h2>
 
             {cart.length === 0 && <Noti text="Your shopping cart is empty. Add some products to your cart by clicking the ‘Add to Cart‘ button next to the product you like."/>}
-            {cart.length > 0 &&  <div className="cart">
+            {cart.length > 0 &&  <>
+            <div className="cart">
                     {cart.map((product, i: number) => (
                         <CartCard
-                            key={`${product.id} - ${product.title} - ${product.desc}`}
+                            key={`${product.id} - ${product.name}`}
                             product={product}
                             index={i}
                             navigate={navi}
@@ -31,14 +31,16 @@ function Cart() {
                             removeItemFromWishlist={removeItemFromWishlist}
                         />
                     ))}
-                </div>}
+                </div>
                 
             <Checkout/>
 
             <hr style={{width: "100%", opacity: "0.5"}}/>
 
             <h2 className="left-mark-title">Recommended For You</h2>
-            <Section title="" arr={allProducts} CartType={true}/>
+            <Section title="" searchTerm="daily offers" CartType={true}/>
+            </>
+            }
             </div>
         </div>
     );

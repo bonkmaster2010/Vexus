@@ -5,7 +5,6 @@ import { LAPTOP_FILTERS, MONITOR_FILTERS, PC_FILTERS } from "./laa.dam.specs";
 import { laptopTypeFilters, monitorTypeFilters, pcTypeFilters } from "./laa.dam.types";
 
 
-
 export const CALData = {
     pcs: {
         title: "PCs",
@@ -31,3 +30,4 @@ export const CALData = {
     ...LAData,
     ...CAData
 };
+

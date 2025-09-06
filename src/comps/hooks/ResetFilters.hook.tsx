@@ -15,8 +15,7 @@ function useResetFilters() {
 
   useEffect(() => {
     if (!location.search) {
-      setSelectedSpecsArray([]);
-      setSelectedTypesArray([]);
+
     }
   }, [location.search, setSelectedSpecsArray, setSelectedTypesArray]);
 

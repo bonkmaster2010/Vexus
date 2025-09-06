@@ -1,7 +1,7 @@
-import type { GC, Product } from "./SC.if";
+import type { Product } from "../../extras/Data";
+import type { GC } from "./SC.if";
 
 /* Product Pages */
-
 export interface ProductsProps {
   arr: Product[];   
   categoryData?: any;  

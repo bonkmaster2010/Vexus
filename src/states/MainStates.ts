@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type { Main, AccountReview } from "../utils/interfaces/state-interfaces/MainState.interfaces";
+import { slugify } from "../utils/fns/extra.fns";
 
 export const useMain = create<Main>()(
   persist(
@@ -135,7 +136,12 @@ export const useMain = create<Main>()(
 
       /* RV */
       rv: [],
-      addItemToRv: (product) => set({ rv: [...get().rv, product] }),
+      addItemToRv: (product) => {
+        const { rv } = get();
+        if (!rv.find(p => slugify(p.name) === slugify(product.name))) {
+          set({ rv: [product, ...rv] }); 
+        }
+      },
       emptyAllRvItems: () => set({ rv: [] }),
 
       /* Overlay Filter */

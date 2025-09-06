@@ -16,8 +16,8 @@ export const MBData = {
         types: tabletTypeFilters,
     },
 
-    mobiles: {
-        title: "Mobiles",
+    smartphones: {
+        title: "Smartphones",
         filters: MOBILE_FILTERS,
         types: phoneTypeFilters,
         manufacturers: phoneManufacturers,

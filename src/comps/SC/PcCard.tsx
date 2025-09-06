@@ -4,31 +4,31 @@ import type { PCard } from '../../utils/interfaces/components/SC.if';
 import '../../styles/PcCard.css';
 
 function PCardComp({product, title, price, src, style, route, salePrice, CartType}: PCard){
-   const navi = useNavigate();
-   const { addItemToCart, addItemToRv } = useMain()
+  const navi = useNavigate();
+  const { addItemToCart, addItemToRv } = useMain()
+  
   return (
     <>
     <div onClick={() => {
+      if(product) addItemToRv(product);
       navi(`/product/${route}`);
-      {product && addItemToRv(product)}
       }} className={style ? style : 'pc-card'}>
-        <img src={src[0]} alt={`${title} image`}/>
-        <hr/>
-
+        <div className='pc-card-img-cont'>
+        <img loading='lazy' src={src} alt={`${title} image`}/>
+        </div>
        <div className='pc-card-desc'>
         <h3>{title}</h3>
         
         <div className='pc-card-bottom-row'>
           
         <p className='pc-card-price'><span className='currency-name'>USD</span> {price}</p>
-        {salePrice && <p className='pc-card-sale-price'>USD {salePrice}</p>}
-
-       {CartType === true && <button onClick={(e) =>{ 
-        e.stopPropagation();
-       {product && addItemToCart(product, 1, 1)};
-        }} className='add-to-cart-btn'>Add To Cart</button>}
-
+        {salePrice && <p className='pc-card-sale-price'>USD {parseInt(salePrice.replace(/[₹,]/g, ''))} </p>}
         </div>
+
+     {CartType === true && <button onClick={(e) =>{ 
+        e.stopPropagation();
+        {product && addItemToCart(product, 1, 1)};
+          }} className='add-to-cart-btn'>Add To Cart</button>}
        </div>
     </div>
     </>

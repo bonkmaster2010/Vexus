@@ -5,7 +5,7 @@ import Svg from "../../utils/extras/Svgs";
 
 function MASubMenu(){
 
-    const { toggleSingleGroup, cart} = useMain()
+    const { toggleSingleGroup } = useMain()
     const navi = useNavigate();
 
     return (
@@ -29,7 +29,6 @@ function MASubMenu(){
 
 
     <div className="navbar-button" onClick={() => navi('/cart')}>
-    {cart.length > 0 && <div className='notification'>{cart.length}</div>}
     <Svg type='cart'/>
     <span>My Cart</span>
     </div>

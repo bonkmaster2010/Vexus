@@ -1,7 +1,7 @@
 import { computerAccessoriesCF, damFiltersCf, laaFiltersCf, laFiltersCf, mobileFiltersCf, mtAcessoriesCf, pc_compsFiltersCf, smartwatchFiltersCf, tabletFiltersCf } from "./Electronic.cf";
 import { CALSubLinks, MTSubLinks } from "./ElectronicSubLinks";
 
-interface Link {
+export interface DropDownLink {
   linkName: string;
   route: string;
   routeType: string;
@@ -9,10 +9,11 @@ interface Link {
   cf: any;
   key: string;
   display?: boolean;  
+  filterType?: 'specs' | 'types' | 'manufacturers';
 }
 
 
-export const CALLinks: Link[] = [
+export const CALLinks: DropDownLink[] = [
   {
     linkName: "Desktops & Monitors",
     route: "dam",
@@ -57,14 +58,15 @@ export const CALLinks: Link[] = [
 ];
 
 
-export const MBLinks: Link[] = [
+export const MBLinks: DropDownLink[] = [
   {
     linkName: 'Mobile Phones',
-    route: 'mobiles',
+    route: 'smartphones',
     routeType: 'category',
     subLinks: MTSubLinks.mobile,
     cf: mobileFiltersCf,
-    key: 'mobiles'
+    key: 'mobiles',
+    filterType: 'manufacturers'
   },
   {
     linkName: 'Tablets',
@@ -72,7 +74,8 @@ export const MBLinks: Link[] = [
     routeType: 'category',
     subLinks: MTSubLinks.tablet,
     cf: tabletFiltersCf,
-    key: 'tablets'
+    key: 'tablets',
+    filterType: 'manufacturers'
   },
   {
     linkName: 'Smart Watches',
@@ -80,7 +83,8 @@ export const MBLinks: Link[] = [
     routeType: 'category',
     subLinks: MTSubLinks.smartwatch,
     cf: smartwatchFiltersCf,
-    key: 'smartwatches'
+    key: 'smartwatches',
+    filterType: 'manufacturers'
   },
   {
     linkName: 'Accessories',
@@ -88,7 +92,8 @@ export const MBLinks: Link[] = [
     routeType: 'categories',
     subLinks: MTSubLinks.mobileAccessories,
     cf: mtAcessoriesCf,
-    key: 'ma'
+    key: 'ma',
+    filterType: 'manufacturers'
   }
 ];
 

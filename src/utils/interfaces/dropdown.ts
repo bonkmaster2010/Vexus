@@ -1,3 +1,5 @@
+import type { DropDownLink } from "../Links/Electronics/ElectronicLinks";
+
 interface Sublink {
   title: string;
   route?: string;
@@ -18,17 +20,8 @@ interface CFD{
   route: string
 };
 
-interface DataIF{
-  linkName: string;
-  route: string;
-  routeType: string;
-  subLinks: Sublink[];
-  cf: CFD[];
-  key: string;
-};
-
 export interface DropdownProps {
-  data: DataIF[];
+  data: DropDownLink[];
   src: string;
   route?: string;
   brandArr?: BrandItem[];

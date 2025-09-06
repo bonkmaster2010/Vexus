@@ -2,6 +2,7 @@ import payment from '../images/payment-options.png';
 import { useNavigate } from 'react-router';
 import { useMain } from '../states/MainStates';
 import '../styles/Footer.css';
+import { slugify } from '../utils/fns/extra.fns';
 
 function Footer() {
   const navi = useNavigate();
@@ -21,11 +22,12 @@ function Footer() {
 
          <div className='rv-cont'>
 
-           {rv.map((product, i: number) => (
-            <div key={product.id} onClick={() => navi(`/product/${i}`)} className='rv-card'>
-              <img src={product.src[0]} alt={`${product.title} image`}/>
-            </div>
-           ))}
+          {rv.map((product) => {           
+          return( 
+          <div key={product.link} onClick={() => navi(`/product/${slugify(product.name)}`)} className='rv-card'>
+          <img src={product.image} alt={`${product.name} image`}/>
+          </div>)
+}          )}
          </div>
          </div>}
 

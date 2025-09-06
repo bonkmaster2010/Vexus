@@ -1,22 +1,40 @@
-import { caseManufacturer, coolerManufacturers, cpuManufacturers, gpuManufacturers, MBManufacturer, psuManufacturers, ramManufacturers, storageManufacturers } from "./pc-comps.manufacturers";
-import { CASE_FILTERS, COOLING_FILTERS, CPU_FILTERS, GPU_FILTERS, MOTHERBOARD_FILTERS, PSU_FILTERS, RAM_FILTERS, STORAGE_FILTERS } from "./pc-comps.specs";
+import { 
+    caseManufacturer, 
+    coolerManufacturers, 
+    cpuManufacturers, 
+    gpuManufacturers, 
+    MBManufacturer, 
+    psuManufacturers, 
+    ramManufacturers, 
+    storageManufacturers 
+} from "./pc-comps.manufacturers";
 
+import { 
+    CASE_FILTERS, 
+    COOLING_FILTERS, 
+    CPU_FILTERS, 
+    GPU_FILTERS, 
+    MOTHERBOARD_FILTERS, 
+    PSU_FILTERS, 
+    RAM_FILTERS, 
+    STORAGE_FILTERS 
+} from "./pc-comps.specs";
 
 export const pc_comps_data = {
-    gpu: {
+    graphics_cards: {
         title: "Graphics Cards",
         manufacturers: gpuManufacturers,
         filters: GPU_FILTERS
     },
 
-    cpu: {
+    processors: {
         title: "Processors",
         manufacturers: cpuManufacturers,
         filters: CPU_FILTERS
     },
 
-    ram: {
-        title: "Ram",
+    memory: {
+        title: "Memory",
         manufacturers: ramManufacturers,
         filters: RAM_FILTERS
     },
@@ -27,29 +45,29 @@ export const pc_comps_data = {
         filters: STORAGE_FILTERS
     },
 
-    motherboard: {
-        title: "Mother Boards",
+    motherboards: {
+        title: "Motherboards",
         manufacturers: MBManufacturer,
         filters: MOTHERBOARD_FILTERS
     },
 
-    case: {
-        title: "PC Cases",
+    computer_cases: {
+        title: "Computer Cases",
         manufacturers: caseManufacturer,
         filters: CASE_FILTERS
     },
 
-    ps: {
+    power_supplies: {
         title: "Power Supplies",
         manufacturers: psuManufacturers,
         filters: PSU_FILTERS
     },
 
-    coolers: {
-        title: "Fans & Cooling",
+    cooling: {
+        title: "Cooling",
         manufacturers: coolerManufacturers,
         filters: COOLING_FILTERS
     }
 };
 
-export const pc_comps_links = {}
+export const pc_comps_links = {};

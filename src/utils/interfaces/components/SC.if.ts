@@ -1,3 +1,5 @@
+import type { Product } from "../../extras/Data";
+
 /* Cards */
 export interface TC{
     title: string;
@@ -13,11 +15,11 @@ export interface GC{
 export interface ListcardIF{
     product?: Product;
     title: string;
-    price: number;
-    src: any[];
+    price: string;
+    src: any;
     style?: string;
     route: any;
-    salePrice: number | undefined;
+    salePrice: string;
 };
 
 /* Filter */
@@ -44,17 +46,6 @@ export interface FilterProps {
 }
 
 /* Product */
-export interface Product{
-    id: string;
-    title: string;
-    desc: string;
-    price: number;
-    salePrice?: number;
-    category: string;
-    specs?: any[];
-    src: any[];
-}
-
 export interface CartProduct extends Product{
   quantity: number;
   warranty: number;
@@ -76,9 +67,9 @@ export interface WishlistCardIF{
 /* Section */
 export interface SectionIF{
     title: string;
-    arr: Product[];
     style?: string;
     CartType?: boolean;
+    searchTerm: string;
 };
 
 export interface PSSIF{
@@ -86,6 +77,7 @@ export interface PSSIF{
     title?: string,
     useRv: boolean,
     cf?: any,
+    searchTerm: string;
 };
 
 /* Extra */

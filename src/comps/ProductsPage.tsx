@@ -1,65 +1,62 @@
-import Noti from "./SC/noti";
 import OverlayedFilter from "./SC/OverlayedFilter";
 import Filter from "./Filter";
 import PSS from "./SC/ProductsScrollSection";
 import { useMain } from "../states/MainStates";
 import { useParams } from "react-router";
+import { allSubLinks } from "../utils/Links/Electronics/ElectronicSubLinks";
 import type { ProductsProps } from "../utils/interfaces/components/main.comps.if";
 import '../styles/Products.css';
 
-function ProductsPage({ arr, categoryData, useRv = false, title}: ProductsProps) {
-      const { rv, showOverlayedFilter } = useMain();
-      const { category: rawCategory } = useParams<{ category?: string; key?: string }>();
+function ProductsPage({ arr, categoryData, useRv = false }: ProductsProps) {
+  const { rv, showOverlayedFilter } = useMain();
+  const { category: rawCategory } = useParams<{ category?: string; key?: string }>();
+  const category = rawCategory || "";
 
-      const category = rawCategory || "";
-     
 
-     const categoryInfo = !useRv && categoryData ? 
-      categoryData[category]
-      : {
-      filters: [],
-      types: [],
-      manufacturers: [],
-      title: title || "Products",
-    };
-    console.log(category)
-    console.log(categoryInfo)
-    if (!useRv && !categoryInfo) return <Noti text="Category not found"/>
+  const ROUTE_TO_IDS: Record<string, string[]> = {};
+  Object.values(allSubLinks).forEach(arr => {
+    arr.forEach(item => {
+      ROUTE_TO_IDS[item.route] = ROUTE_TO_IDS[item.route] || [];
+      ROUTE_TO_IDS[item.route].push(item.id);
+    });
+  });
 
-    const filteredProducts = arr.filter(p => p.category.toLowerCase() === category.toLowerCase());
+  const categoryInfo = !useRv && categoryData
+    ? categoryData[category] ?? { filters: [], types: [], manufacturers: [], title: "Products" }
+    : { filters: [], types: [], manufacturers: [], title: "Products" };
 
-    const data = useRv ? rv : filteredProducts ?? [];
 
-    const categoryTitle = categoryInfo?.title ;
+  const data = useRv
+    ? rv
+    : arr
+
+  const categoryTitle = categoryInfo?.title;
 
   return (
     <>
-      {data.length === 0 && <Noti text="There are no products here yet" />}
 
-      {data.length > 0 && (
-        <>
-          <div className="main-products-cont">
-            <div className="filter-products-cont">
-              <Filter specArr={categoryInfo.filters ?? []} typeArr={categoryInfo.types ?? []} manufacturer={categoryInfo.manufacturers ?? []}/>
-
-              <div className="vr" />
-              <div className="products-cont-wrapper">
-                <h3 id="products-page-title">{categoryTitle}</h3>
-                <PSS data={data} useRv={false}/>
-              </div>
+        <div className="main-products-cont">
+          <div className="filter-products-cont">
+            <Filter
+              specArr={categoryInfo.filters ?? []}
+              typeArr={categoryInfo.types ?? []}
+              manufacturer={categoryInfo.manufacturers ?? []}
+            />
+            <div className="products-cont-wrapper">
+              <h3 id="products-page-title">{categoryTitle}</h3>
+              <PSS key={category} data={data} useRv={false} searchTerm={categoryTitle.toLowerCase()} />
             </div>
           </div>
-        </>
-      )}
+        </div>
 
       {showOverlayedFilter && (
         <OverlayedFilter
-        Filter={Filter}
-        filterProps={{
-        specArr: categoryInfo.filters ?? [],
-        typeArr: categoryInfo.types ?? [],
-        manufacturer: categoryInfo.manufacturers ?? []
-        }}  
+          Filter={Filter}
+          filterProps={{
+            specArr: categoryInfo.filters ?? [],
+            typeArr: categoryInfo.types ?? [],
+            manufacturer: categoryInfo.manufacturers ?? []
+          }}
         />
       )}
     </>

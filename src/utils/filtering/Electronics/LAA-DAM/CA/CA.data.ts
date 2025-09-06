@@ -1,8 +1,25 @@
-import { keyboardManufacturers, microphoneManufacturers, mouseManufacturers, speakerManufacturers, usbHubManufacturers, webcamManufacturers } from "./CA.manufacturers";
-import { KEYBOARD_FILTERS, MICROPHONE_FILTERS, MOUSE_FILTERS, SPEAKER_FILTERS, WEBCAM_FILTERS } from "./CA.specs";
-import { keyboardTypeFilters, microphoneTypeFilters, mouseTypeFilters, speakerTypeFilters, usbHubTypeFilters, webcamTypeFilters } from "./CA.types";
+import { 
+    keyboardManufacturers, 
+    mouseManufacturers, 
+    speakerManufacturers, 
+    usbHubManufacturers, 
+    webcamManufacturers 
+} from "./CA.manufacturers";
 
+import { 
+    KEYBOARD_FILTERS, 
+    MOUSE_FILTERS, 
+    SPEAKER_FILTERS, 
+    WEBCAM_FILTERS 
+} from "./CA.specs";
 
+import { 
+    keyboardTypeFilters, 
+    mouseTypeFilters, 
+    speakerTypeFilters, 
+    usbHubTypeFilters, 
+    webcamTypeFilters 
+} from "./CA.types";
 
 export const CAData = {
     keyboards: {
@@ -12,8 +29,8 @@ export const CAData = {
         filters: KEYBOARD_FILTERS
     },
 
-    miceAndTrackballs: {
-        title: "Mouses & Trackballs",
+    mice: {
+        title: "Mice",
         manufacturers: mouseManufacturers,
         types: mouseTypeFilters,
         filters: MOUSE_FILTERS
@@ -26,13 +43,6 @@ export const CAData = {
         filters: WEBCAM_FILTERS
     },
 
-    microphones: {
-        title: "Microphones",
-        manufacturers: microphoneManufacturers,
-        types: microphoneTypeFilters,
-        filters: MICROPHONE_FILTERS
-    },
-
     speakers: {
         title: "Speakers",
         manufacturers: speakerManufacturers,
@@ -40,9 +50,9 @@ export const CAData = {
         filters: SPEAKER_FILTERS
     },
 
-    usbHubsAndAdapters: {
-        title: "USB Hubs & Adapters",
+    usb_hubs: {
+        title: "USB Hubs",
         manufacturers: usbHubManufacturers,
-        types: usbHubTypeFilters,
-    },
-}
+        types: usbHubTypeFilters
+    }
+};

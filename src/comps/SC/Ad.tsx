@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import ad1 from '../../images/ads/upscalemedia-transformed.png';
+import ad1 from '../../images/ads/wacom-pc-microless-ad.jpg';
 import ad3 from '../../images/ads/microless-gl-ad3.jpg';
 import ad4 from '../../images/ads/microless-ad4.webp';
 

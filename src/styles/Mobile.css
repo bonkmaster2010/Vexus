@@ -244,6 +244,7 @@
   flex-direction: row;
   font-size: 13px;
   gap: 8px;
+  min-width: 100%;
 }
 
 .mm-submenu-btn-cont .navbar-button svg {

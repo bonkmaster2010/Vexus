@@ -1,4 +1,5 @@
-import type { CartProduct, Product } from "../components/SC.if";
+import type { Product } from "../../extras/Data";
+import type { CartProduct } from "../components/SC.if";
 
 /* Address interfaces */
 export interface address {
@@ -13,7 +14,6 @@ export interface address_optional {
   mobile_number?: string;
 }
 
-/* Reviews now use productIndex instead of productId */
 export interface review {
   productIndex: number;      
   reviews: string[];
@@ -52,8 +52,8 @@ export interface Main {
   /* Reviews */
   reviews: review[];
   addProductReview: (review: review) => void;
-  addReview: (review: string, idx: number) => void;        // idx = reviews array index
-  deleteReview: (reviewIdx: number, productIdx: number) => void; // productIdx = reviews array index
+  addReview: (review: string, idx: number) => void;       
+  deleteReview: (reviewIdx: number, productIdx: number) => void; 
   editReview: (productIdx: number, newReview: string, reviewIdx: number) => void; 
 
   /* Account Reviews */

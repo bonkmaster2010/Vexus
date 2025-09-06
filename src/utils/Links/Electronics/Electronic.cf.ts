@@ -22,7 +22,7 @@ export const pc_compsFiltersCf = [
 ];
 
 export const mobileFiltersCf = [
-    {name: "Mobiles", filters: MTSubLinks.mobile, routeType: 'category/', route: 'mobiles'}
+    {name: "Mobiles", filters: MTSubLinks.mobile, routeType: 'category/', route: 'smartphones'}
 ];
 
 export const tabletFiltersCf = [

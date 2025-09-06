@@ -1,134 +1,48 @@
-import test from '../../images/pc.jpeg';
+import prods from '../../../DataWithCategories.json';
+import prods2 from '../../../csvjson.json';
 import { v4 as uuidv4 } from 'uuid';
 
+export interface Product {
+  id: string;
+  name: string;
+  main_category: string;
+  sub_category: string;
+  image: string;
+  link: string;
+  ratings: number;
+  no_of_ratings: number;
+  discount_price: string;
+  actual_price: string;
+  real_category?: string | null;
+  quantity: number;
+  warranty: number;
+}
 
-export const TestProducts: any[] = [
-    {
-        id: uuidv4(),
-        title: "High-End Gaming PC fnjsfudbhfdfgvdyugihduiguidgidgdghudgdghighidighu",
-        desc: "A powerful gaming rig for 4K gaming.",
-        price: 2500,
-        salePrice: 2000,
-        warranty: 3,
-        category: 'keyboards',
-        specs: [{name: 'inches', value: 'giigigi'}, {name: 'inches', value: 30}, {name: 'inches', value: 30}, {name: 'inches', value: 30}],
-        src: [test],
-    },
-    {
-        id: uuidv4(),
-        title: "Workstation PC",
-        desc: "Optimized for productivity and heavy workloads.",
-        price: 1800,
-        category: 'pcs',
-        src: [test],
-    },
-    {
-        id: uuidv4(),
-        title: "Mid-Range Gaming PC",
-        desc: "Solid performance for 1080p gaming.",
-        price: 1300,
-        category: 'pcs',
-        src: [test],
-    },
-    {
-        id: uuidv4(),
-        title: "Gaming Laptop X1",
-        desc: "Portable gaming machine with RTX graphics.",
-        price: 1500,
-        category: 'laptops',
-        src: [test],
-    },
-    {
-        id: uuidv4(),
-        title: "Ultrabook Pro",
-        desc: "Lightweight, slim, and perfect for business.",
-        price: 1200,
-        category: 'laptops',
-        src: [test],
-    },
-    {
-        id: uuidv4(),
-        title: "2-in-1 Convertible Laptop",
-        desc: "Flexibility of tablet and power of laptop.",
-        price: 1100,
-        category: 'laptops',
-        src: [test],
-    },
-    {
-        id: uuidv4(),
-        title: "4K Monitor 32\"",
-        desc: "Crisp 4K resolution monitor for creators.",
-        price: 700,
-        category: 'monitors',
-        src: [test],
-    },
-    {
-        id: uuidv4(),
-        title: "144Hz Gaming Monitor",
-        desc: "Smooth high refresh rate gaming.",
-        price: 400,
-        category: 'monitors',
-        src: [test],
-    },
-    {
-        id: uuidv4(),
-        title: "Ultrawide Monitor",
-        desc: "Immersive productivity screen.",
-        price: 800,
-        category: 'monitors',
-        src: [test],
-    },
-    {
-        id: uuidv4(),
-        title: "iPhone 14 Pro",
-        desc: "Apple's latest flagship smartphone.",
-        price: 1200,
-        category: 'mobiles',
-        src: [test],
-    },
-    {
-        id: uuidv4(),
-        title: "Samsung Galaxy S24",
-        desc: "Latest Android powerhouse.",
-        price: 1100,
-        category: 'mobiles',
-        src: [test],
-    },
-    {
-        id: uuidv4(),
-        title: "Google Pixel 8",
-        desc: "Clean Android experience with great camera.",
-        price: 900,
-        category: 'phones',
-        src: [test],
-    },
-    {
-        id: uuidv4(),
-        title: "iPad Pro 12.9",
-        desc: "Tablet for creatives with M2 chip.",
-        price: 1400,
-        category: 'selfieSticks',
-        src: [test],
-    },
-    {
-        id: uuidv4(),
-        title: "Samsung Galaxy Tab S9",
-        desc: "Android tablet for productivity and entertainment.",
-        price: 1000,
-        category: 'laptopChargers',
-        src: [test],
-    },
-    {
-        id: uuidv4(),
-        title: "Amazon Fire HD 10",
-        desc: "Budget tablet for media consumption.",
-        price: 250,
-        category: 'ram',
-        src: [test],
-    },
-];
+const normalizeProduct = (p: any): Product => ({
+  id: uuidv4(),
+  name: p.name || "Unknown",
+  main_category: p.main_category || "All",
+  sub_category: p.sub_category || "All",
+  image: p.image || "",
+  link: p.link,
+  ratings: typeof p.ratings === "number" ? p.ratings : parseFloat(p.ratings) || 0,
+  no_of_ratings: typeof p.no_of_ratings === "number" 
+    ? p.no_of_ratings 
+    : typeof p.no_of_ratings === "string"
+      ? parseInt(p.no_of_ratings.replace(/,/g, '')) || 0
+      : 0,
+  discount_price: p.discount_price?.toString().replace(/[₹,]/g, '') || p.actual_price.toString().replace(/[₹,]/g, ''),
+  actual_price: p.actual_price?.toString().replace(/[₹,]/g, '') || "3000",
+  real_category: p.real_category || null,
+  quantity: 1,
+  warranty: 1,
+});
 
-export const allProducts = [...TestProducts];
+export const TestProducts: Product[] = (prods as any[]).slice(0, 200).map(normalizeProduct);
+export const TestProducts2: Product[] = (prods2 as any[]).slice(0, 200).map(normalizeProduct);
+
+export const allProducts: Product[] = [...TestProducts, ...TestProducts2];
+
 
 export const locations = [
   "New York",
