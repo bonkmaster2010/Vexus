@@ -26,7 +26,7 @@ function UserUtils(){
 
     {registered && <>
     <button className="navbar-button" onClick={() => toggleSingleGroup('my-account')}>
-    <Svg type='signup'/>
+    <Svg type='my-account'/>
     My Account
     </button>
     </>

@@ -1,10 +1,5 @@
 export const KEYBOARD_FILTERS = [
   {
-    name: "Keyboard Type",
-    data: ["Mechanical", "Membrane", "Wireless", "Ergonomic", "Gaming"],
-    filterID: "keyboardType"
-  },
-  {
     name: "Switch Type",
     data: ["Cherry MX Red", "Cherry MX Blue", "Razer Green", "Membrane"],
     filterID: "switchType"
@@ -23,13 +18,8 @@ export const KEYBOARD_FILTERS = [
 
 export const MOUSE_FILTERS = [
   {
-    name: "Mouse Type",
-    data: ["Gaming", "Ergonomic", "Trackball", "Wireless", "USB"],
-    filterID: "mouseType"
-  },
-  {
     name: "DPI Range",
-    data: ["400-800", "800-1600", "1600-3200", "3200+"],
+    data: ["400–800", "800–1600", "1600–3200", "3200+"],
     filterID: "dpiRange"
   },
   {
@@ -52,7 +42,7 @@ export const WEBCAM_FILTERS = [
   },
   {
     name: "Frame Rate",
-    data: ["30fps", "60fps"],
+    data: ["30 fps", "60 fps"],
     filterID: "frameRate"
   },
   {
@@ -69,41 +59,31 @@ export const WEBCAM_FILTERS = [
 
 export const MICROPHONE_FILTERS = [
   {
-    name: "Microphone Type",
-    data: ["USB", "XLR", "Condenser", "Dynamic", "Streaming"],
-    filterID: "micType"
-  },
-  {
     name: "Polar Pattern",
     data: ["Cardioid", "Omnidirectional", "Bidirectional", "Stereo"],
     filterID: "polarPattern"
   },
   {
     name: "Connectivity",
-    data: ["USB", "XLR", "3.5mm"],
+    data: ["USB", "XLR", "3.5 mm"],
     filterID: "connectivity"
   },
   {
     name: "Frequency Response",
-    data: ["20Hz-20kHz", "50Hz-16kHz", "100Hz-15kHz"],
+    data: ["20 Hz–20 kHz", "50 Hz–16 kHz", "100 Hz–15 kHz"],
     filterID: "frequencyResponse"
   }
 ];
 
 export const SPEAKER_FILTERS = [
   {
-    name: "Speaker Type",
-    data: ["Bluetooth", "Computer", "Portable", "Soundbar", "Studio Monitor"],
-    filterID: "speakerType"
-  },
-  {
     name: "Power Output",
-    data: ["5W", "10W", "20W", "50W", "100W+"],
+    data: ["5 W", "10 W", "20 W", "50 W", "100 W+"],
     filterID: "powerOutput"
   },
   {
     name: "Connectivity",
-    data: ["3.5mm", "USB", "Bluetooth", "Wi-Fi"],
+    data: ["3.5 mm", "USB", "Bluetooth", "Wi-Fi"],
     filterID: "connectivity"
   },
   {

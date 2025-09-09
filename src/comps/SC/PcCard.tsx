@@ -14,7 +14,7 @@ function PCardComp({product, title, price, src, style, route, salePrice, CartTyp
       navi(`/product/${route}`);
       }} className={style ? style : 'pc-card'}>
         <div className='pc-card-img-cont'>
-        <img loading='lazy' src={src} alt={`${title} image`}/>
+        <img src={src} alt={`${title} image`}/>
         </div>
        <div className='pc-card-desc'>
         <h3>{title}</h3>

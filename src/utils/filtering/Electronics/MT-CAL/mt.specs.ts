@@ -1,38 +1,36 @@
 export const MOBILE_FILTERS = [
-  { name: "Storage", data: ["64GB Storage", "128GB Storage", "256GB Storage", "512GB Storage", "1TB Storage"], filterID: "storageCapacity" },
-  { name: "RAM", data: ["4GB RAM", "6GB RAM", "8GB RAM", "12GB RAM", "16GB RAM"], filterID: "systemMemory" },
+  { name: "Storage", data: ["64 GB", "128 GB", "256 GB", "512 GB", "1 TB"], filterID: "storageCapacity" },
+  { name: "RAM", data: ["4 GB", "6 GB", "8 GB", "12 GB", "16 GB"], filterID: "systemMemory" },
   { name: "Operating System", data: ["iOS", "Android"], filterID: "operatingSystem" },
   { name: "Network", data: ["5G", "4G LTE"], filterID: "networkTechnology" },
 ];
 
 export const TABLET_FILTERS = [
-  { name: "Storage", data: ["32GB Storage", "64GB Storage", "128GB Storage", "256GB Storage", "512GB Storage", "1TB Storage"], filterID: "storageCapacity" },
-  { name: "RAM", data: ["3GB RAM", "4GB RAM", "6GB RAM", "8GB RAM"], filterID: "systemMemory" },
+  { name: "Storage", data: ["32 GB", "64 GB", "128 GB", "256 GB", "512 GB", "1 TB"], filterID: "storageCapacity" },
+  { name: "RAM", data: ["3 GB", "4 GB", "6 GB", "8 GB"], filterID: "systemMemory" },
   { name: "Operating System", data: ["iOS", "Android", "Windows"], filterID: "operatingSystem" },
-  { name: "Screen Size", data: ["8 inch", "10 inch", "12 inch", "14 inch"], filterID: "screenSize" },
+  { name: "Screen Size", data: ["8 in", "10 in", "12 in", "14 in"], filterID: "screenSize" },
 ];
 
 export const SMARTWATCH_FILTERS = [
   { name: "Connectivity", data: ["Bluetooth", "Wi-Fi", "GPS", "LTE"], filterID: "connectivityTechnology" },
   { name: "Operating System", data: ["watchOS", "Wear OS", "Fitbit OS", "Garmin OS", "Tizen"], filterID: "operatingSystem" },
   { name: "Features", data: ["Heart Rate Monitor", "Sleep Tracking", "ECG", "Fall Detection", "Step Counter"], filterID: "features" },
-  { name: "Water Resistance", data: ["Yes", "50 meters", "100 meters"], filterID: "waterResistance" },
+  { name: "Water Resistance", data: ["Yes", "50 m", "100 m"], filterID: "waterResistance" },
   { name: "Battery Life", data: ["1 day", "2 days", "5 days", "7+ days"], filterID: "batteryLife" },
-  { name: "Case Size", data: ["38mm", "40mm", "42mm", "44mm", "46mm"], filterID: "caseSize" },
+  { name: "Case Size", data: ["38 mm", "40 mm", "42 mm", "44 mm", "46 mm"], filterID: "caseSize" },
   { name: "Brand", data: ["Apple", "Samsung", "Fitbit", "Garmin", "Fossil"], filterID: "brand" }
 ];
 
 export const HEADSETS_FILTERS = [
   { name: "Connectivity", data: ["Bluetooth", "Wired", "Wireless", "NFC"], filterID: "connectivityTechnology" },
-  { name: "Type", data: ["Over-Ear", "In-Ear", "On-Ear", "Earbuds", "Noise Cancelling"], filterID: "type" },
   { name: "Features", data: ["Microphone", "Noise Cancellation", "Water Resistant", "Foldable"], filterID: "features" },
-  { name: "Battery Life", data: ["Up to 5 hrs", "5-10 hrs", "10+ hrs"], filterID: "batteryLife" },
+  { name: "Battery Life", data: ["Up to 5 hrs", "5–10 hrs", "10+ hrs"], filterID: "batteryLife" },
   { name: "Brand", data: ["Sony", "Bose", "JBL", "Beats", "Sennheiser"], filterID: "brand" }
 ];
 
 export const CASES_AND_PROTECTORS_FILTERS = [
   { name: "Material", data: ["Silicone", "Leather", "Plastic", "Metal"], filterID: "material" },
-  { name: "Type", data: ["Case", "Skin", "Bumper"], filterID: "type" },
   { name: "Compatibility", data: ["iPhone", "Samsung", "Google Pixel", "OnePlus"], filterID: "compatibility" },
   { name: "Brand", data: ["OtterBox", "Spigen", "Speck", "Tech21"], filterID: "brand" }
 ];
@@ -52,21 +50,19 @@ export const SCREEN_PROTECTORS_FILTERS = [
 ];
 
 export const MOUNTS_AND_HOLDERS_FILTERS = [
-  { name: "Mount Type", data: ["Dashboard", "Windshield", "Vent", "Magnetic"], filterID: "mountType" },
   { name: "Compatibility", data: ["Universal", "iPhone", "Samsung"], filterID: "compatibility" },
-  { name: "Adjustability", data: ["Fixed", "360-degree", "Tilt"], filterID: "adjustability" },
+  { name: "Adjustability", data: ["Fixed", "360°", "Tilt"], filterID: "adjustability" },
   { name: "Brand", data: ["iOttie", "Scosche", "RAM Mounts"], filterID: "brand" }
 ];
 
 export const POWER_BANKS_FILTERS = [
-  { name: "Capacity", data: ["5000mAh", "10000mAh", "20000mAh", "30000mAh"], filterID: "capacity" },
+  { name: "Capacity", data: ["5,000 mAh", "10,000 mAh", "20,000 mAh", "30,000 mAh"], filterID: "capacity" },
   { name: "Output Ports", data: ["1", "2", "3+"], filterID: "outputPorts" },
   { name: "Charging Type", data: ["Wired", "Wireless"], filterID: "chargingType" },
   { name: "Brand", data: ["Anker", "RAVPower", "Mophie"], filterID: "brand" }
 ];
 
 export const LENS_ATTACHMENTS_FILTERS = [
-  { name: "Lens Type", data: ["Wide Angle", "Macro", "Fisheye", "Telephoto"], filterID: "lensType" },
   { name: "Compatibility", data: ["Universal", "iPhone", "Samsung"], filterID: "compatibility" },
   { name: "Mount Type", data: ["Clip-On", "Case Attachment"], filterID: "mountType" },
   { name: "Brand", data: ["Moment", "Apexel", "Olloclip"], filterID: "brand" }
@@ -74,7 +70,7 @@ export const LENS_ATTACHMENTS_FILTERS = [
 
 export const SELFIE_STICKS_FILTERS = [
   { name: "Connectivity", data: ["Bluetooth", "Wired"], filterID: "connectivityTechnology" },
-  { name: "Extendable Length", data: ["Up to 20 inches", "Up to 40 inches", "Up to 60 inches"], filterID: "extendableLength" },
+  { name: "Extendable Length", data: ["Up to 20 in", "Up to 40 in", "Up to 60 in"], filterID: "extendableLength" },
   { name: "Features", data: ["Remote Shutter", "Tripod Compatible"], filterID: "features" },
   { name: "Brand", data: ["Fugetek", "Mpow", "Anker"], filterID: "brand" }
 ];

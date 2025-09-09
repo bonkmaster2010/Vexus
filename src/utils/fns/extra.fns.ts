@@ -30,7 +30,11 @@ export function getPageItems<T>(items: T[], page: number, pageSize: number): T[]
   "internal solid state drives": "storage",
   "fans & cooling": "cooling",
   "water cooling systems": "cooling",
-  "cpu fans": "cooling"
+  "cpu fans": "cooling",
+  "smart televisions": "televisions",
+  "internal hard drives": "storage",
+  "internal-solid-state-drives": "storage",
+  "pc microphones": "microphones"
   }; 
 
 export function safeBase64Encode(str: string) {
@@ -55,4 +59,30 @@ export function slugify(str: string) {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-') 
     .replace(/^-+|-+$/g, '');
+}
+
+const specClasses = [
+  { type: 'Color', keywords: ['black', 'white', 'blue', 'red', 'green', 'pink', 'yellow', 'purple', 'gold', 'silver'] },
+  { type: 'RAM', keywords: ['ram'] },
+  { type: 'Storage', keywords: ['storage', 'rom', 'gb', 'tb'] },
+  { type: 'Battery', keywords: ['mAh', 'battery'] },
+  { type: 'Camera', keywords: ['mp', 'camera'] },
+  { type: 'Display', keywords: ['inch', 'display', 'screen'] },
+  { type: 'Processor', keywords: ['snapdragon', 'mediatek', 'octa-core', 'cpu', 'chip'] },
+  { type: 'OS', keywords: ['android', 'ios', 'windows'] },
+  { type: 'Network', keywords: ['5g', '4g', 'lte', 'wifi', 'bluetooth'] },
+  { type: 'Sensors', keywords: ['fingerprint', 'accelerometer', 'gyroscope', 'proximity'] },
+  { type: 'Other', keywords: [] } 
+];
+
+export function classifySpec(spec: string) {
+  const lowerSpec = spec.toLowerCase();
+  
+  for (const specClass of specClasses) {
+    if (specClass.keywords.some(keyword => lowerSpec.includes(keyword))) {
+      return { type: specClass.type, value: spec };
+    }
+  }
+  
+  return { type: 'Other', value: spec };
 }

@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import type { PSSIF } from "../../utils/interfaces/components/SC.if";
 import '../../styles/Section.css';
 
-function PSS({ data, useRv, searchTerm }: PSSIF) {
+function PSS({ data, useRv, searchTerms }: PSSIF) {
   const { emptyAllRvItems, setShowOverlayedFilter, grid, setGrid } = useMain();
   const { selectedTypes, selectedManufacturers, selectedSpecs } = useFilters();
 
@@ -18,46 +18,33 @@ function PSS({ data, useRv, searchTerm }: PSSIF) {
   const [currentProducts, setCurrentProducts] = useState<typeof data>([]);
   const [totalPageStates, setTotalPagesState] = useState<number>(1);
 
-  function extractProductSpecs(title: string): string[] | undefined {
-    const matches = [...title.matchAll(/\(([^)]+)\)/g)];
-    if (!matches.length) return undefined;
-    const insideParentheses = matches[0][1].trim();
-    const specs = insideParentheses.split(/[,|]/).map(spec => spec.trim());
-    return specs.length ? specs : undefined;
-  }
-
   /* MASSIVE (ykw else is massive?) filtering function right here */
 
   useEffect(() => {
-    const baseData = searchTerm === 'daily-offers' 
+    const baseData = searchTerms.length == 0 || searchTerms.includes('daily-offers')
       ? data 
       : data.filter(p => {
           if (!p.real_category) return false;
           const categories = p.real_category.split('›').map(c => normalize(c.trim()));
           const lastCategory = categories[categories.length - 1];
           const parentCategory = CATEGORY_OVERRIDES[lastCategory] || lastCategory;
-          const searchWords = searchTerm.split('_').map(w => normalize(w));
+
+          const searchWords = searchTerms
+            .flatMap(s => s.split('_').map(w => normalize(w)));
+
           return searchWords.some(word => matchWord(parentCategory, word));
         });
 
     const filtered = baseData
       .filter(p => selectedTypes.length === 0 || selectedTypes.some(t => p.name.toLowerCase().includes(t.toLowerCase())))
       .filter(p => selectedManufacturers.length === 0 || selectedManufacturers.some(m => p.name.toLowerCase().includes(m.toLowerCase())))
-      .filter(p => {
-        if (selectedSpecs.length === 0) return true;
-        const specs = extractProductSpecs(p.name) || [];
-        return specs.some(s =>  {
-          console.log(s)
-          return selectedSpecs.some(sel => {
-            console.log(sel)
-          return s.trim().toLowerCase() === sel.trim().toLowerCase()})})
-      });
+      .filter(p => selectedSpecs.length === 0 || selectedSpecs.some(s => p.name.toLowerCase().includes(s.toLowerCase())));
 
     const totalPages = Math.ceil(filtered.length / itemsPerPage);
     setPageIndex(1);
     setCurrentProducts(filtered.slice((pageIndex - 1) * itemsPerPage, pageIndex * itemsPerPage));
     setTotalPagesState(totalPages);
-  }, [selectedManufacturers, selectedSpecs, selectedTypes, pageIndex, searchTerm, data]);
+  }, [selectedManufacturers, selectedSpecs, selectedTypes, pageIndex, searchTerms, data]);
 
 
   /* MASSIVE (ykw else is massive?) filtering function right here */

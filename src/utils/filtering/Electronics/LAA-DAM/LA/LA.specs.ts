@@ -1,12 +1,7 @@
 export const LAPTOP_CHARGER_FILTERS = [
   {
-    name: "Charger Type",
-    data: ["AC Adapter", "USB-C Charger", "Car Charger", "Docking Charger"],
-    filterID: "chargerType"
-  },
-  {
     name: "Power Output",
-    data: ["45W", "60W", "65W", "85W", "90W", "100W", "120W", "135W", "150W"],
+    data: ["45 W", "60 W", "65 W", "85 W", "90 W", "100 W", "120 W", "135 W", "150 W"],
     filterID: "wattage"
   },
   {
@@ -23,13 +18,8 @@ export const LAPTOP_CHARGER_FILTERS = [
 
 export const LAPTOP_BAGS_FILTERS = [
   {
-    name: "Bag Type",
-    data: ["Backpack", "Messenger Bag", "Sleeve", "Briefcase", "Roller Bag"],
-    filterID: "bagType"
-  },
-  {
     name: "Fits Screen Size",
-    data: ["13 inch", "14 inch", "15.6 inch", "17 inch"],
+    data: ["13 in", "14 in", "15.6 in", "17 in"],
     filterID: "screenSize"
   },
   {
@@ -47,7 +37,7 @@ export const LAPTOP_BAGS_FILTERS = [
 export const LAPTOP_COOLING_PADS_FILTERS = [
   {
     name: "Fan Size",
-    data: ["80mm", "120mm", "140mm", "200mm"],
+    data: ["80 mm", "120 mm", "140 mm", "200 mm"],
     filterID: "fanSize"
   },
   {
@@ -62,7 +52,7 @@ export const LAPTOP_COOLING_PADS_FILTERS = [
   },
   {
     name: "Fits Screen Size",
-    data: ["Up to 15.6 inch", "Up to 17 inch", "17 inch and above"],
+    data: ["Up to 15.6 in", "Up to 17 in", "17 in and above"],
     filterID: "screenSize"
   },
   {
@@ -73,11 +63,6 @@ export const LAPTOP_COOLING_PADS_FILTERS = [
 ];
 
 export const LAPTOP_DOCKING_STATIONS_FILTERS = [
-  {
-    name: "Dock Type",
-    data: ["Docking Station", "USB Hub", "Thunderbolt Dock", "Universal Dock"],
-    filterID: "dockType"
-  },
   {
     name: "Connection Type",
     data: ["USB-A", "USB-C", "Thunderbolt 3", "Thunderbolt 4", "Proprietary"],
@@ -99,7 +84,6 @@ export const LAPTOP_DOCKING_STATIONS_FILTERS = [
     filterID: "powerDelivery"
   }
 ];
-
 
 export const LAPTOP_STANDS_FILTERS = [
   {
@@ -124,7 +108,7 @@ export const LAPTOP_STANDS_FILTERS = [
   },
   {
     name: "Fits Screen Size",
-    data: ["Up to 13 inch", "Up to 15.6 inch", "Up to 17 inch"],
+    data: ["Up to 13 in", "Up to 15.6 in", "Up to 17 in"],
     filterID: "screenSize"
   }
 ];

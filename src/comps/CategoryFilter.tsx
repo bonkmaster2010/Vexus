@@ -8,7 +8,7 @@ function CategoryFilter({ title, data}: CFIF) {
   const navigate = useNavigate();
 
   function handleRouting(id: string, route: string, routeType: string) {
-    const updatedParams = updateFilter("types", id, true);
+    const updatedParams = updateFilter("types", id);
     navigate(`/${routeType}/${route}?${updatedParams.toString()}`);
   }
 

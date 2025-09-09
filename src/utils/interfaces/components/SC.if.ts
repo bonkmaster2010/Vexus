@@ -5,11 +5,13 @@ export interface TC{
     title: string;
     src: string;
     route: string;
+    type?: string;
 };
 
 export interface GC{
     src: string;
     route: string;
+    type?: string;
 };
 
 export interface ListcardIF{
@@ -77,7 +79,7 @@ export interface PSSIF{
     title?: string,
     useRv: boolean,
     cf?: any,
-    searchTerm: string;
+    searchTerms: string[];
 };
 
 /* Extra */

@@ -15,11 +15,11 @@ const DAM: CategoryPageCategory[]  = [
 
 const computerAccessories: CategoryPageCategory[] = [
     {title: "Keyboards", src: caKeyboards, route: "keyboards"},
-    {title: "Mouses", src: caMices, route: "miceAndTrackballs"},
+    {title: "Mouses", src: caMices, route: "mice"},
     {title: "Webcams", src: caWebcams, route: "webcams"},
     {title: "Microphones", src: caMicrophones, route: "microphones"},
     {title: "Speakers", src: caSpeakers, route: "speakers"},
-    {title: "USB Hubs & Adapters", src: caUsbHubs, route: "usbHubsAndAdapters"},
+    {title: "USB Hubs & Adapters", src: caUsbHubs, route: "usb_hubs"},
 ]
 
 

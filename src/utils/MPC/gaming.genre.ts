@@ -1,0 +1,2 @@
+import { g1, g2, g3, g4, g5, g6, g7, g8 } from "../image-arrays/MPC.imgs";
+export const gamingGenre = [{src: g1, route: "/category/pcs", type: 'gaming'}, {src: g2, route: "/category/monitors", type: 'gaming'}, {src: g3, route: "/category/laptops",  type: 'gaming'}, {src: g4, route: "/category/chairs", type: 'gaming'}, {src: g5, route: "/category/virtual reality (VR) headsets"}, {src: g6, route: "/categories/computerAccessories"}, {src: g7, route: "/categories/pc_comps"}, {src: g8, route: "/category/desks"}];

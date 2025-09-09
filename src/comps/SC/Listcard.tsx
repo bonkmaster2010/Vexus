@@ -17,7 +17,7 @@ function ListCard({product, title, price, src, style, route, salePrice}: Listcar
         <div className='list-card-content-wrapper'>
         <div className='main-card-content'> 
         <div className='list-card-img-cont'>
-        <img loading='lazy' onClick={() => navi(`/product/${route}`)} src={src} alt={`${title} image`}/>
+        <img onClick={() => navi(`/product/${route}`)} src={src} alt={`${title} image`}/>
         </div>
 
         <div className='row-wrapper'>

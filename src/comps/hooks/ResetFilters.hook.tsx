@@ -5,7 +5,7 @@ import { useEffect } from "react";
 function useResetFilters() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { setSelectedSpecsArray, setSelectedTypesArray } = useFilters();
+  const { setSelectedSpecsArray, setSelectedTypesArray, setSelectedManufacturerArray} = useFilters();
 
   function clearUrlParams() {
     if (location.search) {
@@ -15,7 +15,9 @@ function useResetFilters() {
 
   useEffect(() => {
     if (!location.search) {
-
+    setSelectedSpecsArray([]);
+    setSelectedTypesArray([]);
+    setSelectedManufacturerArray([]);
     }
   }, [location.search, setSelectedSpecsArray, setSelectedTypesArray]);
 

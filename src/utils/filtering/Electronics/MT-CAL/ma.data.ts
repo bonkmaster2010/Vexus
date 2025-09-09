@@ -33,7 +33,7 @@ import {
 
 export const MADATA = {
     headphones: {
-        title: "Headphones",
+        title: "Headsets",
         types: headsetsTypeFilters,
         filters: HEADSETS_FILTERS,
         manufacturers: headsetsManufacturers

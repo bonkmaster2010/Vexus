@@ -2,9 +2,9 @@ import FilterShowGroupBtn from './SC/Filter_Show_Group_btn';
 import { useFilters } from '../states/FilterState';
 import { useMain } from '../states/MainStates';
 import { useState } from 'react';
+import { useSearchParams } from 'react-router';
 import type { FilterProps } from '../utils/interfaces/components/SC.if';
 import '../styles/Filter.css';
-import { useSearchParams } from 'react-router';
 
 function Filter({ specArr, typeArr, manufacturer }: FilterProps) {
   const { selectedTypes, selectedManufacturers, selectedSpecs, setSelectedTypes, setSelectedManufacturers, setSelectedSpecs } = useFilters();
@@ -12,7 +12,6 @@ function Filter({ specArr, typeArr, manufacturer }: FilterProps) {
   const { expandedGroups } = useMain();
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
-
   function capitalizeFirstLetter(str: string) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
@@ -37,9 +36,8 @@ function Filter({ specArr, typeArr, manufacturer }: FilterProps) {
   }
 
   return (
-    specArr.length > 0 && typeArr.length > 0 && manufacturer.length > 0 && <>
+       <>
       <div className="filtering-container">
-
         {/* Manufacturers */}
         {manufacturer.length > 0 && (
           <div className="filter-group">

@@ -395,17 +395,20 @@
 }
 
 .spec-table {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   border-collapse: collapse;
-  gap: 0px;
+  gap: 10px 0px;
+}
+
+.spec-row{
+  border-bottom: 1px solid #594091;
 }
 
 .spec-cont{
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid #7e59cc;
   padding: 14px 8px;
   gap: 5px;
 }
@@ -436,6 +439,10 @@
   width: 100%;
   padding: 0 20px; 
   box-sizing: border-box;
+}
+
+.spec-table .spec-row:last-child{
+  border: none;
 }
 
 .add-to-cart,
@@ -476,14 +483,6 @@
   margin-top: 20px;
 }
 
-.spec-table > .spec-cont:nth-last-child(-n+2) {
-  border-bottom: none;
-}
-
-
-.spec-table > .spec-cont:last-child {
-  border-bottom: none;
-}
 
 /* Hello everybody my name's Markiplier (mobile support) */
 @media(max-width: 990px){

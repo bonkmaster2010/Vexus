@@ -10,7 +10,7 @@ function GenreCards({title, images}: GenreCardsIF){
         <h3 style={{marginTop: '5px', marginBottom: '30px'}}>{title}</h3>
          <div className='genre-card-cont'>
           {images.map((obj) => (
-            <GenreCard key={obj.route} src={obj.src} route={`/category/${obj.route}`}/>
+            <GenreCard key={obj.route} type={obj.type} src={obj.src} route={`${obj.route}`}/>
           ))}
        </div>
      </div>

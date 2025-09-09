@@ -1,7 +1,7 @@
 export const pcTypeFilters = [
     { title: "Gaming PC", id: "gaming" },
     { title: "All-in-One PC", id: "all-in-one" },
-    { title: "Desktop Tower", id: "desktop-tower" },
+    { title: "Desktop Tower", id: "tower" },
     { title: "Mini PC", id: "mini" },
     { title: "Workstation", id: "workstation" }
 ];

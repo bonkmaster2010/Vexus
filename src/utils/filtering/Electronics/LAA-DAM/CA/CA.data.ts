@@ -1,5 +1,6 @@
 import { 
     keyboardManufacturers, 
+    microphoneManufacturers, 
     mouseManufacturers, 
     speakerManufacturers, 
     usbHubManufacturers, 
@@ -8,6 +9,7 @@ import {
 
 import { 
     KEYBOARD_FILTERS, 
+    MICROPHONE_FILTERS, 
     MOUSE_FILTERS, 
     SPEAKER_FILTERS, 
     WEBCAM_FILTERS 
@@ -15,6 +17,7 @@ import {
 
 import { 
     keyboardTypeFilters, 
+    microphoneTypeFilters, 
     mouseTypeFilters, 
     speakerTypeFilters, 
     usbHubTypeFilters, 
@@ -34,6 +37,13 @@ export const CAData = {
         manufacturers: mouseManufacturers,
         types: mouseTypeFilters,
         filters: MOUSE_FILTERS
+    },
+
+    microphones: {
+        title: "Microphones",
+        manufacturers: microphoneManufacturers,
+        types: microphoneTypeFilters,
+        filters: MICROPHONE_FILTERS
     },
 
     webcams: {

@@ -3,11 +3,10 @@ import Noti from "./SC/noti";
 import ProductReviews from "./SC/Product.reviews";
 import { useParams } from "react-router";
 import { allProducts } from "../utils/extras/Data.ts";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useMain } from "../states/MainStates";
-import { slugify } from "../utils/fns/extra.fns";
+import { classifySpec, slugify } from "../utils/fns/extra.fns";
 import "../styles/ProductDetails.css";
-import { useFilters } from "../states/FilterState.ts";
 
 function ProductDetails() {
   const params = useParams<{ productLink?: string }>();
@@ -20,10 +19,10 @@ function ProductDetails() {
   const [CWO, setCWO] = useState<string>('1');
   const [quantity, setQuantity] = useState(1);
   const [warranty, setWarranty] = useState(0);
+
   const addItemToCart = useMain((s) => s.addItemToCart);
   const quantityOptions = [1, 2, 3, 4, 5];
   const { wishlist, addItemToWishlist, removeItemFromWishlist } = useMain();
-  const { selectedSpecs } = useFilters();
 
   const ChangeAddToCartText = () => {
     setAddToCartText("Added To Cart");
@@ -32,19 +31,23 @@ function ProductDetails() {
 
   if (!product) return <Noti text="Product not found" />;
 
-  function extractProductSpecs(title: string): string[] | undefined {
-    const matches = [...title.matchAll(/\(([^)]+)\)/g)]; 
-    if (!matches.length) return undefined;
+  function extractProductSpecs(title: string): string[] {
+    const matches = [...title.matchAll(/\(([^)]+)\)/g)];
+    if (!matches.length) return [];
     const insideParentheses = matches[0][1].trim();
-    const specs = insideParentheses.split("|").map(spec => spec.trim());
-    return specs.length ? specs : undefined;
+    const specs = insideParentheses.split(/\s*[|,]\s*/).map(spec => spec.trim());
+    return specs.length ? specs : [];
   }
 
-  const specs = extractProductSpecs(product.name);
-  console.log(specs)
+  function chunkArray<T>(arr: T[], chunkSize: number): T[][] {
+    const result: T[][] = [];
+    for (let i = 0; i < arr.length; i += chunkSize) {
+      result.push(arr.slice(i, i + chunkSize));
+    }
+    return result;
+  }
 
-  useEffect(() => console.log(selectedSpecs), [selectedSpecs])
-
+  const specs = extractProductSpecs(product.name)?.map(s => classifySpec(s));
 
   return (
     <>
@@ -68,7 +71,7 @@ function ProductDetails() {
                 <h3>{product.name}</h3>
                 <p id="sku">SKU: Alpha Male</p>
                 <hr className="pdr" />
-                <span>i have to hard code this description :sob:</span>
+                <span>description here (dataset does NOT provide descriptions, i could simply do product.description if it existed) </span>
                 <hr className="pdr" />
                 <p id="warranty">
                   Warranty: <b>{CWO} {CWO === "1" ? "year" : "years"}</b> Effortless warranty claims with global coverage; shipping costs are on us
@@ -82,13 +85,13 @@ function ProductDetails() {
             <div className="product-price">
               <div id="price">
                 <p>USD</p>
-                <h3>{product.actual_price}</h3>
+                <h3>{product.discount_price ?? product.actual_price}</h3>
               </div>
 
               <div id="sale-price">
                 <p id="sale-percentage">8% OFF</p>
                 <p id="before-sale-price">
-                  Was USD {(typeof product.actual_price === "number" ? (product.actual_price / 0.92).toFixed(2) : "N/A")}
+                  Was USD {product.discount_price ? product.actual_price : (typeof product.actual_price === "number" ? (product.actual_price / 0.92).toFixed(2) : "N/A")}
                 </p>
               </div>
 
@@ -133,17 +136,28 @@ function ProductDetails() {
 
       <div className="pdr-long" />
 
-      <div className="specs-cont">
-        <div className="specs">
-          <h3>Genral Specifications</h3>
-          <div className="spec-table">
-            <div className="spec-cont">
-              <th>spec here lol</th>
-              <td data-label='spec lol'>ssssss</td>
+      {(!specs || specs.length === 0) && <Noti text="No specifications listed" />}
+
+      {specs && specs.length > 0 && (
+        <div className="specs-cont">
+          <div className="specs">
+            <h3>General Specifications</h3>
+            <div className="spec-table">
+              {chunkArray(specs, 2).map((row, rowIndex) => (
+                <div className="spec-row" key={rowIndex} style={{ display: 'flex', gap: '10px' }}>
+                  {row.map((s, idx) => (
+                    <div className="spec-cont" key={idx} style={{ flex: 1 }}>
+                      <div className="spec-type"><strong>{s.type}:</strong></div>
+                      <div className="spec-value">{s.value}</div>
+                    </div>
+                  ))}
+                </div>
+              ))}
             </div>
           </div>
         </div>
-      </div>
+      )}
+
 
       <div className="pdr-long" />
 

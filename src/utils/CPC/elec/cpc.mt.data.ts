@@ -9,11 +9,11 @@ export const MT: CategoryPageCategory[]  = [
 ];
 
 export const MA: CategoryPageCategory[] = [
-    {title: 'Cases & Protectors', src: ma_cases, route: 'casesAndProtectors'},
-    {title: 'Chargers & Cables', src: ma_chargers, route: 'chargersAndCables'},
-    {title: 'Screen Protectors', src: ma_screen_protectors, route: 'mobilePhoneScreenProtectors'},
-    {title: 'Mounts and Holders', src: ma_mounts, route: 'mountsAndHolders'},
-    {title: 'Power Banks', src: ma_power_banks, route: 'powerBanks'},
-    {title: 'Lens Attachments', src: ma_lens_attachments, route: 'lensAttachments'},
-    {title: 'Selfie Sticks', src: ma_selfie_sticks, route: 'selfieSticks'},
+    {title: 'Cases & Protectors', src: ma_cases, route: 'cases_covers'},
+    {title: 'Chargers & Cables', src: ma_chargers, route: 'chargers'},
+    {title: 'Screen Protectors', src: ma_screen_protectors, route: 'screen_protectors'},
+    {title: 'Mounts and Holders', src: ma_mounts, route: 'carmounts_holders'},
+    {title: 'Power Banks', src: ma_power_banks, route: 'powerbanks'},
+    {title: 'Lens Attachments', src: ma_lens_attachments, route: 'lens_attachments'},
+    {title: 'Selfie Sticks', src: ma_selfie_sticks, route: 'selfie_sticks'},
 ];

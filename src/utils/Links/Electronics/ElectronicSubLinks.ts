@@ -19,7 +19,9 @@ export const CALSubLinks = {
   laptop: [
     { title: "Gaming Laptops", id: "gaming", route: "laptops" },
     { title: "2-in-1 Laptops", id: "2-in-1", route: "laptops" },
-    { title: "MacBooks", id: "macbook", route: "laptops" }
+    { title: "MacBooks", id: "macbook", route: "laptops" },
+    { title: "Laptop Chargers & Adapters", id: "laptop-charger", route: "laptop_chargers" },
+    { title: "Laptop Bags & Cases", id: "laptop-bag", route: "laptop_backpacks" },
   ],
 
   laptopAccessories: [
@@ -39,7 +41,7 @@ export const CALSubLinks = {
   ],
 
   pc_comps: [
-    { title: "Graphics Cards", id: "graphics-card", route: "graphics_cards" },
+    { title: "Graphics Cards", id: "graphics_card", route: "graphics_cards" },
     { title: "Processors", id: "processor", route: "processors" },
     { title: "RAM", id: "memory", route: "memory" },
     { title: "Storage Drives", id: "ssd", route: "storage" },

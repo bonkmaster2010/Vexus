@@ -25,9 +25,7 @@ function BrandPage({ data }: BPIF){
         {brandData.length == 0 && <Noti text='This brand has no products currently!'/>}
         {!showOverlayedFilter && brandData.length > 0 && <div className="main-products-cont"> 
          <div className="filter-products-cont">
-            <Filter specArr={[]} typeArr={[]} manufacturer={[]}/>
-            <div className="vr"/>
-             
+            <Filter specArr={[]} typeArr={[]} manufacturer={[]}/>             
              <div className="b-products-cont-wrapper">
                 <div className="b-title-cont">
                 
@@ -40,7 +38,7 @@ function BrandPage({ data }: BPIF){
                  
                  <hr/>
 
-               <PSS data={brandData} title="test" useRv={false}/>
+               <PSS searchTerms={[]} data={brandData} title="test" useRv={false}/>
              </div>
          </div>
         </div>}

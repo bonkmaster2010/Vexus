@@ -7,11 +7,11 @@ const LAA: CategoryPageCategory[] = [
 ];
 
 const LA: CategoryPageCategory[] = [
-    {title: 'Bags & Cases', src: la1, route: 'laptopBags'},
-    {title: 'Chargers & Adapters', src: la2, route: 'laptopChargers'},
-    {title: 'Cooling Pads & Fans', src: la3, route: 'laptopCoolingpads'},
-    {title: 'Docking Stations & Hubs', src: la4, route: 'laptopDocking'},
-    {title: 'Adjustable Stands', src: la5, route: 'laptopAdjustableStand'},
+    {title: 'Bags & Cases', src: la1, route: 'laptop_backpacks'},
+    {title: 'Chargers & Adapters', src: la2, route: 'laptop_chargers'},
+    {title: 'Cooling Pads & Fans', src: la3, route: 'cooling_pads'},
+    {title: 'Docking Stations & Hubs', src: la4, route: 'usb_hubs'},
+    {title: 'Adjustable Stands', src: la5, route: 'notebook_computer_stands'},
 ];
 
 export { LAA, LA }

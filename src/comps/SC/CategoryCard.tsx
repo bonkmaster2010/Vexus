@@ -1,16 +1,21 @@
 import { useNavigate } from 'react-router';
 import type { TC } from '../../utils/interfaces/components/SC.if';
 import '../../styles/GenreCards.css';
+import { useFiltersWithQuery } from '../hooks/useFilterWithQuery';
 
 
-function CC({title, src, route}: TC){
+function CC({title, src, route, type}: TC){
     
     const navi = useNavigate();
+    const { updateFilter } = useFiltersWithQuery();
 
     return (
         <>
          
-        <div onClick={() => navi(route)} className="cate-card">
+        <div onClick={() => {
+        navi(route);
+        type && updateFilter('types', type);
+        }} className="cate-card">
         <img src={src} alt="category image"/>
         
         <div className='category-card-title-cont'>

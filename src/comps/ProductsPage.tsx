@@ -44,7 +44,7 @@ function ProductsPage({ arr, categoryData, useRv = false }: ProductsProps) {
             />
             <div className="products-cont-wrapper">
               <h3 id="products-page-title">{categoryTitle}</h3>
-              <PSS key={category} data={data} useRv={false} searchTerm={categoryTitle.toLowerCase()} />
+              <PSS key={category} data={data} useRv={false} searchTerms={[categoryTitle.toLowerCase()]} />
             </div>
           </div>
         </div>
