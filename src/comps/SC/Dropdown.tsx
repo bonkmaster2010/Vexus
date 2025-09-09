@@ -1,11 +1,12 @@
 import { NavLink, useNavigate } from "react-router";
 import { useFiltersWithQuery } from "../hooks/useFilterWithQuery";
 import { useMain } from "../../states/MainStates";
-import type { DropdownProps } from "../../utils/interfaces/dropdown";
-import type { DropDownLink } from "../../utils/Links/Electronics/ElectronicLinks";
-import '../../styles/Dropdown.css';
 import { useFilters } from "../../states/FilterState";
 import { useEffect } from "react";
+import type { DropdownProps } from "../../utils/interfaces/dropdown";
+import type { DropDownLink } from "../../utils/Links/Electronics/ElectronicLinks";
+
+import '../../styles/Dropdown.css';
 
 function Dropdown({ data, route, src, brandArr = [], type }: DropdownProps) {
   const { updateFilter } = useFiltersWithQuery();
@@ -15,7 +16,7 @@ function Dropdown({ data, route, src, brandArr = [], type }: DropdownProps) {
   const navigate = useNavigate();
 
   function handleRouting(id: string, route: string, routeType: string, filterType?: 'specs' | 'types' | 'manufacturers') {
-    const updatedParams = updateFilter(filterType ? filterType : "types", id, true);
+    const updatedParams = updateFilter(filterType ? filterType : "types", id);
     navigate(`/${routeType}/${route}?${updatedParams.toString()}`);
   }
 

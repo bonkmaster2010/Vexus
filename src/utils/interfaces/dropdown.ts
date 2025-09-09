@@ -13,13 +13,6 @@ interface BrandItem {
   route: string;
 };
 
-interface CFD{
-  name: string;
-  filters: Sublink[];
-  routeType: string;
-  route: string
-};
-
 export interface DropdownProps {
   data: DropDownLink[];
   src: string;

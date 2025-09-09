@@ -13,9 +13,9 @@ function CartPrice({ product }: { product: CartProduct}) {
     return (
         <div className="cart-card-price-cont">
             <div className="cart-card-prices">
-                <p className="cart-card-price">USD {product.price}</p>
-                {product.salePrice && (
-                    <p className="cart-card-sale-price">USD {product.salePrice}</p>
+                <p className="cart-card-price">USD {product.discount_price ?? product.actual_price}</p>
+                {product.discount_price && (
+                    <p className="cart-card-sale-price">USD {product.actual_price}</p>
                 )}
                 {product.warranty > 0 && (
                     <p className="cart-card-warranty-price">
