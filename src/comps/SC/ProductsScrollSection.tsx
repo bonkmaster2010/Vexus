@@ -66,6 +66,7 @@ function PSS({ data, useRv, searchTerms }: PSSIF) {
     setCurrentProducts(sorted.slice((pageIndex - 1) * itemsPerPage, pageIndex * itemsPerPage));
     setTotalPagesState(totalPages);
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+
   }, [selectedManufacturers, selectedSpecs, selectedTypes, searchTerms, data, pageIndex, currentFilter, minPrice, maxPrice]);
 
 
@@ -83,6 +84,7 @@ function PSS({ data, useRv, searchTerms }: PSSIF) {
     console.log('allProducts length:', currentProducts.length);
   }, []);
 
+  
 
   return (
   <>
@@ -123,7 +125,7 @@ function PSS({ data, useRv, searchTerms }: PSSIF) {
 
         <hr />
 
-        <div className={`products-cont${grid ? '' : '.list'}`}>
+        <div className={`products-cont${grid ? '' : 'list'}`}>
           {currentProducts.map((pro, i) =>
             grid ? (
               <PCardComp

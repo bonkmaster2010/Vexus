@@ -19,7 +19,6 @@ import EditAddress from './comps/profile.things.lol/Addresses-stuff/Address.edit
 import AccountReviews from './comps/profile.things.lol/AccountReviews.tsx'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router'
-import { allProducts } from './utils/extras/Data.ts'
 import { fullElecCategoriesData } from './utils/filtering/Electronics/ElectronicsCategoriesFilters.ts'
 import { allCatesFilters } from './utils/Links/all-cates.links.ts'
 import { allCPCData } from './utils/CPC/allCPC.data.ts'
@@ -37,9 +36,9 @@ createRoot(document.getElementById('root')!).render(
       <Route path='*' element={<NotFound/>}/>      
       <Route path='/categories/:category' element={<CategoryPage dataArr={allCPCData} dataCategories={allCatesFilters}/>}/>       
 
-      <Route path='/category/:category' element={<ProductsPage categoryData={fullElecCategoriesData} arr={allProducts} />}/>
-      <Route path='/b/:brand' element={<BrandPage data={allProducts}/>}/>
-      <Route path='/all-rv-products' element={<ProductsPage arr={[]} useRv={true} title="Your Recently Viewed Items" />}/>
+      <Route path='/category/:category' element={<ProductsPage categoryData={fullElecCategoriesData}/>}/>
+      <Route path='/b/:brand' element={<BrandPage/>}/>
+      <Route path='/all-rv-products' element={<ProductsPage useRv={true} title="Your Recently Viewed Items" />}/>
       
       {/* user stuff */}
       <Route element={<ProfileLayout/>}>

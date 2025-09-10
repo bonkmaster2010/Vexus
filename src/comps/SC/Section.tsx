@@ -1,13 +1,16 @@
+import { useRef, useEffect, useState } from 'react';
 import PCardComp from './PcCard';
 import type { SectionIF } from '../../utils/interfaces/components/SC.if';
-import { useRef } from 'react';
-import { allProducts, type Product } from '../../utils/extras/Data.ts';
+import { fetchAllProducts, type Product } from '../../utils/extras/Data.ts';
 import { matchWord, normalize, slugify } from '../../utils/fns/extra.fns.ts';
 import '../../styles/Section.css';
 
 function Section({ title, style, CartType, searchTerm }: SectionIF) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [filteredData, setFilteredData] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
 
+  // Scroll helpers
   const scrollLeft = () => {
     if (!containerRef.current) return;
     const card = containerRef.current.querySelector('.section-card') as HTMLElement;
@@ -24,20 +27,30 @@ function Section({ title, style, CartType, searchTerm }: SectionIF) {
     containerRef.current.scrollBy({ left: card.offsetWidth + gap, behavior: 'smooth' });
   };
 
-  const filteredData = searchTerm === 'daily-offers'
-    ? allProducts
-    : allProducts.filter(p => {
-        if (!p.real_category) return false;
+  // Fetch and filter products
+  useEffect(() => {
+    const loadProducts = async () => {
+      setLoading(true);
+      const allProducts = await fetchAllProducts();
+      const filtered = searchTerm === 'daily-offers'
+        ? allProducts
+        : allProducts.filter(p => {
+            if (!p.real_category) return false;
+            const categories = p.real_category.split('›').map(c => normalize(c.trim()));
+            return categories.some(c => matchWord(c, searchTerm));
+          });
+      setFilteredData(filtered.slice(0, 15)); // limit to first 15
+      setLoading(false);
+    };
 
-        const categories = p.real_category
-          .split('›')
-          .map(c => normalize(c.trim()));
+    loadProducts();
+  }, [searchTerm]);
 
-        return categories.some(c => matchWord(c, searchTerm));
-  });
+  if (loading) return <div>Loading products… ⏳</div>;
+  if (filteredData.length === 0) return null;
 
   return (
-    filteredData.length > 0 && <div className={style ? style : 'section-cont'}>
+    <div className={style ? style : 'section-cont'}>
       <h2 className='section-title'>{title}</h2>
 
       <div className='section-btns'>
@@ -46,12 +59,12 @@ function Section({ title, style, CartType, searchTerm }: SectionIF) {
       </div>
 
       <div className='section-products' ref={containerRef}>
-        {filteredData.slice(0, 15).map((obj: Product) => (
+        {filteredData.map((obj: Product) => (
           <PCardComp
             key={obj.id}
             product={obj}
             CartType={CartType}
-            route={slugify(obj.name)} 
+            route={slugify(obj.name)}
             style="section-card"
             src={obj.image}
             title={obj.name}

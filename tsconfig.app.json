@@ -23,5 +23,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "scrapeAmazonlol.ts"]
+  "include": ["src", "scrapeAmazonlol.ts", "src/utils/extras/Data.ts"]
 }

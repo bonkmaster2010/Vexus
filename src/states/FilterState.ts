@@ -52,8 +52,8 @@ export const useFilters = create<FiltersState>((set, get) => ({
   setSelectedTypesArray: (types: string[]) =>
     set({ selectedTypes: types }),
 
-  minPrice: '0',
+  minPrice: '',
   setMinPrice: (p) => set({minPrice: p}),
-  maxPrice: '0',
+  maxPrice: '',
   setMaxPrice: (p) => set({maxPrice: p}),
 }));

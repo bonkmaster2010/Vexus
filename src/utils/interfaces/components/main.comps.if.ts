@@ -1,16 +1,13 @@
-import type { Product } from "../../extras/Data";
 import type { GC } from "./SC.if";
 
 /* Product Pages */
 export interface ProductsProps {
-  arr: Product[];   
   categoryData?: any;  
   useRv?: boolean;
   title?: string;
 };
 
 export interface BPIF{
-    data: Product[];
 };
 
 /* Filters */

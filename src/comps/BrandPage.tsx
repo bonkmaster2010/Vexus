@@ -1,61 +1,80 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import PSS from "./SC/ProductsScrollSection";
 import Noti from "./SC/noti";
 import Filter from "./Filter";
 import OverlayedFilter from "./SC/OverlayedFilter";
 import { CAL_B } from "../utils/brand-page/CAL/CAl.brands";
 import { useMain } from "../states/MainStates";
-import { useParams } from "react-router";
 import { FullBrandArr } from "../utils/brand-page/all.brand.arr";
 import type { BPIF } from "../utils/interfaces/components/main.comps.if";
-import '../styles/BrandPage.css';
+import "../styles/BrandPage.css";
+import { fetchAllProducts, type Product } from "../utils/extras/Data";
 
-function BrandPage({ data }: BPIF){
-    const { showOverlayedFilter } = useMain();
-    const { brand } = useParams<{ brand?: keyof typeof CAL_B }>();
-    
-    if(!brand){
-        return <Noti text="this brand page does not exist ok"/>
-    }
+function BrandPage({}: BPIF) {
+  const { showOverlayedFilter } = useMain();
+  const { brand } = useParams<{ brand?: keyof typeof CAL_B }>();
+  const [brandData, setBrandData] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
 
-    const b = FullBrandArr[brand];
-    const brandData = data.filter(p => p.name.toLowerCase().includes(brand));
+  // Fetch products
+  useEffect(() => {
+    if (!brand) return;
 
-    return (
-        <>
-        {brandData.length == 0 && <Noti text='This brand has no products currently!'/>}
-        {!showOverlayedFilter && brandData.length > 0 && <div className="main-products-cont"> 
-         <div className="filter-products-cont">
-            <Filter specArr={[]} typeArr={[]} manufacturer={[]}/>             
-             <div className="b-products-cont-wrapper">
-                <div className="b-title-cont">
-                
-                <div className="b-title-cont-img-cont"> {/* ts a fire name */}
-                <img src={b.src} alt={`${b.brand} icon`}/>
-                 </div>
+    const loadProducts = async () => {
+      setLoading(true);
+      const allProducts = await fetchAllProducts();
+      const filtered = allProducts.filter(p =>
+        p.name.toLowerCase().includes(brand.toLowerCase())
+      );
+      setBrandData(filtered);
+      setLoading(false);
+    };
 
-                <h3>{b.brand.toUpperCase()}</h3>
+    loadProducts();
+  }, [brand]);
+
+  if (!brand) {
+    return <Noti text="This brand page does not exist ok" />;
+  }
+
+  const b = FullBrandArr[brand];
+
+  if (loading) return <div>Loading products… ⏳</div>;
+  if (brandData.length === 0) return <Noti text="This brand has no products currently!" />;
+
+  return (
+    <>
+      {!showOverlayedFilter && brandData.length > 0 && (
+        <div className="main-products-cont">
+          <div className="filter-products-cont">
+            <Filter specArr={[]} typeArr={[]} manufacturer={[]} />
+            <div className="b-products-cont-wrapper">
+              <div className="b-title-cont">
+                <div className="b-title-cont-img-cont">
+                  <img src={b.src} alt={`${b.brand} icon`} />
                 </div>
-                 
-                 <hr/>
+                <h3>{b.brand.toUpperCase()}</h3>
+              </div>
+              <hr />
+              <PSS searchTerms={[]} data={brandData} title={b.brand} useRv={false} />
+            </div>
+          </div>
+        </div>
+      )}
 
-               <PSS searchTerms={[]} data={brandData} title="test" useRv={false}/>
-             </div>
-         </div>
-        </div>}
-
-        {showOverlayedFilter && (
-        <OverlayedFilter 
-            Filter={Filter}  
-            filterProps={{
+      {showOverlayedFilter && (
+        <OverlayedFilter
+          Filter={Filter}
+          filterProps={{
             specArr: [],
             typeArr: [],
-            manufacturer: []
-            }} 
+            manufacturer: [],
+          }}
         />
-        )}
-
-        </>
-    )
+      )}
+    </>
+  );
 }
 
 export default BrandPage;

@@ -1,8 +1,6 @@
 import { NavLink, useNavigate } from "react-router";
 import { useFiltersWithQuery } from "../hooks/useFilterWithQuery";
 import { useMain } from "../../states/MainStates";
-import { useFilters } from "../../states/FilterState";
-import { useEffect } from "react";
 import type { DropdownProps } from "../../utils/interfaces/dropdown";
 import type { DropDownLink } from "../../utils/Links/Electronics/ElectronicLinks";
 
@@ -10,7 +8,6 @@ import '../../styles/Dropdown.css';
 
 function Dropdown({ data, route, src, brandArr = [], type }: DropdownProps) {
   const { updateFilter } = useFiltersWithQuery();
-  const { selectedTypes, selectedManufacturers } = useFilters();
   const dropdown = useMain((state) => state.dropdown);
   const setDropdown = useMain((state) => state.setDropdown);
   const navigate = useNavigate();
@@ -19,11 +16,6 @@ function Dropdown({ data, route, src, brandArr = [], type }: DropdownProps) {
     const updatedParams = updateFilter(filterType ? filterType : "types", id);
     navigate(`/${routeType}/${route}?${updatedParams.toString()}`);
   }
-
-  useEffect(() => {
-  console.log(selectedTypes)
-  console.log(selectedManufacturers)
-  }, [selectedManufacturers, selectedTypes])
 
   if (dropdown !== type) return null;
 
