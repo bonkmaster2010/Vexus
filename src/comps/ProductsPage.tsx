@@ -49,6 +49,8 @@ function ProductsPage({ categoryData, useRv = false }: ProductsProps) {
   if (loading) return <div>Loading products… ⏳</div>;
   if (data.length === 0) return <div>No products found.</div>;
 
+  useEffect(() => console.log(data), [data])
+
   return (
     <>
       <div className="main-products-cont">
