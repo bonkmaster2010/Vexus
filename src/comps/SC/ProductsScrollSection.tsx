@@ -11,7 +11,7 @@ import '../../styles/Section.css';
 
 function PSS({ data, useRv, searchTerms }: PSSIF) {
   const { emptyAllRvItems, setShowOverlayedFilter, grid, setGrid } = useMain();
-  const { selectedTypes, selectedManufacturers, selectedSpecs, minPrice, maxPrice, setMaxPrice, setMinPrice} = useFilters();
+  const { selectedTypes, selectedManufacturers, selectedSpecs, minPrice, maxPrice } = useFilters();
 
   const itemsPerPage = 8;
   const [pageIndex, setPageIndex] = useState(1);
