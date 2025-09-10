@@ -34,7 +34,6 @@ export const useFilters = create<FiltersState>((set, get) => ({
     });
   },
 
-  // Reset functions keeping one item
   resetSelectedSpecsExcept: (keepSpec: string) =>
     set({ selectedSpecs: [keepSpec] }),
 
@@ -44,7 +43,6 @@ export const useFilters = create<FiltersState>((set, get) => ({
   resetSelectedManufacturersExcept: (keepManufacturer: string) =>
     set({ selectedManufacturers: [keepManufacturer] }),
 
-  // Directly set arrays
   setSelectedManufacturerArray: (manufacturers: string[]) =>
     set({ selectedManufacturers: manufacturers }),
 
@@ -53,4 +51,9 @@ export const useFilters = create<FiltersState>((set, get) => ({
 
   setSelectedTypesArray: (types: string[]) =>
     set({ selectedTypes: types }),
+
+  minPrice: '0',
+  setMinPrice: (p) => set({minPrice: p}),
+  maxPrice: '0',
+  setMaxPrice: (p) => set({maxPrice: p}),
 }));

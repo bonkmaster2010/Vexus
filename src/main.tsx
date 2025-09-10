@@ -5,7 +5,6 @@ import CategoryPage from './comps/CategoryPage.tsx'
 import Cart from './comps/Cart/Cart.tsx'
 import Wishlist from './comps/Wishlist/Wishlist.tsx'
 import ProductsPage from './comps/ProductsPage.tsx'
-import ScrollRestorationWrapper from './comps/routing/ScrollRestoreWrapper.tsx'
 import BrandPage from './comps/BrandPage.tsx'
 import Layout from './comps/Layouts/Layout.tsx'
 import CreateUser from './comps/CreateUser.tsx'
@@ -26,11 +25,8 @@ import { allCatesFilters } from './utils/Links/all-cates.links.ts'
 import { allCPCData } from './utils/CPC/allCPC.data.ts'
 import { ResetOnRouteChange } from './comps/routing/ResetStateOnNavigation.tsx'
 
-
-
 createRoot(document.getElementById('root')!).render(
    <BrowserRouter basename="/">
-    <ScrollRestorationWrapper> 
     <ResetOnRouteChange>
       <Routes>
       <Route path='/register' element={<CreateUser/>}/>
@@ -60,6 +56,5 @@ createRoot(document.getElementById('root')!).render(
       </Route>
      </Routes>
     </ResetOnRouteChange>
-    </ScrollRestorationWrapper>
     </BrowserRouter>
 )

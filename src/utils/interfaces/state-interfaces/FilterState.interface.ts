@@ -11,4 +11,9 @@ export interface FiltersState {
   setSelectedManufacturerArray: (manufacturers: string[]) => void;
   setSelectedSpecsArray: (specs: string[]) => void;
   setSelectedTypesArray: (types: string[]) => void;
+
+  minPrice: string;
+  setMinPrice: (price: string) => void;
+  maxPrice: string;
+  setMaxPrice: (price: string) => void;
 };

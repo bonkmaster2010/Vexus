@@ -114,6 +114,12 @@
   fill: none;
 }
 
+.mm-user-utils .navbar-button svg.signup-icon path {
+  stroke: white;
+  stroke-width: 1.5px;
+  fill: none;
+}
+
 .mm-categories-flair {
   background-color: rgb(20, 1, 49);
   font-weight: bold;
@@ -158,7 +164,6 @@
   color: #c3b1ff;
   text-decoration: none;
   padding: 8px 12px;
-  border-radius: 4px;
   transition: background-color 0.25s, color 0.25s;
 }
 

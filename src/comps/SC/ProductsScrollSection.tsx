@@ -11,12 +11,13 @@ import '../../styles/Section.css';
 
 function PSS({ data, useRv, searchTerms }: PSSIF) {
   const { emptyAllRvItems, setShowOverlayedFilter, grid, setGrid } = useMain();
-  const { selectedTypes, selectedManufacturers, selectedSpecs } = useFilters();
+  const { selectedTypes, selectedManufacturers, selectedSpecs, minPrice, maxPrice, setMaxPrice, setMinPrice} = useFilters();
 
-  const itemsPerPage = 12;
+  const itemsPerPage = 8;
   const [pageIndex, setPageIndex] = useState(1);
   const [currentProducts, setCurrentProducts] = useState<typeof data>([]);
   const [totalPageStates, setTotalPagesState] = useState<number>(1);
+  const [currentFilter, setCurrentFilter] = useState<string>('popular');
 
   /* MASSIVE (ykw else is massive?) filtering function right here */
 
@@ -40,17 +41,43 @@ function PSS({ data, useRv, searchTerms }: PSSIF) {
       .filter(p => selectedManufacturers.length === 0 || selectedManufacturers.some(m => p.name.toLowerCase().includes(m.toLowerCase())))
       .filter(p => selectedSpecs.length === 0 || selectedSpecs.some(s => p.name.toLowerCase().includes(s.toLowerCase())));
 
+    const min = parseFloat(minPrice);
+    const max = parseFloat(maxPrice);
+
+    const hasValidMin = !isNaN(min);
+    const hasValidMax = !isNaN(max);
+
+    const priceFiltered = filtered.filter(p => {
+      const price = parseFloat(p.actual_price);
+
+      if (hasValidMin && hasValidMax) return price >= min && price <= max;
+      if (hasValidMin) return price >= min;
+      if (hasValidMax) return price <= max;
+
+      return true; 
+    });
+    
+    let sorted = [...priceFiltered];
+
+    if(currentFilter == 'price lowest to highest') sorted = filtered.slice().sort((a, b) => parseFloat(a.actual_price) - parseFloat(b.actual_price));
+    if(currentFilter == 'price highest to lowest') sorted = filtered.slice().sort((a, b) => parseFloat(b.actual_price) - parseFloat(a.actual_price));
+
     const totalPages = Math.ceil(filtered.length / itemsPerPage);
-    setPageIndex(1);
-    setCurrentProducts(filtered.slice((pageIndex - 1) * itemsPerPage, pageIndex * itemsPerPage));
+    setCurrentProducts(sorted.slice((pageIndex - 1) * itemsPerPage, pageIndex * itemsPerPage));
     setTotalPagesState(totalPages);
-  }, [selectedManufacturers, selectedSpecs, selectedTypes, pageIndex, searchTerms, data]);
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  }, [selectedManufacturers, selectedSpecs, selectedTypes, searchTerms, data, pageIndex, currentFilter, minPrice, maxPrice]);
 
 
   /* MASSIVE (ykw else is massive?) filtering function right here */
 
-  const handlePrev = () => setPageIndex(prev => Math.max(prev - 1, 1));
-  const handleNext = () => setPageIndex(prev => Math.min(prev + 1, totalPageStates));
+  const handlePrev = () => {
+    setPageIndex(prev => Math.max(prev - 1, 1))
+  };
+
+  const handleNext = () => {
+    setPageIndex(prev => Math.min(prev + 1, totalPageStates))
+  };
 
   return (
   <>
@@ -61,8 +88,10 @@ function PSS({ data, useRv, searchTerms }: PSSIF) {
         <div className="products-filter-btns-cont">
           <div className="sort-by-cont">
             <span id="sort-by-text">Sort by</span>
-            <select className="filtering-select">
+            <select className="filtering-select" onChange={(e) => setCurrentFilter(e.target.value)}>
               <option>popularity</option>
+              <option value='price lowest to highest'>Price Lowest To Highest</option>
+              <option value='price highest to lowest'>Price Highest To Lowest</option>
             </select>
           </div>
 

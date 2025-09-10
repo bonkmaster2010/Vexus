@@ -1,17 +1,14 @@
 import FilterShowGroupBtn from './SC/Filter_Show_Group_btn';
 import { useFilters } from '../states/FilterState';
 import { useMain } from '../states/MainStates';
-import { useState } from 'react';
 import { useSearchParams } from 'react-router';
 import type { FilterProps } from '../utils/interfaces/components/SC.if';
 import '../styles/Filter.css';
 
 function Filter({ specArr, typeArr, manufacturer }: FilterProps) {
-  const { selectedTypes, selectedManufacturers, selectedSpecs, setSelectedTypes, setSelectedManufacturers, setSelectedSpecs } = useFilters();
+  const { selectedTypes, selectedManufacturers, selectedSpecs, setSelectedTypes, setSelectedManufacturers, setSelectedSpecs, setMinPrice, maxPrice, minPrice, setMaxPrice} = useFilters();
   const [searchParams, setSearchParams] = useSearchParams();
   const { expandedGroups } = useMain();
-  const [minPrice, setMinPrice] = useState('');
-  const [maxPrice, setMaxPrice] = useState('');
   function capitalizeFirstLetter(str: string) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
@@ -122,8 +119,7 @@ function Filter({ specArr, typeArr, manufacturer }: FilterProps) {
           <legend className="filter-group-title">Price (USD)</legend>
           <div className="filtering-inputs">
             <input
-              type="number"
-              min={0}
+              type="string"
               placeholder="Min"
               value={minPrice}
               onChange={(e) => setMinPrice(e.target.value)}
@@ -131,8 +127,7 @@ function Filter({ specArr, typeArr, manufacturer }: FilterProps) {
             />
             <span>to</span>
             <input
-              type="number"
-              min={0}
+              type="string"
               placeholder="Max"
               value={maxPrice}
               onChange={(e) => setMaxPrice(e.target.value)}

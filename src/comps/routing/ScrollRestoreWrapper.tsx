@@ -1,31 +1,15 @@
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router";
-import { useMain } from "../../states/MainStates";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
-export default function ScrollRestorationWrapper({ children }: { children: React.ReactNode }) {
-    const { pathname } = useLocation();
-    const [showChildren, setShowChildren] = useState(false);
-
-    useEffect(() => {
-        window.scrollTo(0, 0);
-        const timeout = setTimeout(() => {
-            setShowChildren(true);
-        }, 50);
-
-        return () => {
-            clearTimeout(timeout);
-            setShowChildren(false);
-        };
-    }, [pathname]);
-
-  const setIsMobile = useMain((s) => s.setIsMobile);
+export default function ScrollToTop({ children }: { children: React.ReactNode }) {
+  const { pathname } = useLocation();
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth <= 770);
-    checkMobile(); 
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, [setIsMobile]);
+    const id = requestAnimationFrame(() => {
+      window.scrollTo({ top: 10, behavior: "auto" });
+    });
+    return () => cancelAnimationFrame(id);
+  }, [pathname]);
 
-    return showChildren ? <>{children}</> : null;
+  return <>{children}</>;
 }

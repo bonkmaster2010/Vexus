@@ -89,15 +89,14 @@ input[type="checkbox"] {
 }
 
 .filtering-select {
-  padding: 6px 8px;
-  font-size: 1rem;
-  border-radius: 4px;
+  padding: 5px 8px;
+  font-size: 14px;
   border: 1.5px solid #A084DC;
   background-color: #1b1324;
   color: #EAE6F8;
   cursor: pointer;
   transition: border-color 0.3s ease, background-color 0.3s ease;
-  min-width: 130px;
+  min-width: 110px;
 }
 
 .filtering-select:hover,
