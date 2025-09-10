@@ -8,7 +8,6 @@ import { CATEGORY_OVERRIDES, matchWord, normalize, slugify } from "../../utils/f
 import { useEffect, useState } from "react";
 import type { PSSIF } from "../../utils/interfaces/components/SC.if";
 import '../../styles/Section.css';
-import { allProducts } from "../../utils/extras/Data";
 
 function PSS({ data, useRv, searchTerms }: PSSIF) {
   const { emptyAllRvItems, setShowOverlayedFilter, grid, setGrid } = useMain();
