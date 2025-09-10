@@ -40,11 +40,9 @@ function BrandPage({}: BPIF) {
 
   const b = FullBrandArr[brand];
 
-  if (loading) return <div>Loading products… ⏳</div>;
-  if (brandData.length === 0) return <Noti text="This brand has no products currently!" />;
-
   return (
     <>
+      {!showOverlayedFilter && brandData.length == 0 && <Noti text="This brand doesn't have any products currently!"/>}
       {!showOverlayedFilter && brandData.length > 0 && (
         <div className="main-products-cont">
           <div className="filter-products-cont">
