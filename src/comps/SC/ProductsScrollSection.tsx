@@ -22,53 +22,82 @@ function PSS({ data, useRv, searchTerms }: PSSIF) {
   /* MASSIVE (ykw else is massive?) filtering function right here */
 
   useEffect(() => {
-    const baseData = searchTerms.length == 0 || searchTerms.includes('daily-offers')
-      ? data 
-      : data.filter(p => {
-          if (!p.real_category) return false;
-          const categories = p.real_category.split('›').map(c => normalize(c.trim()));
-          const lastCategory = categories[categories.length - 1];
-          const parentCategory = CATEGORY_OVERRIDES[lastCategory] || lastCategory;
+    const baseData =
+      searchTerms.length === 0 || searchTerms.includes('daily-offers')
+        ? data
+        : data.filter(p => {
+            if (!p.real_category) return false;
 
-          const searchWords = searchTerms
-            .flatMap(s => s.split('_').map(w => normalize(w)));
+            const categories = p.real_category
+              .split('›')
+              .map(c => normalize(c.trim()));
 
-          return searchWords.some(word => matchWord(parentCategory, word));
-        });
+            const lastCategory = categories[categories.length - 1];
+            const parentCategory = CATEGORY_OVERRIDES[lastCategory] || lastCategory;
+
+            const searchWords = searchTerms
+              .flatMap(s => s.split('_').map(w => normalize(w)));
+
+            return searchWords.some(word => matchWord(parentCategory, word));
+          });
 
     const filtered = baseData
-      .filter(p => selectedTypes.length === 0 || selectedTypes.some(t => p.name.toLowerCase().includes(t.toLowerCase())))
-      .filter(p => selectedManufacturers.length === 0 || selectedManufacturers.some(m => p.name.toLowerCase().includes(m.toLowerCase())))
-      .filter(p => selectedSpecs.length === 0 || selectedSpecs.some(s => p.name.toLowerCase().includes(s.toLowerCase())));
+      .filter(p =>
+        selectedTypes.length === 0 ||
+        selectedTypes.some(t => p.name.toLowerCase().includes(t.toLowerCase()))
+      )
+      .filter(p =>
+        selectedManufacturers.length === 0 ||
+        selectedManufacturers.some(m => p.name.toLowerCase().includes(m.toLowerCase()))
+      )
+      .filter(p =>
+        selectedSpecs.length === 0 ||
+        selectedSpecs.some(s => p.name.toLowerCase().includes(s.toLowerCase()))
+      );
 
     const min = parseFloat(minPrice);
     const max = parseFloat(maxPrice);
 
-    const hasValidMin = !isNaN(min);
-    const hasValidMax = !isNaN(max);
+    const hasUserMin = minPrice !== '';
+    const hasUserMax = maxPrice !== '';
 
-    const priceFiltered = filtered.filter(p => {
-      const price = parseFloat(p.actual_price);
+    const priceFiltered =
+      hasUserMin || hasUserMax
+        ? filtered.filter(p => {
+            const price = parseFloat(p.actual_price);
+            if (hasUserMin && hasUserMax) return price >= min && price <= max;
+            if (hasUserMin) return price >= min;
+            if (hasUserMax) return price <= max;
+            return true;
+          })
+        : filtered;
 
-      if (hasValidMin && hasValidMax) return price >= min && price <= max;
-      if (hasValidMin) return price >= min;
-      if (hasValidMax) return price <= max;
+    let sorted: typeof filtered = [];
 
-      return true; 
-    });
-    
-    let sorted = [...priceFiltered];
+    if (currentFilter === 'price lowest to highest') {
+      sorted = priceFiltered.slice().sort((a, b) => parseFloat(a.actual_price) - parseFloat(b.actual_price));
+    } else if (currentFilter === 'price highest to lowest') {
+      sorted = priceFiltered.slice().sort((a, b) => parseFloat(b.actual_price) - parseFloat(a.actual_price));
+    } else {
+      sorted = priceFiltered;
+    }
 
-    if(currentFilter == 'price lowest to highest') sorted = filtered.slice().sort((a, b) => parseFloat(a.actual_price) - parseFloat(b.actual_price));
-    if(currentFilter == 'price highest to lowest') sorted = filtered.slice().sort((a, b) => parseFloat(b.actual_price) - parseFloat(a.actual_price));
-
-    const totalPages = Math.ceil(filtered.length / itemsPerPage);
-    setCurrentProducts(sorted.slice((pageIndex - 1) * itemsPerPage, pageIndex * itemsPerPage));
+    const totalPages = Math.ceil(priceFiltered.length / itemsPerPage);
     setTotalPagesState(totalPages);
+    setCurrentProducts(sorted.slice((pageIndex - 1) * itemsPerPage, pageIndex * itemsPerPage));
+
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-
-  }, [selectedManufacturers, selectedSpecs, selectedTypes, searchTerms, data, pageIndex, currentFilter, minPrice, maxPrice]);
-
+  }, [
+    selectedManufacturers,
+    selectedSpecs,
+    selectedTypes,
+    searchTerms,
+    data,
+    pageIndex,
+    currentFilter,
+    minPrice,
+    maxPrice
+  ]);
 
   /* MASSIVE (ykw else is massive?) filtering function right here */
 
