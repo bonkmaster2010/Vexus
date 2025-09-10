@@ -3,5 +3,13 @@
   "builds": [
     { "src": "package.json", "use": "@vercel/static-build" }
   ],
-  "buildCommand": "vite build"
+  "buildCommand": "vite build",
+  "headers": [
+    {
+      "source": "/data/(.*\\.json)",
+      "headers": [
+        { "key": "Content-Type", "value": "application/json" }
+      ]
+    }
+  ]
 }
