@@ -80,6 +80,7 @@ export interface PSSIF{
     useRv: boolean,
     cf?: any,
     searchTerms: string[];
+    loading?: boolean;
 };
 
 /* Extra */

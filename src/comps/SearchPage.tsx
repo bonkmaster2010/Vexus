@@ -1,17 +1,17 @@
 import OverlayedFilter from "./SC/OverlayedFilter";
 import Filter from "./Filter";
-import PSS from "./SC/ProductsScrollSection";import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import PSS from "./SC/ProductsScrollSection";
+import { useEffect, useState } from "react";
 import { useMain } from "../states/MainStates";
 import { allSubLinks } from "../utils/Links/Electronics/ElectronicSubLinks";
 import { fetchAllProducts, type Product } from "../utils/extras/Data";
+import { useParams } from "react-router";
 import type { ProductsProps } from "../utils/interfaces/components/main.comps.if";
 import "../styles/Products.css";
 
-function ProductsPage({ categoryData, useRv = false }: ProductsProps) {
-  const { rv, showOverlayedFilter } = useMain();
-  const { category: rawCategory } = useParams<{ category?: string; key?: string }>();
-  const category = rawCategory || "???";
+function SearchPage({ categoryData }: ProductsProps) {
+  const { showOverlayedFilter, currentProducts} = useMain();
+  const { query = '???' } = useParams<{query: string }>();
 
   const [data, setData] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
@@ -23,51 +23,42 @@ function ProductsPage({ categoryData, useRv = false }: ProductsProps) {
       ROUTE_TO_IDS[item.route].push(item.id);
     });
   });
- 
-  const categoryInfo = !useRv && categoryData
-    ? categoryData[category] ?? { filters: [], types: [], manufacturers: [], title: "Products" }
-    : { filters: [], types: [], manufacturers: [], title: "Products" };
 
+  const categoryInfo = categoryData.search;
   const categoryTitle = categoryInfo?.title;
 
   useEffect(() => {
     const loadProducts = async () => {
       setLoading(true);
-      if (useRv) {
-        setData(rv);
-      } else {
-        const allProducts = await fetchAllProducts();
-        setData(allProducts);
-      }
+      const allProducts = await fetchAllProducts();
+      setData(allProducts);
       setLoading(false);
     };
 
     loadProducts();
-  }, [useRv, rv]);
+  }, []);
 
   return (
-  <>
+    <>
       <div className="main-products-cont">
         <div className="filter-products-cont">
-          <Filter
+          {currentProducts.length > 0 && <Filter
             specArr={categoryInfo.filters ?? []}
             typeArr={categoryInfo.types ?? []}
             manufacturer={categoryInfo.manufacturers ?? []}
-          />
+          />}
           <div className="products-cont-wrapper">
             <h3 id="products-page-title">{categoryTitle}</h3>
-            <PSS
-              key={category}
-              data={data}
-              useRv={useRv}
-              searchTerms={[category.toLowerCase()]}
-              loading={loading}
-            />
+            {!loading ? (
+              <PSS useRv={false} searchTerms={[query]} data={data} />
+            ) : (
+              <p>Loading products...</p>
+            )}
           </div>
         </div>
       </div>
 
-      {showOverlayedFilter && (
+      {currentProducts.length > 0 && showOverlayedFilter && (
         <OverlayedFilter
           Filter={Filter}
           filterProps={{
@@ -77,8 +68,8 @@ function ProductsPage({ categoryData, useRv = false }: ProductsProps) {
           }}
         />
       )}
-    </> 
+    </>
   );
 }
 
-export default ProductsPage;
+export default SearchPage;

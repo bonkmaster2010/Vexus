@@ -1,8 +1,9 @@
-import { useRef, useEffect, useState } from 'react';
 import PCardComp from './PcCard';
-import type { SectionIF } from '../../utils/interfaces/components/SC.if';
+import spinner from '../../images/0s-200px-200px-unscreen.gif';
+import { useRef, useEffect, useState } from 'react';
 import { fetchAllProducts, type Product } from '../../utils/extras/Data.ts';
 import { matchWord, normalize, slugify } from '../../utils/fns/extra.fns.ts';
+import type { SectionIF } from '../../utils/interfaces/components/SC.if';
 import '../../styles/Section.css';
 
 function Section({ title, style, CartType, searchTerm }: SectionIF) {
@@ -10,7 +11,6 @@ function Section({ title, style, CartType, searchTerm }: SectionIF) {
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Scroll helpers
   const scrollLeft = () => {
     if (!containerRef.current) return;
     const card = containerRef.current.querySelector('.section-card') as HTMLElement;
@@ -27,7 +27,6 @@ function Section({ title, style, CartType, searchTerm }: SectionIF) {
     containerRef.current.scrollBy({ left: card.offsetWidth + gap, behavior: 'smooth' });
   };
 
-  // Fetch and filter products
   useEffect(() => {
     const loadProducts = async () => {
       setLoading(true);
@@ -39,15 +38,14 @@ function Section({ title, style, CartType, searchTerm }: SectionIF) {
             const categories = p.real_category.split('›').map(c => normalize(c.trim()));
             return categories.some(c => matchWord(c, searchTerm));
           });
-      setFilteredData(filtered.slice(0, 15)); // limit to first 15
+      setFilteredData(filtered.slice(0, 15)); 
       setLoading(false);
     };
 
     loadProducts();
   }, [searchTerm]);
 
-  if (loading) return <div>Loading products… ⏳</div>;
-  if (filteredData.length === 0) return null;
+  if (filteredData.length <= 1) return null;
 
   return (
     <div className={style ? style : 'section-cont'}>
@@ -60,7 +58,7 @@ function Section({ title, style, CartType, searchTerm }: SectionIF) {
 
       <div className='section-products' ref={containerRef}>
         {filteredData.map((obj: Product) => (
-          <PCardComp
+          !loading ? <PCardComp
             key={obj.id}
             product={obj}
             CartType={CartType}
@@ -70,6 +68,18 @@ function Section({ title, style, CartType, searchTerm }: SectionIF) {
             title={obj.name}
             price={obj.discount_price}
             salePrice={obj.actual_price}
+          />
+          :
+          <PCardComp
+            key={obj.id}
+            product={obj}
+            CartType={CartType}
+            route={''}
+            style="section-card gif"
+            src={spinner}
+            title={'......'}
+            price={'......'}
+            salePrice={''}
           />
         ))}
       </div>

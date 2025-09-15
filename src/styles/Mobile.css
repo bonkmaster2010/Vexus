@@ -324,6 +324,9 @@
   width: 100%;
   margin: 0px auto;
 }
+.mm-input:focus{
+  outline: 1px solid #8C5CE8;
+}
 
 .mm-navbar h3{
   cursor: pointer;

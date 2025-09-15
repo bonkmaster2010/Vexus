@@ -6,54 +6,62 @@ export const useFilters = create<FiltersState>((set, get) => ({
   selectedSpecs: [],
   selectedManufacturers: [],
 
-  // Toggle functions
   setSelectedTypes: (type: string) => {
     const { selectedTypes } = get();
+    const normalizedType = type.trim().toLowerCase();
+
     set({
-      selectedTypes: selectedTypes.includes(type)
-        ? selectedTypes.filter(t => t !== type)
-        : [...selectedTypes, type],
+      selectedTypes: selectedTypes.includes(normalizedType)
+        ? selectedTypes.filter(t => t !== normalizedType)
+        : [...selectedTypes, normalizedType],
     });
   },
 
   setSelectedSpecs: (spec: string) => {
     const { selectedSpecs } = get();
+    const normalizedSpec = spec.trim().toLowerCase();
+
     set({
-      selectedSpecs: selectedSpecs.includes(spec)
-        ? selectedSpecs.filter(s => s !== spec)
-        : [...selectedSpecs, spec],
+      selectedSpecs: selectedSpecs.includes(normalizedSpec)
+        ? selectedSpecs.filter(s => s !== normalizedSpec)
+        : [...selectedSpecs, normalizedSpec],
     });
   },
 
   setSelectedManufacturers: (manufacturer: string) => {
     const { selectedManufacturers } = get();
+    const normalizedManufacturer = manufacturer.trim().toLowerCase();
+
     set({
-      selectedManufacturers: selectedManufacturers.includes(manufacturer)
-        ? selectedManufacturers.filter(m => m !== manufacturer)
-        : [...selectedManufacturers, manufacturer],
+      selectedManufacturers: selectedManufacturers.includes(normalizedManufacturer)
+        ? selectedManufacturers.filter(m => m !== normalizedManufacturer)
+        : [...selectedManufacturers, normalizedManufacturer],
     });
   },
 
   resetSelectedSpecsExcept: (keepSpec: string) =>
-    set({ selectedSpecs: [keepSpec] }),
+    set({ selectedSpecs: [keepSpec.trim().toLowerCase()] }),
 
   resetSelectedTypesExcept: (keepType: string) =>
-    set({ selectedTypes: [keepType] }),
+    set({ selectedTypes: [keepType.trim().toLowerCase()] }),
 
   resetSelectedManufacturersExcept: (keepManufacturer: string) =>
-    set({ selectedManufacturers: [keepManufacturer] }),
+    set({ selectedManufacturers: [keepManufacturer.trim().toLowerCase()] }),
 
   setSelectedManufacturerArray: (manufacturers: string[]) =>
-    set({ selectedManufacturers: manufacturers }),
+    set({
+      selectedManufacturers: manufacturers.map(m => m.trim().toLowerCase()),
+    }),
 
   setSelectedSpecsArray: (specs: string[]) =>
-    set({ selectedSpecs: specs }),
+    set({ selectedSpecs: specs.map(s => s.trim().toLowerCase()) }),
 
   setSelectedTypesArray: (types: string[]) =>
-    set({ selectedTypes: types }),
+    set({ selectedTypes: types.map(t => t.trim().toLowerCase()) }),
 
+  // Prices
   minPrice: '',
-  setMinPrice: (p) => set({minPrice: p}),
+  setMinPrice: (p: string) => set({ minPrice: p }),
   maxPrice: '',
-  setMaxPrice: (p) => set({maxPrice: p}),
+  setMaxPrice: (p: string) => set({ maxPrice: p }),
 }));

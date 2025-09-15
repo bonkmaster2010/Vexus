@@ -8,12 +8,21 @@ import { MainElecLinks } from '../utils/Links/Electronics/ Electronic.links.main
 import { allCatesLinks, allMobileMenuLinks } from '../utils/Links/all-cates.links';
 import { useCreateUser } from '../states/CreateUserState';
 import '../styles/Nav.css';
+import { useState } from 'react';
 
 function Navbar(){
     const navi = useNavigate();
-    const { cart, registered, setDropdown, dropdown} = useMain();
+    const { cart, registered, setDropdown, dropdown, setSearchTerm} = useMain();
     const { name } = useCreateUser();
- 
+    const [term, setTerm] = useState<string>('');
+
+    function search(){
+      if(term.trim().length > 0) {
+        setSearchTerm(term);
+        navi(`/search/${term}`);
+        window.location;
+      }
+    }
 
     return (
         <>
@@ -21,14 +30,18 @@ function Navbar(){
         <div className="searchbar-cont">
             <h3 style={{cursor: 'pointer'}} onClick={() => navi('/')} className="logo">V e x u s</h3>
            <div className="search">
-             <input placeholder="What are you looking for?"/>
-             <button>
+             <input 
+             onChange={(e) => setTerm(e.target.value)}
+             onKeyDown={(e) => {
+              if(e.key === 'Enter'){
+                search();
+              }}}
+             placeholder="What are you looking for?"/>
+             <button onClick={() => search()}>
               <Svg type='search'/>
              </button>
            </div>
 
-
-           
            <div className='navbar-btns-cont'>
            
            <div 

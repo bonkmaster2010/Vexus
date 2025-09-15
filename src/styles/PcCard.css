@@ -21,15 +21,25 @@
   box-shadow: inset 0 0 6px rgba(101, 52, 207, 0.8);
 }
 
+.section-card.gif .pc-card-img-cont,
+.pc-card.gif .pc-card-img-cont{
+  background: transparent;
+}
+
+.section-card.gif .pc-card-img-cont img,
+.pc-card.gif .pc-card-img-cont img{
+  width: 100px;
+}
+
 .section-card {
-  border: 1px solid #251a31;
+  border: 1px solid #352744;
   flex: 0 0 auto;
   width: 100%;
   min-width: 200px;
   max-width: 220px;
   padding: 20px 20px 40px;
   cursor: pointer;
-  background-color: #1b1324;
+  background-color: #0d0514;
   color: white;
   box-shadow: 0 0 6px rgba(160, 132, 220, 0.08);
   display: flex;
@@ -38,6 +48,7 @@
   align-items: stretch;
   justify-content: space-between;
   height: 500px;
+  border-radius: 6px;
 }
 
 .section-card img {
@@ -81,7 +92,6 @@
 
 .pc-card-desc h3{
   font-size: 13px !important;
-  color: #B87EDC;
   margin: 8px 0;
   word-wrap: break-word;
   white-space: normal;

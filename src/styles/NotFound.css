@@ -70,6 +70,51 @@
   max-width: 475px;
 }
 
+.no-products-cont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  width: 100%;
+  padding: 0px;
+  gap: 20px; 
+  border-radius: 12px;
+}
+
+.no-products-cont img {
+  max-width: 250px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.no-products-cont p {
+  font-size: 23px;
+  line-height: 1.5;
+  color: #ddd;
+  max-width: 400px;
+}
+
+.no-products-cont button{
+  padding: 10px 22px;
+  background-color: #6C3FBF; 
+  color: #fff;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(108, 63, 191, 0.4);
+  transition: all 0.3s ease;
+}
+
+.no-products-cont button:hover {
+  background-color: #7f53d1;
+  box-shadow: 0 0 15px #8C5CE8;
+}
+
+
 @media(max-width: 760px){
   .not-found-alt{
   padding: 50px 0px;

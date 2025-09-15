@@ -23,6 +23,7 @@ import { fullElecCategoriesData } from './utils/filtering/Electronics/Electronic
 import { allCatesFilters } from './utils/Links/all-cates.links.ts'
 import { allCPCData } from './utils/CPC/allCPC.data.ts'
 import { ResetOnRouteChange } from './comps/routing/ResetStateOnNavigation.tsx'
+import SearchPage from './comps/SearchPage.tsx'
 
 createRoot(document.getElementById('root')!).render(
    <BrowserRouter basename="/">
@@ -37,6 +38,7 @@ createRoot(document.getElementById('root')!).render(
       <Route path='/categories/:category' element={<CategoryPage dataArr={allCPCData} dataCategories={allCatesFilters}/>}/>       
 
       <Route path='/category/:category' element={<ProductsPage categoryData={fullElecCategoriesData}/>}/>
+      <Route path='/search/:query' element={<SearchPage categoryData={fullElecCategoriesData}/>}/>
       <Route path='/b/:brand' element={<BrandPage/>}/>
       <Route path='/all-rv-products' element={<ProductsPage useRv={true} title="Your Recently Viewed Items" />}/>
       

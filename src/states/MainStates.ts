@@ -188,6 +188,14 @@ export const useMain = create<Main>()(
       /* Mobile */
       isMobile: window.innerWidth <= 770,
       setIsMobile: (boo) => set({ isMobile: boo }),
+
+      /* Search */
+      searchTerm: '',
+      setSearchTerm: (s) => set({searchTerm: s}),
+
+      /* Current Products */
+      currentProducts: [],
+      setCurrentProducts: (prods) => set({currentProducts: prods})
     }),
     {
       name: "main-storage",

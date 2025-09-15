@@ -99,4 +99,12 @@ export interface Main {
   /* is Mobile */
   isMobile: boolean;
   setIsMobile: (boo: boolean) => void;
+
+  /* search */
+  searchTerm: string;
+  setSearchTerm: (s: string) => void;
+
+  /* current products */
+  currentProducts: Product[];
+  setCurrentProducts: (prods: Product[]) => void;
 }

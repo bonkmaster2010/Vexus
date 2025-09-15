@@ -1,46 +1,57 @@
-import Noti from "./noti";
 import Svg from "../../utils/extras/Svgs";
 import ListCard from "./Listcard";
 import PCardComp from "./PcCard";
+import spinner from '../../images/0s-200px-200px-unscreen.gif';
+import searchNotFound from '../../images/search-notfound-removebg-preview.png';
 import { useMain } from "../../states/MainStates";
 import { useFilters } from "../../states/FilterState";
 import { CATEGORY_OVERRIDES, matchWord, normalize, slugify } from "../../utils/fns/extra.fns";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import type { PSSIF } from "../../utils/interfaces/components/SC.if";
 import '../../styles/Section.css';
 
-function PSS({ data, useRv, searchTerms }: PSSIF) {
-  const { emptyAllRvItems, setShowOverlayedFilter, grid, setGrid } = useMain();
+function PSS({ data, useRv, searchTerms, loading = false}: PSSIF) {
+  const { emptyAllRvItems, setShowOverlayedFilter, grid, setGrid, searchTerm, setCurrentProducts, currentProducts} = useMain();
   const { selectedTypes, selectedManufacturers, selectedSpecs, minPrice, maxPrice } = useFilters();
 
   const itemsPerPage = 8;
   const [pageIndex, setPageIndex] = useState(1);
-  const [currentProducts, setCurrentProducts] = useState<typeof data>([]);
   const [totalPageStates, setTotalPagesState] = useState<number>(1);
   const [currentFilter, setCurrentFilter] = useState<string>('popular');
+  const navi = useNavigate();
 
   /* MASSIVE (ykw else is massive?) filtering function right here */
 
+  // filters
   useEffect(() => {
-    const baseData =
-      searchTerms.length === 0 || searchTerms.includes('daily-offers')
-        ? data
-        : data.filter(p => {
-            if (!p.real_category) return false;
+    let baseData;
 
-            const categories = p.real_category
-              .split('›')
-              .map(c => normalize(c.trim()));
+    if (searchTerm && searchTerm.trim() !== '') {
+      const term = searchTerm.toLowerCase();
+      baseData = data.filter(p => p.name.toLowerCase().includes(term));
+    } else {
+      baseData =
+        searchTerms.length === 0 || searchTerms.includes('daily-offers')
+          ? data
+          : data.filter(p => {
+              if (!p.real_category) return false;
 
-            const lastCategory = categories[categories.length - 1];
-            const parentCategory = CATEGORY_OVERRIDES[lastCategory] || lastCategory;
+              const categories = p.real_category
+                .split('›')
+                .map(c => normalize(c.trim()));
 
-            const searchWords = searchTerms
-              .flatMap(s => s.split('_').map(w => normalize(w)));
+              const lastCategory = categories[categories.length - 1];
+              const parentCategory = CATEGORY_OVERRIDES[lastCategory] || lastCategory;
 
-            return searchWords.some(word => matchWord(parentCategory, word));
-          });
+              const searchWords = searchTerms
+                .flatMap(s => s.split('_').map(w => normalize(w)));
 
+              return searchWords.some(word => matchWord(parentCategory, word));
+            });
+    }
+
+    // filters by types, specs, manufacturers
     const filtered = baseData
       .filter(p =>
         selectedTypes.length === 0 ||
@@ -57,7 +68,6 @@ function PSS({ data, useRv, searchTerms }: PSSIF) {
 
     const min = parseFloat(minPrice);
     const max = parseFloat(maxPrice);
-
     const hasUserMin = minPrice !== '';
     const hasUserMax = maxPrice !== '';
 
@@ -72,8 +82,8 @@ function PSS({ data, useRv, searchTerms }: PSSIF) {
           })
         : filtered;
 
+    // Sorting
     let sorted: typeof filtered = [];
-
     if (currentFilter === 'price lowest to highest') {
       sorted = priceFiltered.slice().sort((a, b) => parseFloat(a.actual_price) - parseFloat(b.actual_price));
     } else if (currentFilter === 'price highest to lowest') {
@@ -82,15 +92,26 @@ function PSS({ data, useRv, searchTerms }: PSSIF) {
       sorted = priceFiltered;
     }
 
+    // Pagination
     const totalPages = Math.ceil(priceFiltered.length / itemsPerPage);
     setTotalPagesState(totalPages);
-    setCurrentProducts(sorted.slice((pageIndex - 1) * itemsPerPage, pageIndex * itemsPerPage));
+
+    const newProducts = sorted.slice((pageIndex - 1) * itemsPerPage, pageIndex * itemsPerPage);
+
+    const isSame =
+      currentProducts.length === newProducts.length &&
+      currentProducts.every((item, idx) => item.id === newProducts[idx].id);
+
+    if (!isSame) {
+      setCurrentProducts(newProducts);
+    }
 
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }, [
     selectedManufacturers,
     selectedSpecs,
     selectedTypes,
+    searchTerm,
     searchTerms,
     data,
     pageIndex,
@@ -100,11 +121,13 @@ function PSS({ data, useRv, searchTerms }: PSSIF) {
   ]);
 
   /* MASSIVE (ykw else is massive?) filtering function right here */
-
+  
+  // gets prev page index
   const handlePrev = () => {
     setPageIndex(prev => Math.max(prev - 1, 1))
   };
 
+  // gets next page index
   const handleNext = () => {
     setPageIndex(prev => Math.min(prev + 1, totalPageStates))
   };
@@ -113,12 +136,14 @@ function PSS({ data, useRv, searchTerms }: PSSIF) {
     console.log('allProducts length:', currentProducts.length);
   }, []);
 
-  
-
   return (
   <>
     {currentProducts.length === 0 ? (
-      <Noti text="No products in here yet!" />
+      <div className="no-products-cont">
+        <img src={searchNotFound}/>
+        <p>No products found that match with the term "{searchTerms[0]}"!</p>
+        <button onClick={() => navi('/')}>Return To Home!</button>
+      </div>
     ) : (
       <>
         <div className="products-filter-btns-cont">
@@ -156,6 +181,7 @@ function PSS({ data, useRv, searchTerms }: PSSIF) {
 
         <div className={`products-cont${grid ? '' : 'list'}`}>
           {currentProducts.map((pro, i) =>
+           !loading ?
             grid ? (
               <PCardComp
                 key={`${pro.id}-${i}`}
@@ -177,6 +203,28 @@ function PSS({ data, useRv, searchTerms }: PSSIF) {
                 salePrice={pro.actual_price}
               />
             )
+            : !loading ?
+              <PCardComp
+              key={pro.id}
+              product={pro}
+              route={''}
+              style="pc-card gif"
+              src={spinner}
+              title={'......'}
+              price={'......'}
+              salePrice={''}
+              />
+              :
+              <ListCard
+              key={pro.id}
+              product={pro}
+              route={''}
+              style="pc-card gif"
+              src={spinner}
+              title={'......'}
+              price={'......'}
+              salePrice={''}
+              />
           )}
         </div>
 

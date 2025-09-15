@@ -4,60 +4,87 @@ import { useMain } from '../states/MainStates';
 import { useSearchParams } from 'react-router';
 import type { FilterProps } from '../utils/interfaces/components/SC.if';
 import '../styles/Filter.css';
+import Svg from '../utils/extras/Svgs';
 
 function Filter({ specArr, typeArr, manufacturer }: FilterProps) {
-  const { selectedTypes, selectedManufacturers, selectedSpecs, setSelectedTypes, setSelectedManufacturers, setSelectedSpecs, setMinPrice, maxPrice, minPrice, setMaxPrice} = useFilters();
-  const [searchParams, setSearchParams] = useSearchParams();
-  const { expandedGroups } = useMain();
-  function capitalizeFirstLetter(str: string) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  }
+  const {
+    selectedTypes,
+    selectedManufacturers,
+    selectedSpecs,
+    setSelectedTypes,
+    setSelectedManufacturers,
+    setSelectedSpecs,
+    setMinPrice,
+    maxPrice,
+    minPrice,
+    setMaxPrice,
+  } = useFilters();
 
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { expandedGroups, currentProducts} = useMain();
   function addQueryValue(key: string, value: string) {
-    value = capitalizeFirstLetter(value);
+    const val = value.toLowerCase().trim();
     const params = new URLSearchParams(searchParams.toString());
     const existing = params.get(key)?.split(',').filter(Boolean) ?? [];
-    if (!existing.includes(value)) existing.push(value);
+    if (!existing.includes(val)) existing.push(val);
     params.set(key, existing.join(','));
     setSearchParams(params);
   }
 
   function removeQueryValue(key: string, value: string) {
-    value = capitalizeFirstLetter(value);
+    const val = value.toLowerCase().trim();
     const params = new URLSearchParams(searchParams.toString());
     const existing = params.get(key)?.split(',').filter(Boolean) ?? [];
-    const updated = existing.filter(v => v !== value);
+    const updated = existing.filter((v) => v !== val);
     if (updated.length > 0) params.set(key, updated.join(','));
     else params.delete(key);
     setSearchParams(params);
   }
 
   return (
-       <>
+    <>
       <div className="filtering-container">
         {/* Manufacturers */}
         {manufacturer.length > 0 && (
           <div className="filter-group">
             <legend className="filter-group-title">Manufacturers</legend>
-            <div className={expandedGroups.manufacturer === 'manu' ? 'filter-options' : 'filter-options scrollable'}>
-              {manufacturer.map((m) => (
-                <label key={m.id} className="filter-checkbox-cont" htmlFor={`manu-${m.id}`}>
-                  <input
-                    id={`manu-${m.id}`}
-                    type="checkbox"
-                    checked={selectedManufacturers.some(t => t.toLowerCase() === m.id.toLowerCase())}
-                    onChange={() => {
-                      if (selectedManufacturers.includes(m.id)) removeQueryValue('manufacturers', m.id);
-                      else addQueryValue('manufacturers', m.id);
-                      setSelectedManufacturers(m.id);
-                    }}
-                  />
-                  {m.title}
-                </label>
-              ))}
+            <div
+              className={
+                expandedGroups.manufacturer === 'manu'
+                  ? 'filter-options'
+                  : 'filter-options scrollable'
+              }
+            >
+              {manufacturer.map((m) => {
+                const normalizedId = m.id.trim().toLowerCase();
+                return (
+                  <label
+                    key={m.id}
+                    className="filter-checkbox-cont"
+                    htmlFor={`manu-${normalizedId}`}
+                  >
+                    <div
+                      id={`manu-${normalizedId}`}
+                      className={`checkbox ${selectedManufacturers.includes(normalizedId.toLowerCase()) ? 'checked' : ''}`}
+                      onClick={() => {
+                        if (selectedManufacturers.includes(normalizedId))
+                          removeQueryValue('manufacturers', normalizedId);
+                        else addQueryValue('manufacturers', normalizedId);
+
+                        setSelectedManufacturers(normalizedId);
+                      }}
+                    >
+                    {selectedManufacturers.includes(normalizedId.toLowerCase()) && <Svg type="checkmark"/>}
+                    </div>
+                    {m.title}
+                  </label>
+                );
+              })}
             </div>
-            {manufacturer.length > 6 && <FilterShowGroupBtn type='manufacturer' val='manu' />}
-            <div className='pdr-long'/>
+            {manufacturer.length > 6 && (
+              <FilterShowGroupBtn type="manufacturer" val="manu" />
+            )}
+            <div className="pdr-long" />
           </div>
         )}
 
@@ -65,25 +92,43 @@ function Filter({ specArr, typeArr, manufacturer }: FilterProps) {
         {typeArr.length > 0 && (
           <div className="filter-group">
             <legend className="filter-group-title">Types</legend>
-            <div className={expandedGroups.types === 'type' ? 'filter-options' : 'filter-options scrollable'}>
-              {typeArr.map((type) => (
-                <label key={type.id} className="filter-checkbox-cont" htmlFor={`type-${type.id}`}>
-                  <input
-                    id={`type-${type.id}`}
-                    type="checkbox"
-                    checked={selectedTypes.some(t => t.toLowerCase() === type.id.toLowerCase())}
-                    onChange={() => {
-                      if (selectedTypes.includes(type.id)) removeQueryValue('types', type.id);
-                      else addQueryValue('types', type.id);
-                      setSelectedTypes(type.id);
-                    }}
-                  />
-                  {type.title}
-                </label>
-              ))}
+            <div
+              className={
+                expandedGroups.types === 'type'
+                  ? 'filter-options'
+                  : 'filter-options scrollable'
+              }
+            >
+              {typeArr.map((type) => {
+                const normalizedId = type.id.trim().toLowerCase();
+                return (
+                  <label
+                    key={type.id}
+                    className="filter-checkbox-cont"
+                    htmlFor={`type-${normalizedId}`}
+                  >
+                    <div
+                      id={`type-${normalizedId}`}
+                      className={`checkbox ${selectedTypes.includes(normalizedId.toLowerCase()) ? 'checked' : ''}`}
+                      onClick={() => {
+                        if (selectedTypes.includes(normalizedId))
+                          removeQueryValue('types', normalizedId);
+                        else addQueryValue('types', normalizedId);
+
+                        setSelectedTypes(normalizedId);
+                      }}
+                    >
+                    {selectedTypes.includes(normalizedId.toLowerCase()) && <Svg type="checkmark"/>}
+                    </div>
+                    {type.title}
+                  </label>
+                );
+              })}
             </div>
-            {typeArr.length > 6 && <FilterShowGroupBtn type='type' val='type' />}
-            <div className='pdr-long'/>
+            {typeArr.length > 6 && (
+              <FilterShowGroupBtn type="type" val="type" />
+            )}
+            <div className="pdr-long" />
           </div>
         )}
 
@@ -92,30 +137,48 @@ function Filter({ specArr, typeArr, manufacturer }: FilterProps) {
           specArr.map((spec) => (
             <div key={spec.id} className="filter-group">
               <legend className="filter-group-title">{spec.name}</legend>
-              <div className={expandedGroups.spec === spec.name ? "filter-options" : "filter-options scrollable"}>
-                {spec.data.map((s) => (
-                  <label key={s} className="filter-checkbox-cont" htmlFor={`spec-${spec.id}-${s}`}>
-                    <input
-                      id={`spec-${spec.id}-${s}`}
-                      type="checkbox"
-                      checked={selectedSpecs.some(t => t.toLowerCase() === s.toLowerCase())}
-                      onChange={() => {
-                        if (selectedSpecs.includes(s)) removeQueryValue('specs', s);
-                        else addQueryValue('specs', s);
-                        setSelectedSpecs(s);
-                      }}
-                    />
-                    {s}
-                  </label>
-                ))}
+              <div
+                className={
+                  expandedGroups.spec === spec.name
+                    ? 'filter-options'
+                    : 'filter-options scrollable'
+                }
+              >
+                {spec.data.map((s) => {
+                  const normalizedSpec = s.trim().toLowerCase();
+                  return (
+                    <label
+                      key={s}
+                      className="filter-checkbox-cont"
+                      htmlFor={`spec-${spec.id}-${normalizedSpec}`}
+                    >
+                      <div
+                        id={`spec-${spec.id}-${normalizedSpec}`}
+                        className={`checkbox ${selectedSpecs.includes(normalizedSpec.toLowerCase()) ? 'checked' : ''}`}
+                        onClick={() => {
+                          if (selectedSpecs.includes(normalizedSpec))
+                            removeQueryValue('specs', normalizedSpec);
+                          else addQueryValue('specs', normalizedSpec);
+
+                          setSelectedSpecs(normalizedSpec);
+                        }}
+                      >
+                    {selectedSpecs.includes(normalizedSpec.toLowerCase()) && <Svg type="checkmark"/>}
+                      </div>
+                      {s}
+                    </label>
+                  );
+                })}
               </div>
-              {spec.data.length > 6 && <FilterShowGroupBtn type='spec' val={spec.name} />}
-              <div className='pdr-long'/>
+              {spec.data.length > 6 && (
+                <FilterShowGroupBtn type="spec" val={spec.name} />
+              )}
+              <div className="pdr-long" />
             </div>
           ))}
 
         {/* Price */}
-        <div className="filter-group">
+        {(manufacturer.length > 0 || typeArr.length > 0 || specArr.length > 0) && <div className="filter-group">
           <legend className="filter-group-title">Price (USD)</legend>
           <div className="filtering-inputs">
             <input
@@ -134,7 +197,7 @@ function Filter({ specArr, typeArr, manufacturer }: FilterProps) {
               aria-label="Maximum price"
             />
           </div>
-        </div>
+        </div>}
       </div>
       <div className="vr" />
     </>
