@@ -24,7 +24,10 @@ function MyAccountSidebar(){
         <img src={userAvatar} alt="user avatar"/>  
         </div>
         <p className="ma-username">{name}</p>
-        <p className="signout-btn" onClick={() => Logout()}><Svg type='poweroff'/> Sign Out</p>
+        <p className="signout-btn" onClick={() => {
+            navi('/register');
+            Logout();
+            }}><Svg type='poweroff'/> Sign Out</p>
         </div>
 
         <div className="ma-btns-cont">
