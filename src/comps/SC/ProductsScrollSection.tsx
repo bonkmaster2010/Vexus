@@ -10,9 +10,10 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import type { PSSIF } from "../../utils/interfaces/components/SC.if";
 import '../../styles/Section.css';
+import Noti from "./noti";
 
-function PSS({ data, useRv, searchTerms, loading = false}: PSSIF) {
-  const { emptyAllRvItems, setShowOverlayedFilter, grid, setGrid, searchTerm, setCurrentProducts, currentProducts} = useMain();
+function PSS({ data, useRv, searchTerms, loading = false, search = false }: PSSIF) {
+  const { emptyAllRvItems, setShowOverlayedFilter, grid, setGrid, searchTerm, setCurrentProducts, currentProducts } = useMain();
   const { selectedTypes, selectedManufacturers, selectedSpecs, minPrice, maxPrice } = useFilters();
 
   const itemsPerPage = 8;
@@ -21,15 +22,15 @@ function PSS({ data, useRv, searchTerms, loading = false}: PSSIF) {
   const [currentFilter, setCurrentFilter] = useState<string>('popular');
   const navi = useNavigate();
 
-  /* MASSIVE (ykw else is massive?) filtering function right here */
-
-  // filters
+  /* =============================
+      Massive Filtering Function
+     ============================= */
   useEffect(() => {
     let baseData;
 
-    if (searchTerm && searchTerm.trim() !== '') {
-      const term = searchTerm.toLowerCase();
-      baseData = data.filter(p => p.name.toLowerCase().includes(term));
+    // Search filtering
+    if (search && searchTerm && searchTerm.trim() !== '') {
+      baseData = data.filter(p => matchWord(p.name, searchTerm));
     } else {
       baseData =
         searchTerms.length === 0 || searchTerms.includes('daily-offers')
@@ -44,28 +45,28 @@ function PSS({ data, useRv, searchTerms, loading = false}: PSSIF) {
               const lastCategory = categories[categories.length - 1];
               const parentCategory = CATEGORY_OVERRIDES[lastCategory] || lastCategory;
 
-              const searchWords = searchTerms
-                .flatMap(s => s.split('_').map(w => normalize(w)));
+              const searchWords = searchTerms.map(term => normalize(term).replace(/\s+/g, ''));
 
               return searchWords.some(word => matchWord(parentCategory, word));
             });
     }
 
-    // filters by types, specs, manufacturers
+    // Filter by types, manufacturers, specs
     const filtered = baseData
-      .filter(p =>
-        selectedTypes.length === 0 ||
-        selectedTypes.some(t => p.name.toLowerCase().includes(t.toLowerCase()))
-      )
-      .filter(p =>
-        selectedManufacturers.length === 0 ||
-        selectedManufacturers.some(m => p.name.toLowerCase().includes(m.toLowerCase()))
+      .filter(p => 
+      selectedTypes.length === 0 ||
+      selectedTypes.some(t => matchWord(p.name, t))
+    )
+    .filter(p => 
+      selectedManufacturers.length === 0 ||
+      selectedManufacturers.some(m => matchWord(p.name, m))
       )
       .filter(p =>
         selectedSpecs.length === 0 ||
         selectedSpecs.some(s => p.name.toLowerCase().includes(s.toLowerCase()))
       );
 
+    // Price filtering
     const min = parseFloat(minPrice);
     const max = parseFloat(maxPrice);
     const hasUserMin = minPrice !== '';
@@ -89,7 +90,7 @@ function PSS({ data, useRv, searchTerms, loading = false}: PSSIF) {
     } else if (currentFilter === 'price highest to lowest') {
       sorted = priceFiltered.slice().sort((a, b) => parseFloat(b.actual_price) - parseFloat(a.actual_price));
     } else {
-      sorted = priceFiltered;
+      sorted = priceFiltered; 
     }
 
     // Pagination
@@ -120,133 +121,156 @@ function PSS({ data, useRv, searchTerms, loading = false}: PSSIF) {
     maxPrice
   ]);
 
-  /* MASSIVE (ykw else is massive?) filtering function right here */
-  
-  // gets prev page index
   const handlePrev = () => {
-    setPageIndex(prev => Math.max(prev - 1, 1))
+    setPageIndex(prev => Math.max(prev - 1, 1));
   };
 
-  // gets next page index
   const handleNext = () => {
-    setPageIndex(prev => Math.min(prev + 1, totalPageStates))
+    setPageIndex(prev => Math.min(prev + 1, totalPageStates));
   };
-
-  useEffect(() => {
-    console.log('allProducts length:', currentProducts.length);
-  }, []);
 
   return (
-  <>
-    {currentProducts.length === 0 ? (
-      <div className="no-products-cont">
-        <img src={searchNotFound}/>
-        <p>No products found that match with the term "{searchTerms[0]}"!</p>
-        <button onClick={() => navi('/')}>Return To Home!</button>
-      </div>
-    ) : (
-      <>
-        <div className="products-filter-btns-cont">
-          <div className="sort-by-cont">
-            <span id="sort-by-text">Sort by</span>
-            <select className="filtering-select" onChange={(e) => setCurrentFilter(e.target.value)}>
-              <option>popularity</option>
-              <option value='price lowest to highest'>Price Lowest To Highest</option>
-              <option value='price highest to lowest'>Price Highest To Lowest</option>
-            </select>
+    <>
+      {/* No Products Found */}
+      {currentProducts.length === 0 && !loading ? (
+        search ? (
+          <div className="no-products-cont">
+            <img src={searchNotFound} />
+            <p>No products found that match with the term "{searchTerms[0]}"!</p>
+            <button onClick={() => navi('/')}>Return To Home!</button>
           </div>
+        ) : (
+          <Noti text="We can't seem to find any products here!" />
+        )
+      ) : (
+        <>
+          {/* Sorting and Layout Controls */}
+          <div className="products-filter-btns-cont">
+            <div className="sort-by-main-cont">
+              <div className="sort-by-cont">
+                <span id="sort-by-text">Sort by</span>
+                <select
+                  className="filtering-select"
+                  onChange={(e) => setCurrentFilter(e.target.value)}
+                >
+                  <option>Popularity</option>
+                  <option value='price lowest to highest'>Price Lowest To Highest</option>
+                  <option value='price highest to lowest'>Price Highest To Lowest</option>
+                </select>
+              </div>
 
-          {useRv && (
-            <button onClick={emptyAllRvItems} id="clear-rv-btn">
-              Clear All Your View History
-            </button>
-          )}
+              {useRv && (
+                <button onClick={emptyAllRvItems} id="clear-rv-btn">
+                  Clear All Your View History
+                </button>
+              )}
+            </div>
 
-          <div className="filter-btns-cont-smaller">
-            <button
-              onClick={() => setShowOverlayedFilter()}
-              className="overlayed-filter-btn"
-            >
-              <Svg type="filter" />
-            </button>
+            <div className="layout-cont">
+              <div className="filter-btns-cont-smaller">
+                <button
+                  onClick={() => setShowOverlayedFilter()}
+                  className="overlayed-filter-btn"
+                >
+                  <Svg type="filter" />
+                </button>
 
-            <div className="list-or-grid">
-              <button className={`list-btn ${grid ? '' : 'active'}`} onClick={() => setGrid(false)}>List</button>
-              <button className={`grid-btn ${grid ? 'active' : ''}`} onClick={() => setGrid(true)}>Grid</button>
+                <div className="list-or-grid">
+                  <button
+                    className={`list-btn ${grid ? '' : 'active'}`}
+                    onClick={() => setGrid(false)}
+                  >
+                    List
+                  </button>
+                  <button
+                    className={`grid-btn ${grid ? 'active' : ''}`}
+                    onClick={() => setGrid(true)}
+                  >
+                    Grid
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <hr />
+          <hr />
 
-        <div className={`products-cont${grid ? '' : 'list'}`}>
-          {currentProducts.map((pro, i) =>
-           !loading ?
-            grid ? (
-              <PCardComp
-                key={`${pro.id}-${i}`}
-                route={slugify(pro.name)}
-                title={pro.name}
-                src={pro.image}
-                price={pro.discount_price}
-                salePrice={pro.actual_price}
-                CartType={false}
-              />
-            ) : (
-              <ListCard
-                key={`${pro.id}-${i}`}
-                product={pro}
-                route={slugify(pro.name)}
-                title={pro.name}
-                src={pro.image}
-                price={pro.discount_price}
-                salePrice={pro.actual_price}
-              />
-            )
-            : !loading ?
-              <PCardComp
-              key={pro.id}
-              product={pro}
-              route={''}
-              style="pc-card gif"
-              src={spinner}
-              title={'......'}
-              price={'......'}
-              salePrice={''}
-              />
-              :
-              <ListCard
-              key={pro.id}
-              product={pro}
-              route={''}
-              style="pc-card gif"
-              src={spinner}
-              title={'......'}
-              price={'......'}
-              salePrice={''}
-              />
-          )}
-        </div>
+          {/* Products Grid or List */}
+          <div className={`products-cont${grid ? '' : 'list'}`}>
+            {loading
+              ? 
+                Array.from({ length: 8 }).map((_, i) =>
+                  grid ? (
+                    <PCardComp
+                      key={`loading-${i}`}
+                      product={{} as any}
+                      route=''
+                      style="pc-card gif"
+                      src={spinner}
+                      title="......"
+                      price="......"
+                      salePrice=""
+                      CartType={false}
+                    />
+                  ) : (
+                    <ListCard
+                      key={`loading-${i}`}
+                      product={{} as any}
+                      route=''
+                      style="pc-card gif"
+                      src={spinner}
+                      title="......"
+                      price="......"
+                      salePrice=""
+                    />
+                  )
+                )
+              : 
+                currentProducts.map((pro, i) =>
+                  grid ? (
+                    <PCardComp
+                      key={`${pro.id}-${i}`}
+                      route={slugify(pro.name)}
+                      title={pro.name}
+                      src={pro.image}
+                      price={pro.discount_price}
+                      salePrice={pro.actual_price}
+                      CartType={false}
+                    />
+                  ) : (
+                    <ListCard
+                      key={`${pro.id}-${i}`}
+                      product={pro}
+                      route={slugify(pro.name)}
+                      title={pro.name}
+                      src={pro.image}
+                      price={pro.discount_price}
+                      salePrice={pro.actual_price}
+                    />
+                  )
+                )}
+          </div>
 
-        <div className="pagination-section">
-          <button
-            className={`pagination-btn ${pageIndex > 1 ? '' : 'unactive'}`}
-            onClick={handlePrev}
-          >
-            <Svg type="left-arrow-2"/>
-          </button>
+          {/* Pagination Controls */}
+          <div className="pagination-section">
+            <button
+              className={`pagination-btn ${pageIndex > 1 ? '' : 'unactive'}`}
+              onClick={handlePrev}
+            >
+              <Svg type="left-arrow-2" />
+            </button>
 
-          <p>{pageIndex} / {totalPageStates}</p>
+            <p>{pageIndex} / {totalPageStates}</p>
 
-          <button
-            className={`pagination-btn ${pageIndex < totalPageStates ? '' : 'unactive'}`}
-            onClick={handleNext}
-          >
-            <Svg type="right-arrow-2"/>
-          </button>
-        </div>
-      </>
-      )}  
+            <button
+              className={`pagination-btn ${pageIndex < totalPageStates ? '' : 'unactive'}`}
+              onClick={handleNext}
+            >
+              <Svg type="right-arrow-2" />
+            </button>
+          </div>
+        </>
+      )}
     </>
   );
 }

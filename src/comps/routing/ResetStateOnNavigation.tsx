@@ -8,11 +8,12 @@ type ResetWrapperProps = {
 
 export function ResetOnRouteChange({ children }: ResetWrapperProps) {
   const location = useLocation();
-  const { setShowOverlayedFilter, setShowMM, resetGroup} = useMain();
+  const { setShowOverlayedFilter, setShowMM, resetGroup, setSearchTerm} = useMain();
     useEffect(() => {
-    resetGroup()
+    resetGroup();
     setShowOverlayedFilter(false);
-    setShowMM(false)
+    setShowMM(false);
+    setSearchTerm('');
   }, [location.pathname]);
 
   return <>{children}</>;

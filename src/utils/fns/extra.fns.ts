@@ -10,14 +10,27 @@ export function getPageItems<T>(items: T[], page: number, pageSize: number): T[]
   return items.slice(start, end);
 };
 
-  export const normalize = (str: string) =>
-    str.replace(/[^a-z0-9\s]/gi, '').toLowerCase().trim();
+export const normalize = (str: string) =>
+  str.replace(/[^a-z0-9]/gi, '').toLowerCase().trim();
 
-  export const matchWord = (str: string, word: string) => {
-    const normalizedStr = normalize(str).replace(/\s+/g, '');
-    const normalizedWord = normalize(word).replace(/\s+/g, '');
-    return normalizedStr.includes(normalizedWord);
-  };
+export const singularize = (str: string) => {
+  if (str.endsWith('ies') && str.length > 3) {
+    return str.slice(0, -3) + 'y';
+  } else if (str.endsWith('es') && str.length > 3) {
+    return str.slice(0, -2);
+  } else if (str.endsWith('s') && str.length > 2) {
+    return str.slice(0, -1);
+  }
+  return str;
+};
+
+export const matchWord = (str: string, word: string) => {
+  const normalizedStr = singularize(normalize(str).replace(/\s+/g, ''));
+  const normalizedWord = singularize(normalize(word).replace(/\s+/g, ''));
+  return normalizedStr.includes(normalizedWord);
+};
+
+
 
 
   export const CATEGORY_OVERRIDES: Record<string, string> = {

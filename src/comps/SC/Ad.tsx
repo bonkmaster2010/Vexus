@@ -17,19 +17,20 @@ function Ad() {
   function handleRouting(id: string, route: string, filterType?: 'specs' | 'types' | 'manufacturers') {
     const updatedParams = updateFilter(filterType ? filterType : "types", id);
     navi(`/${route}?${updatedParams.toString()}`);
-  }
+  };
 
-   function left() {
+   function left(e: any) {
+   e.stopPropagation();
    setImageIndex((prev) => (prev === 0 ? srcs.length - 1 : prev - 1));
-   }
+   };
 
-   function right() {
+   function right(e: any) {
+    e.stopPropagation();
    setImageIndex((prev) => (prev === srcs.length - 1 ? 0 : prev + 1));
-   }
-
+   };
 
   return (
-    <div className="ad" onClick={() => 
+    <div className={`ad ${srcs[imageIndex].route && 'routable'}`} onClick={() => 
     {
      if(srcs[imageIndex].route){
      handleRouting(srcs[imageIndex].type, srcs[imageIndex].route, 'types');
@@ -48,8 +49,8 @@ function Ad() {
       </div>
 
       <div className="image-btn-cont">
-        <button onClick={left}>{'❮'}</button>
-        <button onClick={right}>{'❯'}</button>
+        <button onClick={(e) => left(e)}>{'❮'}</button>
+        <button onClick={(e) => right(e)}>{'❯'}</button>
       </div>
     </div>
   );

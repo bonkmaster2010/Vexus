@@ -7,7 +7,7 @@ export const MT_B = {
     shawmi: {brand: 'shawmi', src: sha},
     huawei: {brand: 'huawei', src: huawei},
     nokia: {brand: 'nokia', src: nokia},
-    micro: {brand: 'microsoft', src: micro},
+    microsoft: {brand: 'microsoft', src: micro},
     oppo: {brand: 'oppo', src: oppo},
     ubl: {brand: 'ubl', src: ubl},
     sony: {brand: 'sony', src: sony},

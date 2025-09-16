@@ -158,6 +158,15 @@
   justify-content: space-between;
 }
 
+.mm-main-link-wrapper:hover{
+  color: #f1f1f1;
+  background-color: rgba(77, 35, 184, 0.15);
+}
+
+.mm-main-link-wrapper:hover .mm-main-link{
+  border-left: 4px solid #4d23b8;
+}
+
 .mm-main-link {
   font-weight: 600;
   font-size: 0.9rem;
@@ -165,12 +174,7 @@
   text-decoration: none;
   padding: 8px 12px;
   transition: background-color 0.25s, color 0.25s;
-}
-
-.mm-main-link:hover {
-  color: #f1f1f1;
-  background-color: rgba(77, 35, 184, 0.15);
-  border-left: 4px solid #4d23b8;
+  transition: border 0.1s ease;
 }
 
 .mm-main-link.active {
@@ -232,6 +236,7 @@
   padding-left: 2px;
   gap: 6px;
   margin: 0;
+  padding-bottom: 30px;
 }
 
 .mm-sublinks-group.scrollable {
@@ -246,7 +251,6 @@
   color: #b8a8ff; 
   text-decoration: none;
   padding: 6px 10px;
-  border-radius: 3px;
   transition: background-color 0.2s, color 0.2s;
   line-height: 1.2;
 }
@@ -254,7 +258,6 @@
 .mm-sublink:hover {
   color: #fff;
   background-color: rgba(177, 168, 255, 0.12);
-  box-shadow: 0 0 6px #b1a8ff;
 }
 
 .mm-submenu-btn-cont {

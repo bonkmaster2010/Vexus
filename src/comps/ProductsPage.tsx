@@ -26,7 +26,7 @@ function ProductsPage({ categoryData, useRv = false }: ProductsProps) {
  
   const categoryInfo = !useRv && categoryData
     ? categoryData[category] ?? { filters: [], types: [], manufacturers: [], title: "Products" }
-    : { filters: [], types: [], manufacturers: [], title: "Products" };
+    : { filters: [], types: [], manufacturers: [], title: "" };
 
   const categoryTitle = categoryInfo?.title;
 
@@ -49,11 +49,11 @@ function ProductsPage({ categoryData, useRv = false }: ProductsProps) {
   <>
       <div className="main-products-cont">
         <div className="filter-products-cont">
-          <Filter
+          {!useRv && <Filter
             specArr={categoryInfo.filters ?? []}
             typeArr={categoryInfo.types ?? []}
             manufacturer={categoryInfo.manufacturers ?? []}
-          />
+          />}
           <div className="products-cont-wrapper">
             <h3 id="products-page-title">{categoryTitle}</h3>
             <PSS
@@ -67,7 +67,7 @@ function ProductsPage({ categoryData, useRv = false }: ProductsProps) {
         </div>
       </div>
 
-      {showOverlayedFilter && (
+      {showOverlayedFilter && !useRv && (
         <OverlayedFilter
           Filter={Filter}
           filterProps={{

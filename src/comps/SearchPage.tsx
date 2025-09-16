@@ -48,12 +48,8 @@ function SearchPage({ categoryData }: ProductsProps) {
             manufacturer={categoryInfo.manufacturers ?? []}
           />}
           <div className="products-cont-wrapper">
-            <h3 id="products-page-title">{categoryTitle}</h3>
-            {!loading ? (
-              <PSS useRv={false} searchTerms={[query]} data={data} />
-            ) : (
-              <p>Loading products...</p>
-            )}
+            <h3 id="products-page-title">{categoryTitle}</h3>    
+            <PSS useRv={false} searchTerms={[query]} data={data} search={true} loading={loading} />
           </div>
         </div>
       </div>

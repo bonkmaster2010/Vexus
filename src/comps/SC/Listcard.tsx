@@ -11,18 +11,25 @@ function ListCard({product, title, price, src, style, route, salePrice}: Listcar
     <>
     <div onClick={() => {
       if(product) addItemToRv(product);
-      navi(`/product/${route}`);
       }} className={style ? style : 'list-card'}>
          
         <div className='list-card-content-wrapper'>
         <div className='main-card-content'> 
         <div className='list-card-img-cont'>
-        <img onClick={() => navi(`/product/${route}`)} src={src} alt={`${title} image`}/>
+        <img onClick={() => {
+          if(product && route.trim() !== '') {
+          addItemToRv(product);
+          navi(`/product/${route}`)}
+          }
+          } src={src} alt={`${title} image`}/>
         </div>
 
         <div className='row-wrapper'>
         <div className='list-card-middle-row'>
-          <h4 id='list-card-product-title' onClick={() => navi(`/product/${route}`)}>{title.slice(0, 250)}</h4>
+          <h4 id='list-card-product-title' onClick={() => {
+            if(product) addItemToRv(product);
+            navi(`/product/${route}`)}
+            }>{title.slice(0, 250)}</h4>
         </div>
 
         <div className='list-card-last-row'>   

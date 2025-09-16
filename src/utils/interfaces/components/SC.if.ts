@@ -81,6 +81,7 @@ export interface PSSIF{
     cf?: any,
     searchTerms: string[];
     loading?: boolean;
+    search?: boolean;
 };
 
 /* Extra */

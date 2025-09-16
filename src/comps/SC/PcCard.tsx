@@ -10,8 +10,10 @@ function PCardComp({product, title, price, src, style, route, salePrice, CartTyp
   return (
     <>
     <div onClick={() => {
-      if(product) addItemToRv(product);
+      if(product && route.trim() !== '') {
+      addItemToRv(product);
       navi(`/product/${route}`);
+      }
       }} className={style ? style : 'pc-card'}>
         <div className='pc-card-img-cont'>
         <img src={src} alt={`${title} image`}/>

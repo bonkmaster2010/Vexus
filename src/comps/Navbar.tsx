@@ -20,7 +20,6 @@ function Navbar(){
       if(term.trim().length > 0) {
         setSearchTerm(term);
         navi(`/search/${term}`);
-        window.location;
       }
     }
 

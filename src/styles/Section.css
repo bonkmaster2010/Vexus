@@ -65,7 +65,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
-    width: 100%;
+    width: fit-content;
 }
 
 .products-cont.list {
@@ -91,6 +91,7 @@
     display: flex;
     align-items: center;
     border: 1px solid #2a1e38;
+    height: 100%;
 }
 
 .grid-btn, .list-btn {
@@ -112,8 +113,16 @@
 
 .sort-by-cont {
     display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 8px;
+}
+
+.sort-by-main-cont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
 }
 
 .pagination-section {

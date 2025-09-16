@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router";
 import PSS from "./SC/ProductsScrollSection";
 import Noti from "./SC/noti";
 import Filter from "./Filter";
 import OverlayedFilter from "./SC/OverlayedFilter";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import { CAL_B } from "../utils/brand-page/CAL/CAl.brands";
 import { useMain } from "../states/MainStates";
 import { FullBrandArr } from "../utils/brand-page/all.brand.arr";
+import { fetchAllProducts, type Product } from "../utils/extras/Data";
 import type { BPIF } from "../utils/interfaces/components/main.comps.if";
 import "../styles/BrandPage.css";
-import { fetchAllProducts, type Product } from "../utils/extras/Data";
 
 function BrandPage({}: BPIF) {
   const { showOverlayedFilter } = useMain();
@@ -35,14 +35,14 @@ function BrandPage({}: BPIF) {
   }, [brand]);
 
   if (!brand) {
-    return <Noti text="This brand page does not exist ok" />;
+    return <Noti text="This brand page does not exist!" />;
   }
 
-  const b = FullBrandArr[brand];
+  const b = FullBrandArr[brand] || "brand";
 
   return (
     <>
-      {!showOverlayedFilter && brandData.length == 0 && <Noti text="This brand doesn't have any products currently!"/>}
+      {(b == undefined || !showOverlayedFilter && brandData.length == 0) && <Noti text="This brand doesn't have any products currently!"/>}
       {!showOverlayedFilter && brandData.length > 0 && (
         <div className="main-products-cont">
           <div className="filter-products-cont">
@@ -55,7 +55,7 @@ function BrandPage({}: BPIF) {
                 <h3>{b.brand.toUpperCase()}</h3>
               </div>
               <hr />
-              <PSS searchTerms={[]} data={brandData} title={b.brand} useRv={false} />
+              <PSS searchTerms={[]} data={brandData} title={b.brand} useRv={false} loading={loading} />
             </div>
           </div>
         </div>
