@@ -31,12 +31,10 @@ function AccountCards(){
     
     <div className='account-cards-wrapper'>
     {AccountCardsImgs.map(img => (
-
     <div className='account-card' style={{backgroundImage: `url(${img.src})`}} onClick={() => navi(img.route)}>
     <p className='account-card-title'>{img.title}</p>
     <p className='account-card-overview'>{img.overview}</p>
     </div>
-
     ))}
     </div>
 

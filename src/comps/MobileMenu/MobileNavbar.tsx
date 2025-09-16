@@ -6,8 +6,10 @@ import '../../styles/Mobile.css'
 
 function MobileNavbar(){
   const navi = useNavigate();
-  const { setShowMM, cart} = useMain();
+  const { setShowMM, cart, setSearchTerm} = useMain();
   const [isMobile, setIsMobile] = useState(false);
+  const [term, setTerm] = useState<string>('');
+
 
     useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 770);
@@ -15,6 +17,13 @@ function MobileNavbar(){
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
     }, []);
+
+      function search(){
+      if(term.trim().length > 0) {
+        setSearchTerm(term);
+        navi(`/search/${term}`);
+      }
+    }
 
     return (
     <div className="mm-navbar">
@@ -36,7 +45,12 @@ function MobileNavbar(){
 
      </div>
 
-      <input className='mm-input' placeholder='What are you looking for?'/>
+      <input 
+      onChange={(e) => setTerm(e.target.value)} 
+      onKeyDown={(e) => {
+        if(e.key === 'Enter') search();
+        }}
+       className='mm-input' placeholder='What are you looking for?'/>
     </div>
     )
 };

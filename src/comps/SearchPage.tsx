@@ -5,13 +5,11 @@ import { useEffect, useState } from "react";
 import { useMain } from "../states/MainStates";
 import { allSubLinks } from "../utils/Links/Electronics/ElectronicSubLinks";
 import { fetchAllProducts, type Product } from "../utils/extras/Data";
-import { useParams } from "react-router";
 import type { ProductsProps } from "../utils/interfaces/components/main.comps.if";
 import "../styles/Products.css";
 
 function SearchPage({ categoryData }: ProductsProps) {
-  const { showOverlayedFilter, currentProducts} = useMain();
-  const { query = '???' } = useParams<{query: string }>();
+  const { showOverlayedFilter, currentProducts, searchTerm } = useMain();
 
   const [data, setData] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
@@ -49,7 +47,7 @@ function SearchPage({ categoryData }: ProductsProps) {
           />}
           <div className="products-cont-wrapper">
             <h3 id="products-page-title">{categoryTitle}</h3>    
-            <PSS useRv={false} searchTerms={[query]} data={data} search={true} loading={loading} />
+            <PSS useRv={false} searchTerms={[searchTerm]} data={data} search={true} loading={loading} />
           </div>
         </div>
       </div>
