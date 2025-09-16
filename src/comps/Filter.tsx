@@ -1,10 +1,10 @@
+import Svg from '../utils/extras/Svgs';
 import FilterShowGroupBtn from './SC/Filter_Show_Group_btn';
 import { useFilters } from '../states/FilterState';
 import { useMain } from '../states/MainStates';
 import { useSearchParams } from 'react-router';
 import type { FilterProps } from '../utils/interfaces/components/SC.if';
 import '../styles/Filter.css';
-import Svg from '../utils/extras/Svgs';
 
 function Filter({ specArr, typeArr, manufacturer }: FilterProps) {
   const {
@@ -21,7 +21,7 @@ function Filter({ specArr, typeArr, manufacturer }: FilterProps) {
   } = useFilters();
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const { expandedGroups, currentProducts} = useMain();
+  const { expandedGroups } = useMain();
   function addQueryValue(key: string, value: string) {
     const val = value.toLowerCase().trim();
     const params = new URLSearchParams(searchParams.toString());
