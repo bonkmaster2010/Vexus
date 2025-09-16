@@ -230,6 +230,7 @@ function PSS({ data, useRv, searchTerms, loading = false, search = false }: PSSI
                   grid ? (
                     <PCardComp
                       key={`${pro.id}-${i}`}
+                      product={pro}
                       route={slugify(pro.name)}
                       title={pro.name}
                       src={pro.image}

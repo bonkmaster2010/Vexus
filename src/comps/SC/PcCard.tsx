@@ -10,7 +10,7 @@ function PCardComp({product, title, price, src, style, route, salePrice, CartTyp
   return (
     <>
     <div onClick={() => {
-      if(product && route.trim() !== '') {
+      if(product) {
       addItemToRv(product);
       navi(`/product/${route}`);
       }

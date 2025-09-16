@@ -133,7 +133,7 @@ input[type=number] {
   z-index: 10;
   font-size: 13px;
   line-height: 21px;
-  margin: 20px 15px;
+  margin: 20px auto;
   margin-bottom: 20px;
   font-weight: 400;
   border-radius: 4px;

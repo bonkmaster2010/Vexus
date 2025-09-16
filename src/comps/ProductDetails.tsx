@@ -167,10 +167,9 @@ function ProductDetails() {
 
       <div className="pdr-long" />
 
-      {(!specs || specs.length === 0) && <Noti text="No specifications listed" />}
-
-      {specs && specs.length > 0 && (
         <div className="specs-cont">
+        {(!specs || specs.length === 0) && <Noti text="No specifications listed" />}
+        {specs && specs.length > 0 && (
           <div className="specs">
             <h3>General Specifications</h3>
             <div className="spec-table">
@@ -185,9 +184,8 @@ function ProductDetails() {
                 </div>
               ))}
             </div>
-          </div>
+          </div>)}
         </div>
-      )}
 
       <div className="pdr-long" />
 

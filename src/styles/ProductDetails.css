@@ -369,6 +369,10 @@
 }
 
 /* Specs Table */
+.spec-cont .noti-cont{
+  margin: 0px;
+}
+
 .specs-cont{
   padding: 0px 22px;
 }
@@ -457,7 +461,6 @@
   width: 100%;
   gap: 5px;
 }
-
 
 .quantity-select{
   background-color: #1f1f1f;

@@ -111,6 +111,7 @@
   background-color: #1a1a1a;
   color: white;
   border: 1px solid #5D3FD3;
+  font-size: 16px;
 }
 
 .filtering-inputs input:focus{
