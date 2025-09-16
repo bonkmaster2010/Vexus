@@ -3,18 +3,13 @@ import userAvatar from '../../images/extra/microless-user-avatar.webp';
 import { useCreateUser } from "../../states/CreateUserState";
 import { useMain } from "../../states/MainStates";
 import { NavLink, useNavigate } from "react-router";
-import { useEffect } from "react";
 import '../../styles/MyAccountSidebar.css';
 
 function MyAccountSidebar(){
-
-    const { name } = useCreateUser()
-    const { Logout, registered } = useMain();
+    
     const navi = useNavigate();
-
-    useEffect(() => {
-    if(!registered){navi('/register')}
-    }, [registered])
+    const { name } = useCreateUser()
+    const { Logout } = useMain();
 
     return (
         <div className="main-ma-sidebar">

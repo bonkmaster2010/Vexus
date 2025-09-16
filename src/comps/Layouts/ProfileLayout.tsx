@@ -1,11 +1,17 @@
 import MyAccountSidebar from "../profile.things.lol/MyAccount-sidebar";
-import { Outlet } from "react-router";
+import { Outlet, useNavigate } from "react-router";
 import { useMain } from "../../states/MainStates";
+import { useEffect } from "react";
 
 
 function ProfileLayout(){
     
-    const { isMobile } = useMain();
+    const { isMobile, registered} = useMain();
+    const navi = useNavigate();
+
+    useEffect(() => {
+    if(!registered) navi('/register');
+    }, [registered])
 
     return (
     <div className="profile-layout">
