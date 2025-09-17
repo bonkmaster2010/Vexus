@@ -3,7 +3,6 @@ import { useFiltersWithQuery } from "../hooks/useFilterWithQuery";
 import { useMain } from "../../states/MainStates";
 import type { DropdownProps } from "../../utils/interfaces/dropdown";
 import type { DropDownLink } from "../../utils/Links/Electronics/ElectronicLinks";
-
 import '../../styles/Dropdown.css';
 
 function Dropdown({ data, route, src, brandArr = [], type }: DropdownProps) {
@@ -15,8 +14,11 @@ function Dropdown({ data, route, src, brandArr = [], type }: DropdownProps) {
 
   // uses update filter fn & navigates
   function handleRouting(id: string, route: string, routeType: string, filterType?: 'specs' | 'types' | 'manufacturers') {
-    const updatedParams = updateFilter(filterType ? filterType : "types", id);
-    navigate(`/${routeType}/${route}?${updatedParams.toString()}`);
+    if(filterType){
+      const updatedParams = updateFilter(filterType, id);
+      navigate(`/${routeType}/${route}?${updatedParams.toString()}`);
+    };
+    navigate(`/${routeType}/${route}`)
   }
 
   if (dropdown !== type) return null;
@@ -48,8 +50,10 @@ function Dropdown({ data, route, src, brandArr = [], type }: DropdownProps) {
                 key={`sublink-${type}-${sl.id}-${sl.route}`}
                 to={`/category/${sl.route}`}
                 onClick={(e) => {
+                  if(sl.id){
                   e.preventDefault();
-                  handleRouting(sl.id, `${sl.route}`, "category", link.filterType);
+                  const ft = link.filterType ?? undefined
+                  handleRouting(sl.id, `${sl.route}`, "category", ft)};
                 }}
               >
                 {sl.title}

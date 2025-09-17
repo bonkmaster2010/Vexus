@@ -343,7 +343,7 @@
   }
 }
 
-@media (max-width: 770px) {
+@media (max-width: 670px) {
   .main-card-content {
     flex-direction: column;   
     height: fit-content;

@@ -13,10 +13,10 @@ function CartDescription({ product, navigate}: {product: Product, navigate: any}
                 
                 <div className="prices-sale-normal-cont">
                 <p className="cart-card-price">USD {product.actual_price}</p>
-                {product.discount_price && <p className="cart-card-sale-price">USD {product.discount_price}</p>}
+                {product.discount_price !== null && <p className="cart-card-sale-price">USD {product.discount_price}</p>}
                 </div>
 
-                {product.warranty && <p className="cart-card-warranty-price">
+                {product.warranty > 0 && <p className="cart-card-warranty-price">
                     + {product.warranty} Year warranty: USD {product.warranty === 1 ? "1099" : product.warranty === 2 ? "2099" : "3099"}
                 </p>}
             </div>

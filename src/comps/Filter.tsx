@@ -203,7 +203,7 @@ function Filter({ specArr, typeArr, manufacturer }: FilterProps) {
           </div>
         </div>}
       </div>
-      <div className="vr" />
+      {(manufacturer.length > 0 || typeArr.length > 0 || specArr.length > 0) && <div className="vr" />}
     </>
   );
 }

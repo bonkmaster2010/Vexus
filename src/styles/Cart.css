@@ -23,12 +23,15 @@
 }
 
 .left-mark-title {
+    display: flex;
+    align-self: start;
     padding-left: 10px;
     border-left: 4px solid purple;
     font-size: 17px;
     white-space: nowrap;      
     overflow: hidden;          
     text-overflow: ellipsis; 
+    text-align: center;
     margin-left: 0px;
 }
 

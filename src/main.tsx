@@ -39,7 +39,7 @@ createRoot(document.getElementById('root')!).render(
       <Route path='/categories/:category' element={<CategoryPage dataArr={allCPCData} dataCategories={allCatesFilters}/>}/>       
 
       <Route path='/category/:category' element={<ProductsPage categoryData={fullElecCategoriesData}/>}/>
-      <Route path='/search/:query' element={<SearchPage categoryData={fullElecCategoriesData}/>}/>
+      <Route path='/search/:term' element={<SearchPage categoryData={fullElecCategoriesData}/>}/>
       <Route path='/b/:brand' element={<BrandPage/>}/>
       <Route path='/all-rv-products' element={<ProductsPage useRv={true} title="Your Recently Viewed Items" />}/>
       

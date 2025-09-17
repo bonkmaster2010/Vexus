@@ -15,10 +15,10 @@ import Noti from "./noti";
 // product scroll sections
 function PSS({ data, useRv, searchTerms, loading = false, search = false }: PSSIF) {
   // Variables
-  const { emptyAllRvItems, setShowOverlayedFilter, grid, setGrid, searchTerm, setCurrentProducts, currentProducts } = useMain();
+  const { emptyAllRvItems, setShowOverlayedFilter, grid, setGrid, setCurrentProducts, currentProducts } = useMain();
   const { selectedTypes, selectedManufacturers, selectedSpecs, minPrice, maxPrice } = useFilters();
 
-  const itemsPerPage = 8;
+  const itemsPerPage = 14;
   const [pageIndex, setPageIndex] = useState(1);
   const [totalPageStates, setTotalPagesState] = useState<number>(1);
   const [currentFilter, setCurrentFilter] = useState<string>('popular');
@@ -31,9 +31,10 @@ function PSS({ data, useRv, searchTerms, loading = false, search = false }: PSSI
     let baseData;
 
     // Search filtering
-    if (search && searchTerm && searchTerm.trim() !== '') {
-      baseData = data.filter(p => matchWord(p.name, searchTerm));
-    } else {
+  if (search && searchTerms[0] && searchTerms[0].trim() !== '') {
+    baseData = data.filter(p => matchWord(p.name, searchTerms[0]));
+  }
+  else {
       baseData =
         searchTerms.length === 0 || searchTerms.includes('daily-offers')
           ? data
@@ -114,7 +115,6 @@ function PSS({ data, useRv, searchTerms, loading = false, search = false }: PSSI
     selectedManufacturers,
     selectedSpecs,
     selectedTypes,
-    searchTerm,
     searchTerms,
     data,
     pageIndex,

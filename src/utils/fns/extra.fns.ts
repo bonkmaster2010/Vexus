@@ -38,6 +38,7 @@ export const matchWord = (str: string, word: string) => {
   "in-ear": "headphones",
   "on-ear": "headphones",
   "over-ear": "headphones",
+  "earphones": "headphones",
   "bumpers": "cases & covers",
   "cradles": "car mount holders",
   "tripods": "selfie sticks",
@@ -86,5 +87,5 @@ export function classifySpec(spec: string) {
     }
   }
   
-  return { type: 'Other', value: spec };
+  return { type: 'Unspecified', value: spec };
 }

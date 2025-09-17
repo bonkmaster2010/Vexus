@@ -9,7 +9,7 @@ export interface DropDownLink {
   cf: any;
   key: string;
   display?: boolean;  
-  filterType?: 'specs' | 'types' | 'manufacturers';
+  filterType?: 'specs' | 'types' | 'manufacturers' | undefined;
 }
 
 export const CALLinks: DropDownLink[] = [
@@ -92,7 +92,7 @@ export const MBLinks: DropDownLink[] = [
     subLinks: MTSubLinks.mobileAccessories,
     cf: mtAcessoriesCf,
     key: 'ma',
-    filterType: 'manufacturers'
+    filterType: undefined
   }
 ];
 
