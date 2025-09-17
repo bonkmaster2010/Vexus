@@ -12,7 +12,9 @@ import type { PSSIF } from "../../utils/interfaces/components/SC.if";
 import '../../styles/Section.css';
 import Noti from "./noti";
 
+// product scroll sections
 function PSS({ data, useRv, searchTerms, loading = false, search = false }: PSSIF) {
+  // Variables
   const { emptyAllRvItems, setShowOverlayedFilter, grid, setGrid, searchTerm, setCurrentProducts, currentProducts } = useMain();
   const { selectedTypes, selectedManufacturers, selectedSpecs, minPrice, maxPrice } = useFilters();
 
@@ -23,7 +25,7 @@ function PSS({ data, useRv, searchTerms, loading = false, search = false }: PSSI
   const navi = useNavigate();
 
   /* =============================
-      Massive Filtering Function
+      Massive Filtering Function (ykw else is massive?)
      ============================= */
   useEffect(() => {
     let baseData;

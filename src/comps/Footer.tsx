@@ -1,10 +1,12 @@
 import payment from '../images/payment-options.png';
 import { useNavigate } from 'react-router';
 import { useMain } from '../states/MainStates';
-import '../styles/Footer.css';
 import { slugify } from '../utils/fns/extra.fns';
+import '../styles/Footer.css';
+
 
 function Footer() {
+  // Variables
   const navi = useNavigate();
   const { rv } = useMain();
    

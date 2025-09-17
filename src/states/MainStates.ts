@@ -6,6 +6,7 @@ import { slugify } from "../utils/fns/extra.fns";
 export const useMain = create<Main>()(
   persist(
     (set, get) => ({
+      
       /* Cart */
       cart: [],
       addItemToCart: (product, quantity, warranty) => {

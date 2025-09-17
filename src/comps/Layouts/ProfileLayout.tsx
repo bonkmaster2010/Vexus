@@ -4,8 +4,9 @@ import { useMain } from "../../states/MainStates";
 import { useEffect } from "react";
 
 
+/* profile layout (shows the profile sidebar and another component) */
 function ProfileLayout(){
-    
+    // Variables
     const { isMobile, registered} = useMain();
     const navi = useNavigate();
 

@@ -9,6 +9,7 @@ import '../../styles/AccountCards.css';
 
 
 function AccountCards(){
+    // Variables
     const navi = useNavigate();
     const { isMobile, Logout} = useMain();
     const { name } = useCreateUser();

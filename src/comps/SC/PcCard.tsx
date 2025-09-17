@@ -3,7 +3,9 @@ import { useMain } from '../../states/MainStates';
 import type { PCard } from '../../utils/interfaces/components/SC.if';
 import '../../styles/PcCard.css';
 
+// shows a pc card (a product card im just too lazy to change th name and having to go through each freaking component)
 function PCardComp({product, title, price, src, style, route, salePrice, CartType}: PCard){
+  // Variables
   const navi = useNavigate();
   const { addItemToCart, addItemToRv } = useMain()
   

@@ -3,14 +3,14 @@ import { useCreateUser } from "../../states/CreateUserState";
 import "../../styles/ProfileDetails.css";
 
 function ProfileDetails() {
+  // Variables
   const { name, setName, email, password, setPassword } = useCreateUser();
-
   const [newName, setNewName] = useState(name);
-
   const [oldPassword, setOldPassword] = useState("");
   const [newPass, setNewPass] = useState("");
   const [confirmNewPass, setConfirmNewPass] = useState("");
 
+  // Updates the useCreateUser name setter with the input values
   const handleSaveDetails = () => {
     if (!newName.trim()) {
       alert("Name cannot be empty.");
@@ -24,6 +24,7 @@ function ProfileDetails() {
     alert("Profile details updated successfully.");
   };
 
+  // Updates the useCreateUser password setter with the input values
   const handleChangePassword = () => {
     if (oldPassword !== password) {
       alert("Old password is incorrect.");
@@ -47,7 +48,6 @@ function ProfileDetails() {
   return (
     <>
       <div className="mm-my-profile-main-cont">
-
         <h3 className="generic-title">Profile Details</h3>
 
         <div className="mm-my-profile-content-wrapper">

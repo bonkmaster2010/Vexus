@@ -7,11 +7,11 @@ import type { CartProduct } from "../../utils/interfaces/components/SC.if";
 import '../../styles/Wishlist.css';
 
 function Wishlist(){
+  // Variables
   const { wishlist } = useMain();
   const { page } = useParams<{ page: string }>(); 
   const currentPage = parseInt(page || "1", 10);
   const pageSize = 5;
-  
   const pageItems = getPageItems(wishlist, currentPage, pageSize);
 
    return (

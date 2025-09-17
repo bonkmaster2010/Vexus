@@ -7,10 +7,12 @@ import type { SectionIF } from '../../utils/interfaces/components/SC.if';
 import '../../styles/Section.css';
 
 function Section({ title, style, CartType, searchTerm }: SectionIF) {
+  // Variables
   const containerRef = useRef<HTMLDivElement>(null);
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
+  // goes to the left in the section navigation
   const scrollLeft = () => {
     if (!containerRef.current) return;
     const card = containerRef.current.querySelector('.section-card') as HTMLElement;
@@ -19,6 +21,7 @@ function Section({ title, style, CartType, searchTerm }: SectionIF) {
     containerRef.current.scrollBy({ left: -card.offsetWidth - gap, behavior: 'smooth' });
   };
 
+  // goes to the right in section navigations
   const scrollRight = () => {
     if (!containerRef.current) return;
     const card = containerRef.current.querySelector('.section-card') as HTMLElement;

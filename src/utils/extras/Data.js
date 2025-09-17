@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
+// adds checks
 const normalizeProduct = (p) => ({
   id: uuidv4(),
   name: p.name || "Unknown",

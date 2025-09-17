@@ -12,7 +12,6 @@ export interface DropDownLink {
   filterType?: 'specs' | 'types' | 'manufacturers';
 }
 
-
 export const CALLinks: DropDownLink[] = [
   {
     linkName: "Desktops & Monitors",
@@ -97,5 +96,14 @@ export const MBLinks: DropDownLink[] = [
   }
 ];
 
-
+/*
+  - each link object has -
+  linkName - link name
+  route - link route
+  routeType - link route type (category or categories)
+  subLinks - link sublinks
+  cf - sublink category filters
+  key - link key
+  filterType - (type, specs, manufacturer)
+*/
 export const allElecLinks = [...CALLinks, ...MBLinks];

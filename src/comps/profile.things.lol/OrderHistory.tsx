@@ -4,9 +4,9 @@ import { useMain } from "../../states/MainStates";
 import { useNavigate } from "react-router";
 
 function OrderHistory() {
+    // Variables
     const { orders } = useMain();
     const navi = useNavigate();
-
 
     /* wishlist component but with sum changes  */
 

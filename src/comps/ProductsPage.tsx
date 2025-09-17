@@ -9,13 +9,12 @@ import type { ProductsProps } from "../utils/interfaces/components/main.comps.if
 import "../styles/Products.css";
 
 function ProductsPage({ categoryData, useRv = false }: ProductsProps) {
+  // Variables
   const { rv, showOverlayedFilter } = useMain();
   const { category: rawCategory } = useParams<{ category?: string; key?: string }>();
   const category = rawCategory || "???";
-
   const [data, setData] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-
   const ROUTE_TO_IDS: Record<string, string[]> = {};
   Object.values(allSubLinks).forEach(arr => {
     arr.forEach(item => {
@@ -24,12 +23,14 @@ function ProductsPage({ categoryData, useRv = false }: ProductsProps) {
     });
   });
  
+  // gets the category filters
   const categoryInfo = !useRv && categoryData
     ? categoryData[category] ?? { filters: [], types: [], manufacturers: [], title: "Products" }
     : { filters: [], types: [], manufacturers: [], title: "" };
 
   const categoryTitle = categoryInfo?.title;
 
+  // gets data
   useEffect(() => {
     const loadProducts = async () => {
       setLoading(true);

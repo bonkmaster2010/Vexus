@@ -3,10 +3,9 @@ import { useMain } from "../../states/MainStates";
 import type { WishlistCardIF } from "../../utils/interfaces/components/SC.if";
 
 function WishlistCard({ product, index, showMtc = true}: WishlistCardIF){
-     console.log("showMtc:", showMtc);
-
-     const navigate = useNavigate();
-     const { addItemToCart, removeItemFromWishlist } = useMain();
+  // Variables
+   const navigate = useNavigate();
+   const { addItemToCart, removeItemFromWishlist } = useMain();
      
      return (
         <div className="wishlist-card">

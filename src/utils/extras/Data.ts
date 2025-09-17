@@ -16,6 +16,7 @@ export interface Product {
   warranty: number;
 }
 
+// adds checks
 const normalizeProduct = (p: any): Product => ({
   id: uuidv4(),
   name: p.name || "Unknown",

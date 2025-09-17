@@ -3,7 +3,8 @@ import type { Links } from "../../utils/interfaces/Links.interface";
 import { useMain } from "../../states/MainStates";
 
 function LinksComponent({ dropdown, title, route }: Links) {
-    const { setDropdown } = useMain();
+  // Variables
+  const { setDropdown } = useMain();
 
   return (  
     <>

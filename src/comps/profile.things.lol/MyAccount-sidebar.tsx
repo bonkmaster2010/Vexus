@@ -6,7 +6,7 @@ import { NavLink, useNavigate } from "react-router";
 import '../../styles/MyAccountSidebar.css';
 
 function MyAccountSidebar(){
-    
+    // Variables
     const navi = useNavigate();
     const { name } = useCreateUser()
     const { Logout } = useMain();

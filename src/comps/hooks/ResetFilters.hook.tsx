@@ -2,6 +2,7 @@ import { useFilters } from "../../states/FilterState";
 import { useNavigate, useLocation } from "react-router";
 import { useEffect } from "react";
 
+// resets some filters on navigation 
 function useResetFilters() {
   const navigate = useNavigate();
   const location = useLocation();

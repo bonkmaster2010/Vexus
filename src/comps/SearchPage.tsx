@@ -9,11 +9,10 @@ import type { ProductsProps } from "../utils/interfaces/components/main.comps.if
 import "../styles/Products.css";
 
 function SearchPage({ categoryData }: ProductsProps) {
+  // Variables 
   const { showOverlayedFilter, currentProducts, searchTerm } = useMain();
-
   const [data, setData] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-
   const ROUTE_TO_IDS: Record<string, string[]> = {};
   Object.values(allSubLinks).forEach(arr => {
     arr.forEach(item => {
@@ -21,10 +20,10 @@ function SearchPage({ categoryData }: ProductsProps) {
       ROUTE_TO_IDS[item.route].push(item.id);
     });
   });
-
   const categoryInfo = categoryData.search;
   const categoryTitle = categoryInfo?.title;
 
+  // fetches products
   useEffect(() => {
     const loadProducts = async () => {
       setLoading(true);

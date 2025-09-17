@@ -11,13 +11,14 @@ import type { CategoryPageCategory, CategoryPageIF } from "../utils/interfaces/c
 import '../styles/CategoryPage.css';
 
 function CategoryPage({ dataArr, dataCategories }: CategoryPageIF) {
+  // Variables
   const { showOverlayedFilter } = useMain();
   const { category } = useParams<{ category?: string }>();
   const c = category || '';
-
   const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
+  // fetches the products
   useEffect(() => {
     const loadProducts = async () => {
       setLoading(true);
@@ -27,23 +28,29 @@ function CategoryPage({ dataArr, dataCategories }: CategoryPageIF) {
     };
     loadProducts();
   }, []);
-
+  
+  // Data
   const foundObj = dataArr.find((obj: any) => obj[c] !== undefined);
-
   if (!foundObj || !foundObj[c]) {
     return <Noti text="Category page does not exist" />;
   }
+  
+  // i suck at naming bru
 
+  // when it shows multiple categories links
   const categoryGroup = dataCategories.find((obj: any) => obj.key === c);
 
+  // when it shows multiple categories links
   const lonleyGroupPartObj = dataCategories.find((obj: any) =>
     obj.mainLinks.some((link: any) => link.key === c)
   );
 
+  // when it only shows 1 category links
   const lonleyGroupPart = lonleyGroupPartObj
     ? lonleyGroupPartObj.mainLinks.filter((obj: any) => obj.key === c)
     : [];
 
+  // Title & Data
   const title = foundObj[c].title;
   const mainLinks = categoryGroup?.mainLinks
     ? categoryGroup.mainLinks

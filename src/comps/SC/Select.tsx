@@ -1,6 +1,6 @@
 import type { SelectIF } from "../../utils/interfaces/components/SC.if";
 
-
+// simple select i don't want to keep making same selects
 function Select({arr, name}: SelectIF){
 
     return (

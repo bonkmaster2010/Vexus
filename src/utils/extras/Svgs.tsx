@@ -1,3 +1,5 @@
+
+// pass a type and it returns an svg
 function Svg({ type }: any) {
   if (type === "filter") {
     return (

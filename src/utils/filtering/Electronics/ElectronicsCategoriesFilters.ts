@@ -2,6 +2,13 @@ import { MBData } from "./MT-CAL/mt.data";
 import { pc_comps_data } from "./pc-comps/pc-comps.data";
 import { CALData } from "./LAA-DAM/cal.data";
 
+/* 
+ - each object in here has -
+  title - Page title
+  manufacturers - manufacturer data
+  types - type data
+  filters - spec data 
+*/
 export const fullElecCategoriesData = {
   ...CALData,
   ...MBData,

@@ -1,3 +1,5 @@
+
+
 function Noti({ text }: any){
     return (
         <div className="noti-cont">

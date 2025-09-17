@@ -1,6 +1,6 @@
+
+// hardcoded ahh component 
 function PaymentOptions(){
-
-
     return (
         <div className="mm-my-profile-main-cont">
         

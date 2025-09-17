@@ -11,11 +11,13 @@ import '../styles/Nav.css';
 import { useState } from 'react';
 
 function Navbar(){
+    // Variables
     const navi = useNavigate();
     const { cart, registered, setDropdown, dropdown, setSearchTerm} = useMain();
     const { name } = useCreateUser();
     const [term, setTerm] = useState<string>('');
 
+    // searches (crazy)
     function search(){
       if(term.trim().length > 0) {
         setSearchTerm(term);

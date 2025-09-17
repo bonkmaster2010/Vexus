@@ -5,7 +5,7 @@ import { useFiltersWithQuery } from '../hooks/useFilterWithQuery';
 
 
 function CC({title, src, route, type}: TC){
-    
+    // Variables
     const navi = useNavigate();
     const { updateFilter } = useFiltersWithQuery();
 

@@ -5,7 +5,7 @@ import '../../styles/Review.css';
 import Svg from "../../utils/extras/Svgs";
 
 function AccountReviews(){
-    
+    // Variables
     const { accountReviews } = useMain();
     const revs = accountReviews.reverse();
     const navi = useNavigate();

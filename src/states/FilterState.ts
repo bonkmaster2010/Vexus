@@ -6,6 +6,7 @@ export const useFilters = create<FiltersState>((set, get) => ({
   selectedSpecs: [],
   selectedManufacturers: [],
 
+  // adds a type
   setSelectedTypes: (type: string) => {
     const { selectedTypes } = get();
     const normalizedType = type.trim().toLowerCase();
@@ -17,6 +18,7 @@ export const useFilters = create<FiltersState>((set, get) => ({
     });
   },
 
+  // adds a spec
   setSelectedSpecs: (spec: string) => {
     const { selectedSpecs } = get();
     const normalizedSpec = spec.trim().toLowerCase();
@@ -28,6 +30,7 @@ export const useFilters = create<FiltersState>((set, get) => ({
     });
   },
 
+  // adds a manufacturer
   setSelectedManufacturers: (manufacturer: string) => {
     const { selectedManufacturers } = get();
     const normalizedManufacturer = manufacturer.trim().toLowerCase();
@@ -39,6 +42,7 @@ export const useFilters = create<FiltersState>((set, get) => ({
     });
   },
 
+  // resets each filter array and only leaves one specific value
   resetSelectedSpecsExcept: (keepSpec: string) =>
     set({ selectedSpecs: [keepSpec.trim().toLowerCase()] }),
 
@@ -48,11 +52,12 @@ export const useFilters = create<FiltersState>((set, get) => ({
   resetSelectedManufacturersExcept: (keepManufacturer: string) =>
     set({ selectedManufacturers: [keepManufacturer.trim().toLowerCase()] }),
 
+  // sets the whole filter array with another array
   setSelectedManufacturerArray: (manufacturers: string[]) =>
     set({
       selectedManufacturers: manufacturers.map(m => m.trim().toLowerCase()),
     }),
-
+    
   setSelectedSpecsArray: (specs: string[]) =>
     set({ selectedSpecs: specs.map(s => s.trim().toLowerCase()) }),
 

@@ -4,9 +4,11 @@ import type { CFIF } from "../utils/interfaces/components/main.comps.if";
 import "../styles/CF.css";
 
 function CategoryFilter({ title, data}: CFIF) {
+  // Variables
   const { updateFilter } = useFiltersWithQuery();
   const navigate = useNavigate();
 
+  // uses update filter & navigates to link route
   function handleRouting(id: string, route: string, routeType: string) {
     const updatedParams = updateFilter("types", id);
     navigate(`/${routeType}/${route}?${updatedParams.toString()}`);

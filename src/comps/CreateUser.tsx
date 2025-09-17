@@ -5,6 +5,7 @@ import { useMain } from "../states/MainStates";
 import "../styles/CreateUser.css";
 
 function CreateUser() {
+  // Variables
   const {
     name, setName,
     email, setEmail,
@@ -15,10 +16,17 @@ function CreateUser() {
     passwordError, setPasswordError,
     confirmPasswordError, setConfirmPasswordError,
   } = useCreateUser();
-
   const navi = useNavigate();
   const { SignUp, registered } = useMain();
 
+  // useEffect #1 (navigates to the home if registered is true)
+  useEffect(() => {
+    if (registered) {
+      navi("/");
+    }
+  }, [registered, navi]);
+
+  // checks the user inputs and signs up
   function handleSignUp() {
     let valid = true;
 
@@ -61,15 +69,7 @@ function CreateUser() {
       navi("/");
     }
   }
-
-  useEffect(() => {
-    if (registered) {
-      navi("/");
-    }
-  }, [registered, navi]);
   
-  useEffect(() => {}, [nameError, emailError, passwordError, confirmPasswordError])
-
   return (
     <div className="main-create-user-cont">
       <h1 className="create-user-logo" onClick={() => navi('/')}>Vexus</h1>

@@ -8,23 +8,22 @@ import { useMain } from "../states/MainStates";
 import { classifySpec, slugify } from "../utils/fns/extra.fns";
 import "../styles/ProductDetails.css";
 
+// long ahh component 
 function ProductDetails() {
+  // Variables
   const params = useParams<{ productLink?: string }>();
   const productLink = params.productLink ?? "";
-
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
-
   const [addToCartText, setAddToCartText] = useState("Add To Cart");
   const [CWO, setCWO] = useState("1");
   const [quantity, setQuantity] = useState(1);
   const [warranty, setWarranty] = useState(0);
-
   const addItemToCart = useMain(s => s.addItemToCart);
   const { wishlist, addItemToWishlist, removeItemFromWishlist } = useMain();
   const quantityOptions = [1, 2, 3, 4, 5];
 
-  // Load product asynchronously
+  // fetches products
   useEffect(() => {
     const loadProduct = async () => {
       setLoading(true);
@@ -37,14 +36,16 @@ function ProductDetails() {
     loadProduct();
   }, [productLink]);
 
-  if (loading) return <div>Loading product… ⏳</div>;
+  if(loading) return <p>FETCHING... wait ok</p>
   if (!product) return <Noti text="Product not found" />;
 
+  // changes a button text
   const ChangeAddToCartText = () => {
     setAddToCartText("Added To Cart");
     setTimeout(() => setAddToCartText("Add To Cart"), 3000);
   };
 
+  // extracts the product specs from title because dataset kinda buns
   const extractProductSpecs = (title: string) => {
     const matches = [...title.matchAll(/\(([^)]+)\)/g)];
     if (!matches.length) return [];
@@ -54,6 +55,7 @@ function ProductDetails() {
 
   const specs = extractProductSpecs(product.name);
 
+  // chuncks an array based on size
   const chunkArray = <T,>(arr: T[], size: number): T[][] => {
     const result: T[][] = [];
     for (let i = 0; i < arr.length; i += size) {
@@ -145,6 +147,7 @@ function ProductDetails() {
 
               <hr className="pdr" />
 
+              {/* Add to cart things & other things (im so buns at making comments) */}
               <div className="add-to-cart-wrapper">
                 <div className="add-to-cart">
                   <p id="inStock">In Stock</p>
@@ -161,12 +164,14 @@ function ProductDetails() {
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </div>
 
       <div className="pdr-long" />
 
+        {/* Specs section */}
         <div className="specs-cont">
         {(!specs || specs.length === 0) && <Noti text="No specifications listed" />}
         {specs && specs.length > 0 && (

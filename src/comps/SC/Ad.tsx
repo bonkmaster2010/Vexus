@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router';
 import { useFiltersWithQuery } from '../hooks/useFilterWithQuery';
 
 function Ad() {
+  // Variables
   const [imageIndex, setImageIndex] = useState<number>(0);
   const { updateFilter } = useFiltersWithQuery();
   const srcs = [
@@ -14,16 +15,19 @@ function Ad() {
     {src: ad4}];
   const navi = useNavigate();
   
+  // uses the update filter function and also navigates
   function handleRouting(id: string, route: string, filterType?: 'specs' | 'types' | 'manufacturers') {
     const updatedParams = updateFilter(filterType ? filterType : "types", id);
     navi(`/${route}?${updatedParams.toString()}`);
   };
 
+   // gets the prev ad image
    function left(e: any) {
    e.stopPropagation();
    setImageIndex((prev) => (prev === 0 ? srcs.length - 1 : prev - 1));
    };
 
+   // gets the next ad image
    function right(e: any) {
     e.stopPropagation();
    setImageIndex((prev) => (prev === srcs.length - 1 ? 0 : prev + 1));

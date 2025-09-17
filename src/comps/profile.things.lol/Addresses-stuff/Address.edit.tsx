@@ -5,12 +5,11 @@ import { useParams } from "react-router";
 import type { address } from "../../../utils/interfaces/state-interfaces/MainState.interfaces";
 
 function EditAddress() {
+  // Variables (thats a lot ngl)
+  const { editAddress, addresses } = useMain();
   const { i } = useParams();
   const idx = i ? parseInt(i) : -1;
-
-  const { editAddress, addresses } = useMain();
   const addr = addresses[idx];
-
   const [country, setCountry] = useState(addr?.address_arr[3] || "");
   const [fullname, setFullname] = useState(addr?.name || "");
   const [mobileNumber, setMobileNumber] = useState(addr?.mobile_number || "");
@@ -28,6 +27,7 @@ function EditAddress() {
     { label: "Building Name/No.", state: buildingName, setter: setBuildingName },
   ];
 
+  // saves the address (crazy ik)
   function saveAddress() {
     if (!fullname || !mobileNumber || !country || !city || !streetName || !buildingName) {
       alert("Please fill in all fields");

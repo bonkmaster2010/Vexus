@@ -1,5 +1,6 @@
 import { allElecLinks } from "../Links/Electronics/ElectronicLinks";
 
+//
 function isProductMatch(
  { product,
   selectedSpecsFilters,
@@ -17,7 +18,6 @@ function isProductMatch(
 
   return matchesSpecs && matchesType;
 };
-
 
 function BrandCategoryFilter(manufacturer: string, products: any[]) {
   // Filter products by manufacturer, case-insensitive

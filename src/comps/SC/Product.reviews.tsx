@@ -3,6 +3,7 @@ import { useMain } from "../../states/MainStates";
 import "../../styles/Review.css";
 
 function ProductReviews({ productTitle, idx }: { productTitle: string; idx: number }) {
+  // Variables
   const [review, setReview] = useState("");
   const [showCommentOverlay, setShowCommentOverlay] = useState(false);
   const [showCommentBox, setShowCommentBox] = useState(false);
@@ -20,6 +21,7 @@ function ProductReviews({ productTitle, idx }: { productTitle: string; idx: numb
 
   const data = reviews.find((r) => r.productIndex === idx)?.reviews;
 
+  // adds a review do i have to go into detail in these comments ?
   function handleAdd() {
     if (!review.trim()) return;
 
@@ -36,6 +38,7 @@ function ProductReviews({ productTitle, idx }: { productTitle: string; idx: numb
     setShowCommentBox(false);
   }
 
+  // saves edit
   function handleSaveEdit(reviewIdx: number) {
     if (edit.trim().length === 0) return;
 
@@ -44,6 +47,7 @@ function ProductReviews({ productTitle, idx }: { productTitle: string; idx: numb
     setEdit("");
   }
 
+  // deletes review
   function handleDeleteReview(reviewIdx: number) {
     deleteReview(reviewIdx, idx);
   }

@@ -17,14 +17,15 @@ import Addresses from './comps/profile.things.lol/Addresses-stuff/Addresses.tsx'
 import AddAddress from './comps/profile.things.lol/Addresses-stuff/Address.add.tsx'
 import EditAddress from './comps/profile.things.lol/Addresses-stuff/Address.edit.tsx'
 import AccountReviews from './comps/profile.things.lol/AccountReviews.tsx'
+import SearchPage from './comps/SearchPage.tsx'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router'
 import { fullElecCategoriesData } from './utils/filtering/Electronics/ElectronicsCategoriesFilters.ts'
 import { allCatesFilters } from './utils/Links/all-cates.links.ts'
 import { allCPCData } from './utils/CPC/allCPC.data.ts'
 import { ResetOnRouteChange } from './comps/routing/ResetStateOnNavigation.tsx'
-import SearchPage from './comps/SearchPage.tsx'
 
+// routes
 createRoot(document.getElementById('root')!).render(
    <BrowserRouter basename="/">
     <ResetOnRouteChange>

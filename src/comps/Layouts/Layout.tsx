@@ -6,7 +6,9 @@ import { Outlet } from "react-router";
 import { useMain } from "../../states/MainStates";
 import { useEffect } from 'react';
 
+/* Normal Layout */
 function Layout() {
+  // Variables
   const showOverlayedFilter = useMain((state) => state.showOverlayedFilter);
   const { isMobile, setIsMobile } = useMain();
 

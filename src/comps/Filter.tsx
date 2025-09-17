@@ -7,6 +7,7 @@ import type { FilterProps } from '../utils/interfaces/components/SC.if';
 import '../styles/Filter.css';
 
 function Filter({ specArr, typeArr, manufacturer }: FilterProps) {
+  // Variables
   const {
     selectedTypes,
     selectedManufacturers,
@@ -22,6 +23,8 @@ function Filter({ specArr, typeArr, manufacturer }: FilterProps) {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const { expandedGroups } = useMain();
+  
+  // adds value to url params 
   function addQueryValue(key: string, value: string) {
     const val = value.toLowerCase().trim();
     const params = new URLSearchParams(searchParams.toString());
@@ -31,6 +34,7 @@ function Filter({ specArr, typeArr, manufacturer }: FilterProps) {
     setSearchParams(params);
   }
 
+  // removes value from url params
   function removeQueryValue(key: string, value: string) {
     const val = value.toLowerCase().trim();
     const params = new URLSearchParams(searchParams.toString());

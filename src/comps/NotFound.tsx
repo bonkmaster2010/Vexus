@@ -4,7 +4,7 @@ import '../styles/NotFound.css';
 
 
 function NotFound(){
-
+  // Variables
     const navi = useNavigate();
 
     return (

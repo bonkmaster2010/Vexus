@@ -1,18 +1,21 @@
-
+// checks if a wishlist has a specific product
 export function isInWishlist(wishlist: any, product: any){
 const wishlistCheck = wishlist.find((pro: any) => pro === product);
 return wishlistCheck
 };
 
+// gets page index (using the page number, items, size)
 export function getPageItems<T>(items: T[], page: number, pageSize: number): T[] {
   const start = (page - 1) * pageSize;
   const end = start + pageSize;
   return items.slice(start, end);
 };
 
+// cleans a string (used in filtering)
 export const normalize = (str: string) =>
   str.replace(/[^a-z0-9]/gi, '').toLowerCase().trim();
 
+// changes strings like apples to be a single word like apples --> apple
 export const singularize = (str: string) => {
   if (str.endsWith('ies') && str.length > 3) {
     return str.slice(0, -3) + 'y';
@@ -24,14 +27,12 @@ export const singularize = (str: string) => {
   return str;
 };
 
+// takes two words and check if they match (after cleaning & singularize)
 export const matchWord = (str: string, word: string) => {
   const normalizedStr = singularize(normalize(str).replace(/\s+/g, ''));
   const normalizedWord = singularize(normalize(word).replace(/\s+/g, ''));
   return normalizedStr.includes(normalizedWord);
 };
-
-
-
 
   export const CATEGORY_OVERRIDES: Record<string, string> = {
   "in-ear": "headphones",
@@ -50,21 +51,7 @@ export const matchWord = (str: string, word: string) => {
   "pc microphones": "microphones"
   }; 
 
-export function safeBase64Encode(str: string) {
-  return btoa(encodeURIComponent(str))
-    .replace(/\+/g, '-') 
-    .replace(/\//g, '_')
-    .replace(/=+$/, '');
-}
-
-export function safeBase64Decode(str: string) {
-  const base64 = str
-    .replace(/-/g, '+') 
-    .replace(/_/g, '/'); 
-
-  return decodeURIComponent(atob(base64));
-}
-
+// cleans a string 
 export function slugify(str: string) {
   return str
     .trim()
@@ -74,6 +61,7 @@ export function slugify(str: string) {
     .replace(/^-+|-+$/g, '');
 }
 
+// used to be able to find the specs from a product (dataset doesn't provide them)
 const specClasses = [
   { type: 'Color', keywords: ['black', 'white', 'blue', 'red', 'green', 'pink', 'yellow', 'purple', 'gold', 'silver'] },
   { type: 'RAM', keywords: ['ram'] },
@@ -88,6 +76,7 @@ const specClasses = [
   { type: 'Other', keywords: [] } 
 ];
 
+// classifies a spec, uses spec classes of course
 export function classifySpec(spec: string) {
   const lowerSpec = spec.toLowerCase();
   

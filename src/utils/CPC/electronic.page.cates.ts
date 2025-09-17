@@ -3,9 +3,10 @@ import { LA, LAA } from "./elec/cpc.laa.data";
 import { MA, MT } from "./elec/cpc.mt.data";
 import { PCC } from "./elec/cpc.pcc.data";
 
-
-
-
+/*
+ data - array containing objects with an image & other properties
+ title - Pretty self explainatory (title ok)
+*/
 export const allElecCatesData = {
     cal: {data: CAL, title: "Computer & Laptops"},
     mt: {data: MT, title: "Mobile & Tablets"},

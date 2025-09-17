@@ -4,7 +4,6 @@ import { useMain } from "../../states/MainStates";
 
 
 function Submenu({ data }: { data: any[] }){
-    
     const { toggleSingleGroup } = useMain();
 
     return (

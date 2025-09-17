@@ -2,7 +2,7 @@ import { useCreateUser } from "../../states/CreateUserState";
 
 
 function MMTopRow(){
-
+    // Variables
     const { name } = useCreateUser();
 
     return (

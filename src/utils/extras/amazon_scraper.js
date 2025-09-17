@@ -1,5 +1,6 @@
 import puppeteer from 'puppeteer';
 
+// scrapes amazon to get the product category
 export async function getAmazonCategory(url) {
     const browser = await puppeteer.launch({ headless: true });
     try {

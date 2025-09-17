@@ -7,11 +7,13 @@ import type { DropDownLink } from "../../utils/Links/Electronics/ElectronicLinks
 import '../../styles/Dropdown.css';
 
 function Dropdown({ data, route, src, brandArr = [], type }: DropdownProps) {
+  // Variables
   const { updateFilter } = useFiltersWithQuery();
   const dropdown = useMain((state) => state.dropdown);
   const setDropdown = useMain((state) => state.setDropdown);
   const navigate = useNavigate();
 
+  // uses update filter fn & navigates
   function handleRouting(id: string, route: string, routeType: string, filterType?: 'specs' | 'types' | 'manufacturers') {
     const updatedParams = updateFilter(filterType ? filterType : "types", id);
     navigate(`/${routeType}/${route}?${updatedParams.toString()}`);
@@ -22,6 +24,7 @@ function Dropdown({ data, route, src, brandArr = [], type }: DropdownProps) {
   return (
     <div
       className="dropdown"
+      // used to know which dropdown to show
       onMouseEnter={() => setDropdown(type)}
       onMouseLeave={() => setDropdown("")}
     >

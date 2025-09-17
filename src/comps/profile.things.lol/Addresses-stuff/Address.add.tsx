@@ -4,6 +4,7 @@ import { useMain } from "../../../states/MainStates";
 import type { address } from "../../../utils/interfaces/state-interfaces/MainState.interfaces";
 
 function AddAddress() {
+  // Variables
   const [country, setCountry] = useState<string>("")
   const [fullname, setFullname] = useState<string>("")
   const [mobileNumber, setMobileNumber] = useState<string>("")

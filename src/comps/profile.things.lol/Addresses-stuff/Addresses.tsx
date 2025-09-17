@@ -4,9 +4,11 @@ import '../../../styles/Addresses.css';
 import { useNavigate } from "react-router";
 
 function Addresses() {
+  // Variables
   const navi = useNavigate();
   const { addresses, deleteAddress } = useMain();
 
+  // deletes the address (not a very useful comment i know)
   function handleDelete(i: number) {
     if (window.confirm("Are you sure you want to delete this address?")) {
       deleteAddress(i);

@@ -12,6 +12,7 @@ import type { BPIF } from "../utils/interfaces/components/main.comps.if";
 import "../styles/BrandPage.css";
 
 function BrandPage({}: BPIF) {
+  // Variables
   const { showOverlayedFilter } = useMain();
   const { brand } = useParams<{ brand?: keyof typeof CAL_B }>();
   const [brandData, setBrandData] = useState<Product[]>([]);

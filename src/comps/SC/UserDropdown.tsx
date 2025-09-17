@@ -2,12 +2,15 @@ import { NavLink, useNavigate } from "react-router";
 import { useMain } from "../../states/MainStates";
 import '../../styles/Dropdown.css'
 
+// that small dropdown when you hover on the account icon 
 function UserDropdown() {
+  // Variables
   const { registered, Logout, dropdown, setDropdown } = useMain();
   const navi = useNavigate();
 
   return dropdown === 'user-dropdown' ? (
     <div className="user-dropdown"
+    // to know which dropdown to shows
     onMouseEnter={() => setDropdown('user-dropdown')}
     onMouseLeave={() => setDropdown('')}
     >
